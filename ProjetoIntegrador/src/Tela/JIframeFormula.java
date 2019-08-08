@@ -15,15 +15,15 @@ import java.math.BigDecimal;
  *
  * @author patrick.scheibel
  */
-public class JframeFormula extends javax.swing.JFrame {
+public class JIframeFormula extends javax.swing.JInternalFrame {
 
     Integer idEditar;
     /**
      * Creates new form JframeMaterial
      */
-    public JframeFormula() {
+    public JIframeFormula() {
         initComponents();
-        setLocationRelativeTo(this);
+//        setLocationRelativeTo(this);
         jTabbedPaneFormula.setEnabled(false);
         new FormulaDAO().popularTabela(TabelaFormula);
     }
@@ -52,6 +52,7 @@ public class JframeFormula extends javax.swing.JFrame {
         jButtonEditar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButtonExcluir = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelLegendaFormula = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,8 +63,9 @@ public class JframeFormula extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Material");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Formula");
+        setToolTipText("");
 
         TabelaFormula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +104,13 @@ public class JframeFormula extends javax.swing.JFrame {
             }
         });
 
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,7 +122,7 @@ public class JframeFormula extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 21, Short.MAX_VALUE)
+                        .addGap(0, 45, Short.MAX_VALUE)
                         .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,15 +132,19 @@ public class JframeFormula extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonFechar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionar)
@@ -191,9 +204,7 @@ public class JframeFormula extends javax.swing.JFrame {
                                         .addComponent(jLabelLegendaFormula, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                        .addGap(6, 6, 6)))))
+                                    .addComponent(jTextFieldDescricao))))
                         .addGap(116, 116, 116))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -289,47 +300,52 @@ public class JframeFormula extends javax.swing.JFrame {
         new FormulaDAO().popularTabela(TabelaFormula);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JframeFormula().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new JIframeFormula().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaFormula;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;

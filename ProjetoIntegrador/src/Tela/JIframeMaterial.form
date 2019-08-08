@@ -66,7 +66,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                               <Component id="jButtonAdicionar" min="-2" pref="127" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButtonEditar" min="-2" pref="139" max="-2" attributes="0"/>
@@ -79,17 +79,22 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButtonFechar" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jButtonFechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="296" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="293" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -194,6 +199,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="jButtonFechar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fechar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFecharActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -224,8 +237,11 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jFormattedTextFieldPreco" min="-2" pref="55" max="-2" attributes="0"/>
                                   <Component id="jTextFieldAplicacao" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jFormattedTextFieldPreco" min="-2" pref="73" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">

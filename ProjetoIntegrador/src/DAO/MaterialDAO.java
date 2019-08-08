@@ -7,7 +7,7 @@ package DAO;
 
 import Entidade.Material;
 import Hibernate.HibernateUtil;
-import Tela.JframeMaterial;
+import Tela.JIframeMaterial;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,14 +22,14 @@ import org.hibernate.Transaction;
  */
 public class MaterialDAO {
     
-    public void SalvarMaterial(Material material, JframeMaterial jframeMaterial){
+    public void SalvarMaterial(Material material, JIframeMaterial jframeMaterial){
         Session sessao = null;
-        JframeMaterial jfr = jframeMaterial;
+        JIframeMaterial jfr = jframeMaterial;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(material.getDescricao() != "" && !material.getPreco().equals("   .  ")){
+            if(!material.getDescricao().equals("") && !material.getPreco().equals("   .  ")){
                 if(material.getId() == null){
                     sessao.save(material);                     
                     t.commit();    

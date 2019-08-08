@@ -7,7 +7,7 @@ package DAO;
 
 import Entidade.Formula;
 import Hibernate.HibernateUtil;
-import Tela.JframeFormula;
+import Tela.JIframeFormula;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,14 +22,14 @@ import org.hibernate.Transaction;
  */
 public class FormulaDAO {
     
-    public void SalvarFormula(Formula formula, JframeFormula jframeFormula){
+    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula){
         Session sessao = null;
-        JframeFormula jfr = jframeFormula;
+        JIframeFormula jfr = jframeFormula;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(formula.getNome() != "" && formula.getDescricao() != ""){
+            if(!formula.getNome().equals("") && !formula.getDescricao().equals("")){
                 
                 if(formula.getId() == null){                 
                     sessao.save(formula);                     
