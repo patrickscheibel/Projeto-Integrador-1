@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/08/2019 20:15:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entidade.Fornecedor" table="fornecedor" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="cidade" class="Entidade.Cidade" fetch="select">
+            <column name="id_cidade" />
+        </many-to-one>
+        <many-to-one name="estado" class="Entidade.Estado" fetch="select">
+            <column name="id_endereco" />
+        </many-to-one>
+        <property name="razaoSocial" type="string">
+            <column name="razao_social" length="100" />
+        </property>
+        <property name="nomeFantasia" type="string">
+            <column name="nome_fantasia" length="100" />
+        </property>
+        <property name="cnpj" type="java.lang.Integer">
+            <column name="cnpj" />
+        </property>
+        <property name="telefone" type="java.lang.Integer">
+            <column name="telefone" />
+        </property>
+    </class>
+</hibernate-mapping>
