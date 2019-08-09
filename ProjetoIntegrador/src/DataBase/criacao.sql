@@ -12,6 +12,29 @@ create table material(
         tamanho varchar(20), 
 	preco decimal(10,2) not null
 );
+
+create table usuario(
+     id serial primary key not null,
+     usuario varchar(100) not null,
+     senha varchar(100) not null,
+     situacao varchar(100)
+);
+
+create table auditoria(
+    id serial primary key not null,
+    id_usuario integer not null,
+    data timestamp not null,
+	descricao text not null,
+	dados text,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id)	
+);
+
+create table log(
+	id serial primary key not null,
+	data timestamp not null,
+	descricao text not null,
+	dados text
+);
 				
 create table estado(
  	id serial PRIMARY KEY,
