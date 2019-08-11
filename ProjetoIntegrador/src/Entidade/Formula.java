@@ -19,7 +19,10 @@ public class Formula  implements java.io.Serializable {
      @GeneratedValue(strategy = GenerationType.IDENTITY) 
      private Integer id;
      
+     @Column(name="nome", length = 100)
      private String nome;
+     
+     @Column(name="descricao", length = 100)
      private String descricao;
 
     public Formula() {

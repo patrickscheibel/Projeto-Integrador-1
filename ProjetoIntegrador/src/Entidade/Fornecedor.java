@@ -1,6 +1,15 @@
 package Entidade;
 // Generated 03/08/2019 20:15:02 by Hibernate Tools 4.3.1
 
+import com.sun.istack.internal.NotNull;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+
 
 
 /**
@@ -8,14 +17,35 @@ package Entidade;
  */
 public class Fornecedor  implements java.io.Serializable {
 
-
-     private int id;
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+     
+    @NotNull()
+    @OneToOne()
+    @JoinColumn(name = "cidade_id", nullable = false)
      private Cidade cidade;
-     private Estado estado;
-     private String razaoSocial;
-     private String nomeFantasia;
-     private Integer cnpj;
-     private Integer telefone;
+    
+    @NotNull()
+    @OneToOne()
+    @JoinColumn(name = "estado_id", nullable = false)
+    private Estado estado;
+    
+    @NotNull()
+    @Column(name = "razao_social", length = 100)
+    private String razaoSocial;
+    
+    @Column(name = "nome_fantasia", length = 100)
+    private String nomeFantasia;
+    
+    @NotNull()
+    @Column(name = "cnpj")
+    private Integer cnpj;
+    
+    @NotNull()
+    @Column(name = "telefone")
+    private Integer telefone;
 
     public Fornecedor() {
     }

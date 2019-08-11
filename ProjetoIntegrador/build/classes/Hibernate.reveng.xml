@@ -46,4 +46,7 @@ Contributor(s):
   <table-filter match-name="estado"/>
   <table-filter match-name="material"/>
   <table-filter match-name="cidade"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="auditoria"/>
+  <table-filter match-name="log"/>
 </hibernate-reverse-engineering>
