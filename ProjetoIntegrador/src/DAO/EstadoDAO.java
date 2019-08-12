@@ -5,9 +5,10 @@
  */
 package DAO;
 
-import Entidade.Formula;
+
+import Entidade.Estado;
 import Hibernate.HibernateUtil;
-import Tela.JIframeFormula;
+import Tela.JIframeEstado;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,28 +16,27 @@ import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 /**
  *
- * @author patrick.scheibel
+ * @author conti
  */
-public class FormulaDAO {
+public class EstadoDAO {
     
-    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula){
+    public void SalvarEstado(Estado estado, JIframeEstado jframeEstado){
         Session sessao = null;
-        JIframeFormula jfr = jframeFormula;
+        JIframeEstado jfr = jframeEstado;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(!formula.getNome().equals("") && !formula.getDescricao().equals("")){
+            if(!estado.getDescricao().equals("")){
                 
-                if(formula.getId() == null){                 
-                    sessao.save(formula);                     
+                if(estado.getId() == null){                 
+                    sessao.save(estado);                     
                     t.commit();    
                     jfr.popularTabelaSalvar();
                 } else {
-                    sessao.update(formula);  
+                    sessao.update(estado);  
                     t.commit(); 
                     jfr.popularTabelaSalvar();
                 }
@@ -50,15 +50,15 @@ public class FormulaDAO {
 
     }
     
-    public void ExcluirFormula(Integer id){
+    public void ExcluirEstado(Integer id){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sessao.beginTransaction();
      
-        Formula formula = ConsultarFormula(id);
-        if(formula != null){
-            sessao.delete(formula);  
+        Estado estado = ConsultarEstado(id);
+        if(estado != null){
+            sessao.delete(estado);  
             t.commit(); 
         }
         } catch (HibernateException he) {
@@ -68,7 +68,7 @@ public class FormulaDAO {
         }  
     }
           
-    public List<Formula> ConsultarTodos() {
+    public List<Estado> ConsultarTodos() {
 //    - método para consultar
         List resultado = null;
 
@@ -76,7 +76,7 @@ public class FormulaDAO {
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Formula");
+                org.hibernate.Query q = sessao.createQuery("from Estado");
                 resultado = q.list();
 
             } catch (HibernateException he) {
@@ -91,22 +91,21 @@ public class FormulaDAO {
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Formula> lista = ConsultarTodos();
+        List<Estado> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[3];
+        Object[] cabecalho = new Object[2];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "Descrição";
+        cabecalho[1] = "Descrição";
         
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][3];
+            dadosTabela = new Object[lista.size()][2];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar os Formulas: " + e);
+            System.out.println("Erro ao consultar os Estados: " + e);
         }
 
         int lin = 0;
@@ -114,11 +113,10 @@ public class FormulaDAO {
         // efetua consulta na tabela
         try {
           
-            for (Formula formula : lista) {
+            for (Estado estado : lista) {
                 
-                dadosTabela[lin][0] = formula.getId();
-                dadosTabela[lin][1] = formula.getNome();
-                dadosTabela[lin][2] = formula.getDescricao();
+                dadosTabela[lin][0] = estado.getId();
+                dadosTabela[lin][1] = estado.getDescricao();
                
 
                 lin++;
@@ -156,19 +154,21 @@ public class FormulaDAO {
 
     }
     
-    public Formula ConsultarFormula(int id) {
-     Formula formula = new Formula();
+    public Estado ConsultarEstado(int id) {
+     Estado estado = new Estado();
 
          try {
              Session sessao = HibernateUtil.getSessionFactory().openSession();
              sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from Formula where id = " + id);
-             formula = Formula.class.cast(q.uniqueResult());
+             org.hibernate.Query q = sessao.createQuery("from Estado where id = " + id);
+             estado = Estado.class.cast(q.uniqueResult());
 
          } catch (HibernateException he) {
              he.printStackTrace();
          }
-         return formula;
+         return estado;
      }    
+
+    
 }

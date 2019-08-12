@@ -35,6 +35,8 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuMaterial = new javax.swing.JMenuItem();
         jMenuItemTipoPagamento = new javax.swing.JMenuItem();
+        jMenuMaterial1 = new javax.swing.JMenuItem();
+        jMenuMaterial2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -92,6 +94,22 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItemTipoPagamento);
 
+        jMenuMaterial1.setText("Estado");
+        jMenuMaterial1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMaterial1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuMaterial1);
+
+        jMenuMaterial2.setText("Usuário");
+        jMenuMaterial2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMaterial2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuMaterial2);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -125,6 +143,18 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jDesktopPanel.add(jifFormula);
     jifFormula.setVisible(true);
     }//GEN-LAST:event_jMenuItemTipoPagamentoActionPerformed
+
+    private void jMenuMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial1ActionPerformed
+    JIframeEstado jifEstado = new JIframeEstado();    
+    jDesktopPanel.add(jifEstado);
+    jifEstado.setVisible(true);
+    }//GEN-LAST:event_jMenuMaterial1ActionPerformed
+
+    private void jMenuMaterial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial2ActionPerformed
+    JIframeUsuario jifUsuario = new JIframeUsuario();    
+    jDesktopPanel.add(jifUsuario);
+    jifUsuario.setVisible(true);
+    }//GEN-LAST:event_jMenuMaterial2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,5 +199,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemTipoPagamento;
     private javax.swing.JMenuItem jMenuMaterial;
+    private javax.swing.JMenuItem jMenuMaterial1;
+    private javax.swing.JMenuItem jMenuMaterial2;
     // End of variables declaration//GEN-END:variables
 }

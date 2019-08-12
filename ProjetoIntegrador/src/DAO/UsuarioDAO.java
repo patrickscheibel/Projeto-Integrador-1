@@ -5,9 +5,9 @@
  */
 package DAO;
 
-import Entidade.Formula;
+import Entidade.Usuario;
 import Hibernate.HibernateUtil;
-import Tela.JIframeFormula;
+import Tela.JIframeUsuario;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,23 +20,23 @@ import org.hibernate.Transaction;
  *
  * @author patrick.scheibel
  */
-public class FormulaDAO {
+public class UsuarioDAO {
     
-    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula){
+    public void SalvarUsuario(Usuario usuario, JIframeUsuario jframeUsuario){
         Session sessao = null;
-        JIframeFormula jfr = jframeFormula;
+        JIframeUsuario jfr = jframeUsuario;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(!formula.getNome().equals("") && !formula.getDescricao().equals("")){
+            if(!usuario.getUsuario().equals("") && !usuario.getSenha().equals("")&& !usuario.getSituacao().equals("")){
                 
-                if(formula.getId() == null){                 
-                    sessao.save(formula);                     
+                if(usuario.getId() == null){                 
+                    sessao.save(usuario);                     
                     t.commit();    
                     jfr.popularTabelaSalvar();
                 } else {
-                    sessao.update(formula);  
+                    sessao.update(usuario);  
                     t.commit(); 
                     jfr.popularTabelaSalvar();
                 }
@@ -50,15 +50,15 @@ public class FormulaDAO {
 
     }
     
-    public void ExcluirFormula(Integer id){
+    public void ExcluirUsuario(Integer id){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sessao.beginTransaction();
      
-        Formula formula = ConsultarFormula(id);
-        if(formula != null){
-            sessao.delete(formula);  
+        Usuario usuario = ConsultarUsuario(id);
+        if(usuario != null){
+            sessao.delete(usuario);  
             t.commit(); 
         }
         } catch (HibernateException he) {
@@ -68,7 +68,7 @@ public class FormulaDAO {
         }  
     }
           
-    public List<Formula> ConsultarTodos() {
+    public List<Usuario> ConsultarTodos() {
 //    - método para consultar
         List resultado = null;
 
@@ -76,7 +76,7 @@ public class FormulaDAO {
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Formula");
+                org.hibernate.Query q = sessao.createQuery("from Usuario");
                 resultado = q.list();
 
             } catch (HibernateException he) {
@@ -91,22 +91,23 @@ public class FormulaDAO {
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Formula> lista = ConsultarTodos();
+        List<Usuario> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[3];
+        Object[] cabecalho = new Object[4];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "Descrição";
+        cabecalho[1] = "Usuario";
+        cabecalho[2] = "Senha";
+        cabecalho[3] = "Situacao";
         
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][3];
+            dadosTabela = new Object[lista.size()][4];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar os Formulas: " + e);
+            System.out.println("Erro ao consultar os Usuarios: " + e);
         }
 
         int lin = 0;
@@ -114,11 +115,12 @@ public class FormulaDAO {
         // efetua consulta na tabela
         try {
           
-            for (Formula formula : lista) {
+            for (Usuario usuario : lista) {
                 
-                dadosTabela[lin][0] = formula.getId();
-                dadosTabela[lin][1] = formula.getNome();
-                dadosTabela[lin][2] = formula.getDescricao();
+                dadosTabela[lin][0] = usuario.getId();
+                dadosTabela[lin][1] = usuario.getUsuario();
+                dadosTabela[lin][2] = usuario.getSenha();
+                dadosTabela[lin][3] = usuario.getSituacao();
                
 
                 lin++;
@@ -156,19 +158,19 @@ public class FormulaDAO {
 
     }
     
-    public Formula ConsultarFormula(int id) {
-     Formula formula = new Formula();
+    public Usuario ConsultarUsuario(int id) {
+     Usuario usuario = new Usuario();
 
          try {
              Session sessao = HibernateUtil.getSessionFactory().openSession();
              sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from Formula where id = " + id);
-             formula = Formula.class.cast(q.uniqueResult());
+             org.hibernate.Query q = sessao.createQuery("from Usuario where id = " + id);
+             usuario = Usuario.class.cast(q.uniqueResult());
 
          } catch (HibernateException he) {
              he.printStackTrace();
          }
-         return formula;
+         return usuario;
      }    
 }
