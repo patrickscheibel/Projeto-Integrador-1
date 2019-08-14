@@ -33,6 +33,7 @@ create table log(
     id serial primary key not null,
     data timestamp not null,
     descricao text not null,
+    erro text not null,
     dados text
 );
 				
