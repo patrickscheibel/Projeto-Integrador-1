@@ -22,35 +22,38 @@ import org.hibernate.Transaction;
  */
 public class UsuarioDAO {
     
-    public void SalvarUsuario(Usuario usuario, JIframeUsuario jframeUsuario){
+    public void SalvarUsuario(Usuario usuario, JIframeUsuario jframeUsuario, Usuario usuarioTela){
         Session sessao = null;
         JIframeUsuario jfr = jframeUsuario;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(!usuario.getUsuario().equals("") && !usuario.getSenha().equals("")&& !usuario.getSituacao().equals("")){
+            if(!usuario.getUsuario().equals("") && !usuario.getSenha().equals("")&& !usuario.getLogin().equals("")){
                 
-                if(usuario.getId() == null){                 
+                if(usuario.getId() == null){    
+                    System.out.println(usuario.toString());
                     sessao.save(usuario);                     
                     t.commit();    
+                    new AuditoriaDAO().SalvarAuditoria("Insert", usuario.toString(), usuarioTela);
                     jfr.popularTabelaSalvar();
                 } else {
                     sessao.update(usuario);  
                     t.commit(); 
+                    new AuditoriaDAO().SalvarAuditoria("Update", usuario.toString(), usuarioTela);
                     jfr.popularTabelaSalvar();
                 }
             }
           
-        } catch (HibernateException he) {
-            he.printStackTrace();
+        } catch (HibernateException e) {
+            e.printStackTrace();
         } finally {
             sessao.close();
         }
 
     }
     
-    public void ExcluirUsuario(Integer id){
+    public void ExcluirUsuario(Integer id, Usuario usuarioTela){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -60,9 +63,10 @@ public class UsuarioDAO {
         if(usuario != null){
             sessao.delete(usuario);  
             t.commit(); 
+            new AuditoriaDAO().SalvarAuditoria("Delete", usuario.toString(), usuarioTela);
         }
-        } catch (HibernateException he) {
-            he.printStackTrace();
+        } catch (HibernateException e) {
+            e.printStackTrace();
         } finally {
             sessao.close();
         }  
@@ -168,8 +172,8 @@ public class UsuarioDAO {
              org.hibernate.Query q = sessao.createQuery("from Usuario where id = " + id);
              usuario = Usuario.class.cast(q.uniqueResult());
 
-         } catch (HibernateException he) {
-             he.printStackTrace();
+         } catch (HibernateException e) {
+             e.printStackTrace();
          }
          return usuario;
      }    

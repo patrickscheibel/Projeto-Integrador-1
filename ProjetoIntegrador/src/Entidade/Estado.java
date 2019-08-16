@@ -26,16 +26,17 @@ public class Estado implements java.io.Serializable {
 
     public Estado() {
     }
-
-	
-    public Estado(int id) {
-        this.id = id;
-    }
+    
     public Estado(Integer id, String descricao) {
        this.id = id;
        this.descricao = descricao;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Estado{" + "id=" + id + ", descricao=" + descricao + '}';
+    }
+    
     public Integer getId() {
         return this.id;
     }

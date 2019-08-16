@@ -7,18 +7,21 @@ package Entidade;
 
 import com.sun.istack.internal.NotNull;
 import java.util.Calendar;
-import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Scheibel
  */
+@Entity
+@Table(name = "auditoria")
 public class Auditoria {
     
     @Id
@@ -51,6 +54,11 @@ public class Auditoria {
         this.data = data;
         this.descricao = descricao;
         this.dados = dados;
+    }
+
+    @Override
+    public String toString() {
+        return "Auditoria{" + "id=" + id + ", usuario=" + usuario + ", data=" + data + ", descricao=" + descricao + ", dados=" + dados + '}';
     }
     
     public Calendar dataAtual(){

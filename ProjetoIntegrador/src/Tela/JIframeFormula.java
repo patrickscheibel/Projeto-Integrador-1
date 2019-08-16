@@ -6,10 +6,8 @@
 package Tela;
 
 import DAO.FormulaDAO;
-import Entidade.Material;
-import DAO.MaterialDAO;
 import Entidade.Formula;
-import java.math.BigDecimal;
+import Entidade.Usuario;
 
 /**
  *
@@ -18,14 +16,15 @@ import java.math.BigDecimal;
 public class JIframeFormula extends javax.swing.JInternalFrame {
 
     Integer idEditar;
+    Usuario usuario = new Usuario();
     /**
      * Creates new form JframeMaterial
      */
-    public JIframeFormula() {
+    public JIframeFormula(Usuario usuarios) {
         initComponents();
-//        setLocationRelativeTo(this);
         jTabbedPaneFormula.setEnabled(false);
         new FormulaDAO().popularTabela(TabelaFormula);
+        usuario = usuarios;
     }
     
     public void popularTabelaSalvar(){
@@ -276,7 +275,7 @@ public class JIframeFormula extends javax.swing.JInternalFrame {
         formula.setNome(jTextFieldNome.getText());
         formula.setDescricao(jTextFieldDescricao.getText());
         
-        new FormulaDAO().SalvarFormula(formula, this);
+        new FormulaDAO().SalvarFormula(formula, this, usuario);
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -296,7 +295,7 @@ public class JIframeFormula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new FormulaDAO().ExcluirFormula((int) TabelaFormula.getValueAt(TabelaFormula.getSelectedRow(), 0));
+        new FormulaDAO().ExcluirFormula((int) TabelaFormula.getValueAt(TabelaFormula.getSelectedRow(), 0), usuario);
         new FormulaDAO().popularTabela(TabelaFormula);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 

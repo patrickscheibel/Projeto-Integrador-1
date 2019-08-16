@@ -6,6 +6,7 @@
 package DAO;
 
 import Entidade.Formula;
+import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.JIframeFormula;
 import java.util.List;
@@ -22,7 +23,7 @@ import org.hibernate.Transaction;
  */
 public class FormulaDAO {
     
-    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula){
+    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula, Usuario usuario){
         Session sessao = null;
         JIframeFormula jfr = jframeFormula;
         try {
@@ -34,10 +35,12 @@ public class FormulaDAO {
                 if(formula.getId() == null){                 
                     sessao.save(formula);                     
                     t.commit();    
+                    new AuditoriaDAO().SalvarAuditoria("Insert", formula.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 } else {
                     sessao.update(formula);  
                     t.commit(); 
+                    new AuditoriaDAO().SalvarAuditoria("Update", formula.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
             }
@@ -50,7 +53,7 @@ public class FormulaDAO {
 
     }
     
-    public void ExcluirFormula(Integer id){
+    public void ExcluirFormula(Integer id, Usuario usuario){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -60,6 +63,7 @@ public class FormulaDAO {
         if(formula != null){
             sessao.delete(formula);  
             t.commit(); 
+            new AuditoriaDAO().SalvarAuditoria("Delete", formula.toString(), usuario);
         }
         } catch (HibernateException he) {
             he.printStackTrace();

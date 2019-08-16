@@ -6,12 +6,8 @@
 package DAO;
 
 import Entidade.Auditoria;
-import Entidade.Estado;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
-import Tela.JIframeEstado;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -23,42 +19,35 @@ import org.hibernate.Transaction;
  */
 public class AuditoriaDAO {
     
-    private boolean status;
-    private Usuario usuario; 
+//    private Usuario usuario = new Usuario(); 
     
-    // Sempre que iniciar a tela inicial executar essa funcao 
-    public void SetStatusAndUsuario(boolean statusTela, Usuario usuarioTela){
-        status = statusTela;
-        usuario = usuarioTela;
-    }
-    
-    public void SalvarAuditoria(String descricao, String dados){
+    public void SalvarAuditoria(String descricao, String dados, Usuario usuario){
     Session sessao = null;
     try {
         sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sessao.beginTransaction();
-
-        if(status != false){
-            Auditoria auditoria = new Auditoria();
-            auditoria.setUsuario(usuario);
-            auditoria.setData(auditoria.dataAtual());
-            auditoria.setDescricao(descricao);
-            auditoria.setDados(dados);
+        
+        if(usuario.getAuditoria() != false){
+            Auditoria auditoriaSalvar = new Auditoria();
+            auditoriaSalvar.setUsuario(usuario);
+            auditoriaSalvar.setData(auditoriaSalvar.dataAtual());
+            auditoriaSalvar.setDescricao(descricao);
+            auditoriaSalvar.setDados(dados);
             
-            sessao.save(auditoria);                     
+            sessao.save(auditoriaSalvar);                     
             t.commit();    
         }
           
-        } catch (HibernateException he) {
-            he.printStackTrace();
+        } catch (HibernateException e) {
+            e.printStackTrace();
         } finally {
             sessao.close();
         }
 
     }
         
+    //Consulta para utilizar no relatorio
     public List<Auditoria> ConsultarTodos() {
-//    - método para consultar
     List resultado = null;
 
         try {
@@ -68,8 +57,8 @@ public class AuditoriaDAO {
             org.hibernate.Query q = sessao.createQuery("from Auditoria");
             resultado = q.list();
 
-        } catch (HibernateException he) {
-            he.printStackTrace();
+        } catch (HibernateException e) {
+            e.printStackTrace();
         }
         return resultado;
     }           

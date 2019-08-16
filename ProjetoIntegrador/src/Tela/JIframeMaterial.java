@@ -7,6 +7,7 @@ package Tela;
 
 import Entidade.Material;
 import DAO.MaterialDAO;
+import Entidade.Usuario;
 import java.math.BigDecimal;
 
 /**
@@ -16,14 +17,15 @@ import java.math.BigDecimal;
 public class JIframeMaterial extends javax.swing.JInternalFrame{
 
     Integer idEditar;
+    Usuario usuario = new Usuario();
     /**
      * Creates new form JframeMaterial
      */
-    public JIframeMaterial() {
+    public JIframeMaterial(Usuario usuarios) {
         initComponents();
-//        setLocationRelativeTo(this);
         jTabbedPaneMaterial.setEnabled(false);
         new MaterialDAO().popularTabela(TabelaMaterial);
+        usuario = usuarios;
     }
     
     public void popularTabelaSalvar(){
@@ -313,7 +315,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         material.setAplicacao(jTextFieldAplicacao.getText());
         material.setPreco(new BigDecimal(jFormattedTextFieldPreco.getText()));
         
-        new MaterialDAO().SalvarMaterial(material, this);
+        new MaterialDAO().SalvarMaterial(material, this, usuario);
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -334,7 +336,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new MaterialDAO().ExcluirMaterial((int) TabelaMaterial.getValueAt(TabelaMaterial.getSelectedRow(), 0));
+        new MaterialDAO().ExcluirMaterial((int) TabelaMaterial.getValueAt(TabelaMaterial.getSelectedRow(), 0), usuario);
         new MaterialDAO().popularTabela(TabelaMaterial);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 

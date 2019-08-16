@@ -6,6 +6,7 @@
 package DAO;
 
 import Entidade.Material;
+import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.JIframeMaterial;
 import java.util.List;
@@ -21,8 +22,8 @@ import org.hibernate.Transaction;
  * @author patrick.scheibel
  */
 public class MaterialDAO {
-    
-    public void SalvarMaterial(Material material, JIframeMaterial jframeMaterial){
+      
+    public void SalvarMaterial(Material material, JIframeMaterial jframeMaterial, Usuario usuario){
         Session sessao = null;
         JIframeMaterial jfr = jframeMaterial;
         try {
@@ -31,12 +32,14 @@ public class MaterialDAO {
 
             if(!material.getDescricao().equals("") && !material.getPreco().equals("   .  ")){
                 if(material.getId() == null){
-                    sessao.save(material);                     
-                    t.commit();    
-                    jfr.popularTabelaSalvar();
+                    sessao.save(material);  
+                    t.commit();
+                    new AuditoriaDAO().SalvarAuditoria("Insert", material.toString(), usuario);
+                    jfr.popularTabelaSalvar();                 
                 } else {
                     sessao.update(material);  
                     t.commit(); 
+                    new AuditoriaDAO().SalvarAuditoria("Update", material.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
             }
@@ -49,7 +52,7 @@ public class MaterialDAO {
 
     }
     
-    public void ExcluirMaterial(Integer id){
+    public void ExcluirMaterial(Integer id, Usuario usuario){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -57,8 +60,9 @@ public class MaterialDAO {
      
         Material material = ConsultarMaterial(id);
         if(material != null){
-            sessao.delete(material);  
-            t.commit(); 
+            sessao.delete(material);
+            t.commit();       
+            new AuditoriaDAO().SalvarAuditoria("Delete", material.toString(), usuario);
         }
         } catch (HibernateException he) {
             he.printStackTrace();

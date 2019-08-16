@@ -16,8 +16,11 @@ create table material(
 create table usuario(
      id serial primary key not null,
      usuario varchar(100) not null,
+     login varchar(100) not null,
      senha varchar(100) not null,
-     situacao varchar(100)
+     situacao varchar(100),
+     auditoria boolean,
+     log boolean
 );
 
 create table auditoria(

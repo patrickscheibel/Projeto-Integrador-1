@@ -7,9 +7,7 @@ package Tela;
 
 import DAO.EstadoDAO;
 import Entidade.Estado;
-import DAO.MaterialDAO;
-import java.math.BigDecimal;
-
+import Entidade.Usuario;
 /**
  *
  * @author patrick.scheibel
@@ -17,14 +15,15 @@ import java.math.BigDecimal;
 public class JIframeEstado extends javax.swing.JInternalFrame {
 
     Integer idEditar;
+    Usuario usuario = new Usuario();
     /**
      * Creates new form JframeMaterial
      */
-    public JIframeEstado() {
+    public JIframeEstado(Usuario usuarios) {
         initComponents();
-//        setLocationRelativeTo(this);
         jTabbedPaneEstado.setEnabled(false);
         new EstadoDAO().popularTabela(TabelaEstado);
+        usuario = usuarios;
     }
     
     public void popularTabelaSalvar(){
@@ -263,7 +262,7 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
         estado.setId(idEditar);
         estado.setDescricao(jTextFieldDescricao.getText());
         
-        new EstadoDAO().SalvarEstado(estado, this);
+        new EstadoDAO().SalvarEstado(estado, this, usuario);
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -282,7 +281,7 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new EstadoDAO().ExcluirEstado((int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0));
+        new EstadoDAO().ExcluirEstado((int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0), usuario);
         new EstadoDAO().popularTabela(TabelaEstado);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 

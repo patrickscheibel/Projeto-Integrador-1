@@ -7,6 +7,7 @@ package DAO;
 
 
 import Entidade.Estado;
+import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.JIframeEstado;
 import java.util.List;
@@ -22,7 +23,7 @@ import org.hibernate.Transaction;
  */
 public class EstadoDAO {
     
-    public void SalvarEstado(Estado estado, JIframeEstado jframeEstado){
+    public void SalvarEstado(Estado estado, JIframeEstado jframeEstado, Usuario usuario){
         Session sessao = null;
         JIframeEstado jfr = jframeEstado;
         try {
@@ -34,10 +35,12 @@ public class EstadoDAO {
                 if(estado.getId() == null){                 
                     sessao.save(estado);                     
                     t.commit();    
+                    new AuditoriaDAO().SalvarAuditoria("Insert", estado.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 } else {
                     sessao.update(estado);  
-                    t.commit(); 
+                    t.commit();
+                    new AuditoriaDAO().SalvarAuditoria("Update", estado.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
             }
@@ -50,7 +53,7 @@ public class EstadoDAO {
 
     }
     
-    public void ExcluirEstado(Integer id){
+    public void ExcluirEstado(Integer id, Usuario usuario){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -60,6 +63,7 @@ public class EstadoDAO {
         if(estado != null){
             sessao.delete(estado);  
             t.commit(); 
+            new AuditoriaDAO().SalvarAuditoria("Delete", estado.toString(), usuario);
         }
         } catch (HibernateException he) {
             he.printStackTrace();

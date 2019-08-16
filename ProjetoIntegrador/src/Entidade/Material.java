@@ -52,7 +52,12 @@ public class Material  implements java.io.Serializable {
        this.preco = preco;
        this.tamanho = tamanho;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Material{" + "id=" + id + ", descricao=" + descricao + ", tipo=" + tipo + ", tamanho=" + tamanho + ", aplicacao=" + aplicacao + ", preco=" + preco + '}';
+    }
+    
     public Integer getId() {
         return this.id;
     }

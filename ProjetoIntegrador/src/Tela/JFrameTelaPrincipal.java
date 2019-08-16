@@ -5,6 +5,10 @@
  */
 package Tela;
 
+import DAO.AuditoriaDAO;
+import DAO.UsuarioDAO;
+import Entidade.Usuario;
+
 /**
  *
  * @author patrick.scheibel
@@ -14,9 +18,12 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JFrameTelaPrincipal
      */
+    Usuario usuario;
+    
     public JFrameTelaPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        usuario = new UsuarioDAO().ConsultarUsuario(1);
     }
 
     /**
@@ -31,12 +38,13 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jDesktopPanel = new javax.swing.JDesktopPane();
         jButtonFechar = new javax.swing.JButton();
         jLabelEmpresa = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuMaterial = new javax.swing.JMenuItem();
-        jMenuItemTipoPagamento = new javax.swing.JMenuItem();
-        jMenuMaterial1 = new javax.swing.JMenuItem();
-        jMenuMaterial2 = new javax.swing.JMenuItem();
+        jMenuItemFormula = new javax.swing.JMenuItem();
+        jMenuEstado = new javax.swing.JMenuItem();
+        jMenuUsuario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -52,28 +60,40 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jLabelEmpresa.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelEmpresa.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         jDesktopPanel.setLayer(jButtonFechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelEmpresa, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanel.setLayer(jLabelUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPanelLayout = new javax.swing.GroupLayout(jDesktopPanel);
         jDesktopPanel.setLayout(jDesktopPanelLayout);
         jDesktopPanelLayout.setHorizontalGroup(
             jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
                 .addContainerGap(363, Short.MAX_VALUE)
-                .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
+                        .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
+                        .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jDesktopPanelLayout.setVerticalGroup(
             jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonFechar)
-                    .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addComponent(jButtonFechar)
+                .addGap(22, 22, 22)
+                .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         jMenu4.setText("Cadastrar");
@@ -86,29 +106,29 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuMaterial);
 
-        jMenuItemTipoPagamento.setText("Fórmula");
-        jMenuItemTipoPagamento.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFormula.setText("Fórmula");
+        jMenuItemFormula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTipoPagamentoActionPerformed(evt);
+                jMenuItemFormulaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItemTipoPagamento);
+        jMenu4.add(jMenuItemFormula);
 
-        jMenuMaterial1.setText("Estado");
-        jMenuMaterial1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuEstado.setText("Estado");
+        jMenuEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMaterial1ActionPerformed(evt);
+                jMenuEstadoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuMaterial1);
+        jMenu4.add(jMenuEstado);
 
-        jMenuMaterial2.setText("Usuário");
-        jMenuMaterial2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuUsuario.setText("Usuário");
+        jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMaterial2ActionPerformed(evt);
+                jMenuUsuarioActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuMaterial2);
+        jMenu4.add(jMenuUsuario);
 
         jMenuBar1.add(jMenu4);
 
@@ -133,28 +153,28 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jMenuMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterialActionPerformed
-    JIframeMaterial jifMaterial = new JIframeMaterial();    
+    JIframeMaterial jifMaterial = new JIframeMaterial(usuario);    
     jDesktopPanel.add(jifMaterial);
     jifMaterial.setVisible(true);
     }//GEN-LAST:event_jMenuMaterialActionPerformed
 
-    private void jMenuItemTipoPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTipoPagamentoActionPerformed
-    JIframeFormula jifFormula = new JIframeFormula();    
+    private void jMenuItemFormulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulaActionPerformed
+    JIframeFormula jifFormula = new JIframeFormula(usuario);    
     jDesktopPanel.add(jifFormula);
     jifFormula.setVisible(true);
-    }//GEN-LAST:event_jMenuItemTipoPagamentoActionPerformed
+    }//GEN-LAST:event_jMenuItemFormulaActionPerformed
 
-    private void jMenuMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial1ActionPerformed
-    JIframeEstado jifEstado = new JIframeEstado();    
+    private void jMenuEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEstadoActionPerformed
+    JIframeEstado jifEstado = new JIframeEstado(usuario);    
     jDesktopPanel.add(jifEstado);
     jifEstado.setVisible(true);
-    }//GEN-LAST:event_jMenuMaterial1ActionPerformed
+    }//GEN-LAST:event_jMenuEstadoActionPerformed
 
-    private void jMenuMaterial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial2ActionPerformed
-    JIframeUsuario jifUsuario = new JIframeUsuario();    
+    private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
+    JIframeUsuario jifUsuario = new JIframeUsuario(usuario);    
     jDesktopPanel.add(jifUsuario);
     jifUsuario.setVisible(true);
-    }//GEN-LAST:event_jMenuMaterial2ActionPerformed
+    }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,11 +215,12 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
+    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemTipoPagamento;
+    private javax.swing.JMenuItem jMenuEstado;
+    private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;
-    private javax.swing.JMenuItem jMenuMaterial1;
-    private javax.swing.JMenuItem jMenuMaterial2;
+    private javax.swing.JMenuItem jMenuUsuario;
     // End of variables declaration//GEN-END:variables
 }

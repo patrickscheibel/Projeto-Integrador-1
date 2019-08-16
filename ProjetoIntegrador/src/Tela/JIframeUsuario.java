@@ -17,14 +17,16 @@ import java.math.BigDecimal;
 public class JIframeUsuario extends javax.swing.JInternalFrame {
 
     Integer idEditar;
+    Usuario usuarioTela = new Usuario();
     /**
      * Creates new form JframeMaterial
      */
-    public JIframeUsuario() {
+    public JIframeUsuario(Usuario usuarios) {
         initComponents();
 //        setLocationRelativeTo(this);
         jTabbedPaneUsuario.setEnabled(false);
         new UsuarioDAO().popularTabela(TabelaUsuario);
+        usuarioTela = usuarios;
     }
     
     public void popularTabelaSalvar(){
@@ -61,8 +63,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldUsuario = new javax.swing.JTextField();
-        jTextFieldSituacao = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldLogin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuario");
@@ -178,7 +180,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Usuário: * ");
 
-        jLabel4.setText("Situação: *");
+        jLabel5.setText("Login:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -202,16 +204,17 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                                 .addGap(52, 52, 52)
                                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldSenha)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabelLegendaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 78, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldSenha)
-                                    .addComponent(jTextFieldSituacao))))
+                                        .addGap(0, 90, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldLogin))))
                         .addGap(116, 116, 116))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -224,14 +227,14 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(88, 88, 88)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonSalvar))
@@ -268,8 +271,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
       
         
         jTextFieldUsuario.setText("");
+        jTextFieldLogin.setText("");
         jTextFieldSenha.setText("");
-        jTextFieldSituacao.setText("");
         
         //Muda de aba
         jTabbedPaneUsuario.setSelectedIndex(1);
@@ -287,10 +290,13 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         Usuario usuario = new Usuario();
         usuario.setId(idEditar);
         usuario.setUsuario(jTextFieldUsuario.getText());
+        usuario.setLogin(jTextFieldLogin.getText());
         usuario.setSenha(jTextFieldSenha.getText());
-        usuario.setSituacao(jTextFieldSituacao.getText());
+        usuario.setSituacao("Ativo");
+        usuario.setAuditoria(true);
+        usuario.setLog(true);
         
-        new UsuarioDAO().SalvarUsuario(usuario, this);
+        new UsuarioDAO().SalvarUsuario(usuario, this, usuarioTela);
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -299,9 +305,9 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         Usuario usuario = new UsuarioDAO().ConsultarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0));
         
         idEditar = usuario.getId();
-        jTextFieldSenha.setText(usuario.getUsuario());
+        jTextFieldUsuario.setText(usuario.getUsuario());
+        jTextFieldLogin.setText(usuario.getLogin());
         jTextFieldSenha.setText(usuario.getSenha());
-        jTextFieldSenha.setText(usuario.getSituacao());
         
         
         
@@ -311,7 +317,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new UsuarioDAO().ExcluirUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0));
+        new UsuarioDAO().ExcluirUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
         new UsuarioDAO().popularTabela(TabelaUsuario);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -367,14 +373,14 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelLegendaUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneUsuario;
+    private javax.swing.JTextField jTextFieldLogin;
     private javax.swing.JTextField jTextFieldSenha;
-    private javax.swing.JTextField jTextFieldSituacao;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }

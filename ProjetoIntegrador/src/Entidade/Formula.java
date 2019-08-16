@@ -28,16 +28,17 @@ public class Formula  implements java.io.Serializable {
     public Formula() {
     }
 
-	
-    public Formula(int id) {
-        this.id = id;
-    }
     public Formula(Integer id, String nome, String descricao) {
        this.id = id;
        this.nome = nome;
        this.descricao = descricao;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Formula{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + '}';
+    }
+    
    public Integer getId() {
         return this.id;
     }

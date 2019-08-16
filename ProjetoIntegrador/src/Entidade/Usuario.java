@@ -21,33 +21,45 @@ import javax.persistence.Table;
 public class Usuario  implements java.io.Serializable {
     
      @Id
-     @Column(name="id")
+     @Column(name= "id")
      @GeneratedValue(strategy = GenerationType.IDENTITY) 
      private Integer id;
      
-     @Column(name="usuario", length = 100)
+     @Column(name = "usuario", length = 100)
      private String usuario;
      
-     @Column(name="senha", length = 100)
+     @Column(name= "login", length = 100)
+     private String login;
+     
+     @Column(name= "senha", length = 100)
      private String senha;
      
-     @Column(name="situacao", length = 100)
+     @Column(name= "situacao", length = 100)
      private String situacao;
+     
+     @Column(name = "auditoria")
+     private boolean auditoria;
+     
+     @Column(name = "log")
+     private boolean log;
 
     public Usuario() {
     }
 
-   public Usuario(int id) {
+    public Usuario(Integer id, String usuario, String login, String senha, String situacao, boolean auditoria, boolean log) {
         this.id = id;
-    } 
-    
-    
-    public Usuario(Integer id, String usuario, String senha, String situacao) {
-        this.id = id;
-        this.usuario = usuario;
+        this.usuario = 
+        this.login = login;
         this.senha = senha;
         this.situacao = situacao;
-         }
+        this.auditoria = auditoria;
+        this.log = log;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", login=" + login + ", senha=" + senha + ", situacao=" + situacao + ", auditoria=" + auditoria + ", log=" + log + '}';
+    }
 
     public Integer getId() {
         return this.id;
@@ -80,13 +92,28 @@ public class Usuario  implements java.io.Serializable {
         this.situacao = situacao;
     }
 
-    
-   
+    public boolean getAuditoria() {
+        return auditoria;
+    }
 
-	
-  
+    public void setAuditoria(boolean auditoria) {
+        this.auditoria = auditoria;
+    }
 
+    public boolean getLog() {
+        return log;
+    }
 
+    public void setLog(boolean log) {
+        this.log = log;
+    }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
 }
