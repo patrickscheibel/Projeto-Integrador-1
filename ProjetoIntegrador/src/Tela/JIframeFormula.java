@@ -158,6 +158,12 @@ public class JIframeFormula extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Descricão: * ");
 
+        jTextFieldDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDescricaoActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Nome: *");
 
         jButtonVoltar.setText("Voltar");
@@ -295,13 +301,17 @@ public class JIframeFormula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new FormulaDAO().ExcluirFormula((int) TabelaFormula.getValueAt(TabelaFormula.getSelectedRow(), 0), usuario);
+        new FormulaDAO().ExcluirFormula((Integer) TabelaFormula.getValueAt(TabelaFormula.getSelectedRow(), 0), usuario);
         new FormulaDAO().popularTabela(TabelaFormula);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jTextFieldDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDescricaoActionPerformed
 
     /**
      * @param args the command line arguments

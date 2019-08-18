@@ -29,7 +29,7 @@ public class FormulaDAO {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
-
+                    
             if(!formula.getNome().equals("") && !formula.getDescricao().equals("")){
                 
                 if(formula.getId() == null){                 
@@ -43,15 +43,12 @@ public class FormulaDAO {
                     new AuditoriaDAO().SalvarAuditoria("Update", formula.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
+            } else {
+                String descricao = formula.getId() == null ? "Insert" : "Update";
+                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", formula.toString());
             }
-          
-        } catch (HibernateException he) {
-                                                                
                     
-            
-           new LogDAO().SalvarLog("Insert", he.toString(), formula.toString());
-           new LogDAO().SalvarLog("Update", he.toString(), formula.toString());
-                            
+        } catch (HibernateException he) {          
             he.printStackTrace();
         } finally {
             sessao.close();
@@ -61,17 +58,17 @@ public class FormulaDAO {
     
     public void ExcluirFormula(Integer id, Usuario usuario){
         Session sessao = null;
-        try {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = sessao.beginTransaction();
-     
         Formula formula = ConsultarFormula(id);
-        if(formula != null){
-            sessao.delete(formula);  
-            t.commit(); 
-            new AuditoriaDAO().SalvarAuditoria("Delete", formula.toString(), usuario);
-        }
-        } catch (HibernateException he) {
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = sessao.beginTransaction();
+
+            if(formula != null){
+                sessao.delete(formula);  
+                t.commit(); 
+                new AuditoriaDAO().SalvarAuditoria("Delete", formula.toString(), usuario);
+            }
+        } catch (HibernateException he) {         
             he.printStackTrace();
         } finally {
             sessao.close();
