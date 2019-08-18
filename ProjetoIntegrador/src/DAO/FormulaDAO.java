@@ -46,6 +46,12 @@ public class FormulaDAO {
             }
           
         } catch (HibernateException he) {
+                                                                
+                    
+            
+           new LogDAO().SalvarLog("Insert", he.toString(), formula.toString());
+           new LogDAO().SalvarLog("Update", he.toString(), formula.toString());
+                            
             he.printStackTrace();
         } finally {
             sessao.close();

@@ -18,10 +18,14 @@ import org.hibernate.Transaction;
  * @author Scheibel
  */
 public class LogDAO {
+
+    LogDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 //    private Usuario usuario = new Usuario(); 
     
-    public void SalvarLog(String descricao,String erro, String dados){
+    public void SalvarLog(String descricao, String erro, String dados){
     Session sessao = null;
     try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -30,7 +34,6 @@ public class LogDAO {
         
            
             Log logSalvar = new Log();
-            
             logSalvar.setData(logSalvar.dataAtual());
             logSalvar.setDescricao(descricao);
             logSalvar.setDescricao(erro);
@@ -65,5 +68,5 @@ public class LogDAO {
         return resultado;
     }           
 
-    
+     
 }
