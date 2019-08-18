@@ -43,6 +43,10 @@ public class EstadoDAO {
                     new AuditoriaDAO().SalvarAuditoria("Update", estado.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
+                                
+            } else {
+                String descricao = estado.getId() == null ? "Insert" : "Update";
+                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", estado.toString());
             }
           
         } catch (HibernateException he) {

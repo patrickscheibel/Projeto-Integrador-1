@@ -72,13 +72,13 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         TabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Usuário", "Senha", "Situação"
+                "ID", "Usuário", "Senha", "Situação", "Login"
             }
         ));
         jScrollPane1.setViewportView(TabelaUsuario);
@@ -180,7 +180,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Usuário: * ");
 
-        jLabel5.setText("Login:");
+        jLabel5.setText("Login:*");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
