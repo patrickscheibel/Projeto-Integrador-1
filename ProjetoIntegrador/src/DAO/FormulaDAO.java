@@ -45,7 +45,7 @@ public class FormulaDAO {
                 }
             } else {
                 String descricao = formula.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", formula.toString());
+                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", formula.toString(), usuario);
             }
                     
         } catch (HibernateException he) {          

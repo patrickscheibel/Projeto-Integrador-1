@@ -168,7 +168,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
 
         jLabel4.setText("Aplicação:  ");
 
-        jLabel5.setText("Preço: *");
+        jLabel5.setText("Preço:");
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -312,8 +312,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         material.setDescricao(jTextFieldDescricao.getText());
         material.setTipo(jTextFieldTipo.getText());
         material.setTamanho(jTextFieldTamanho.getText());
-        material.setAplicacao(jTextFieldAplicacao.getText());
-        material.setPreco(new BigDecimal(jFormattedTextFieldPreco.getText()));
+        material.setAplicacao(jTextFieldAplicacao.getText());  
+        material.setPreco(!jFormattedTextFieldPreco.getText().equals("   .  ") ? new BigDecimal(jFormattedTextFieldPreco.getText()) : new BigDecimal(0));
         
         new MaterialDAO().SalvarMaterial(material, this, usuario);
         

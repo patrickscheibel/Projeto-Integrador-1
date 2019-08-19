@@ -21,30 +21,48 @@ public class LogDAO {
     
 //    private Usuario usuario = new Usuario(); 
     
-    public void SalvarLog(String descricao, String erro, String dados){
+    public void SalvarLog(String descricao, String erro, String dados, Usuario usuario){
     Session sessao = null;
     try {
         sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sessao.beginTransaction();
-        
-        
-           
-            Log logSalvar = new Log();
-            logSalvar.setData(logSalvar.dataAtual());
-            logSalvar.setDescricao(descricao);
-            logSalvar.setErro(erro);
-            logSalvar.setDados(dados);
-            
-            sessao.save(logSalvar);                     
-            t.commit();    
-        
-          
+                       
+            if(usuario.getLog() != false){
+                Log logSalvar = new Log();
+                logSalvar.setData(logSalvar.dataAtual());
+                logSalvar.setDescricao(descricao);
+                logSalvar.setErro(erro);
+                logSalvar.setDados(dados);
+
+                sessao.save(logSalvar);                     
+                t.commit();    
+            }
+                
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             sessao.close();
         }
 
+    }
+    
+    public void AtualizarLog(Usuario usuario, boolean log){
+    Session sessao = null;
+    try {
+         sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = sessao.beginTransaction();
+    
+        if(usuario.getLog()!= log){
+            usuario.setLog(log);
+            sessao.update(usuario);                     
+            t.commit();    
+        }
+       
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            sessao.close();
+        }
     }
         
     //Consulta para utilizar no relatorio

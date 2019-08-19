@@ -46,7 +46,7 @@ public class EstadoDAO {
                                 
             } else {
                 String descricao = estado.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", estado.toString());
+                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", estado.toString(), usuario);
             }
           
         } catch (HibernateException he) {

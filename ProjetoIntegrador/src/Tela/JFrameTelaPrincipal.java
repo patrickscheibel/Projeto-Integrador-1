@@ -18,7 +18,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JFrameTelaPrincipal
      */
-    Usuario usuario;
+    Usuario usuario = new Usuario();
     
     public JFrameTelaPrincipal() {
         initComponents();
@@ -39,12 +39,14 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jLabelEmpresa = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuMaterial = new javax.swing.JMenuItem();
         jMenuItemFormula = new javax.swing.JMenuItem();
         jMenuEstado = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
+        jMenuConfiguracao = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -62,9 +64,17 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
         jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jButton1.setText("Configuração");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jDesktopPanel.setLayer(jButtonFechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelEmpresa, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanel.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPanelLayout = new javax.swing.GroupLayout(jDesktopPanel);
         jDesktopPanel.setLayout(jDesktopPanelLayout);
@@ -75,14 +85,13 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
-                .addContainerGap(363, Short.MAX_VALUE)
-                .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
-                        .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanelLayout.createSequentialGroup()
-                        .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(23, 23, 23))
         );
         jDesktopPanelLayout.setVerticalGroup(
             jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +99,9 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButtonFechar)
                 .addGap(22, 22, 22)
-                .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
@@ -131,6 +142,14 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuUsuario);
 
         jMenuBar1.add(jMenu4);
+
+        jMenuConfiguracao.setText("Configuração");
+        jMenuConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfiguracaoActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenuConfiguracao);
 
         setJMenuBar(jMenuBar1);
 
@@ -176,6 +195,18 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jifUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
+    private void jMenuConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConfiguracaoActionPerformed
+    JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
+    jDesktopPanel.add(jifconfiguracao);
+    jifconfiguracao.setVisible(true);
+    }//GEN-LAST:event_jMenuConfiguracaoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
+    jDesktopPanel.add(jifconfiguracao);
+    jifconfiguracao.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,12 +243,14 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuConfiguracao;
     private javax.swing.JMenuItem jMenuEstado;
     private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;

@@ -45,6 +45,25 @@ public class AuditoriaDAO {
         }
 
     }
+    
+    public void AtualizarAuditoria(Usuario usuario, boolean auditoria){
+    Session sessao = null;
+    try {
+         sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = sessao.beginTransaction();
+    
+        if(usuario.getAuditoria() != auditoria){
+            usuario.setAuditoria(auditoria);
+            sessao.update(usuario);                     
+            t.commit();    
+        }
+       
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            sessao.close();
+        }
+    }
         
     //Consulta para utilizar no relatorio
     public List<Auditoria> ConsultarTodos() {

@@ -30,7 +30,7 @@ public class MaterialDAO {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
 
-            if(!material.getDescricao().equals("") && !material.getPreco().equals("   .  ")){
+            if(!material.getDescricao().equals("")){
                 if(material.getId() == null){
                     sessao.save(material);  
                     t.commit();
@@ -44,7 +44,7 @@ public class MaterialDAO {
                 }
            } else {
                 String descricao = material.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao,"Dados Invalidos ou não informados", material.toString());
+                new LogDAO().SalvarLog(descricao,"Dados Invalidos ou não informados", material.toString(), usuario);
                 
                 
             }

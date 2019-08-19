@@ -45,7 +45,7 @@ public class UsuarioDAO {
                 }
             } else {
                 String descricao = usuario.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", usuario.toString());
+                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", usuario.toString(), usuario);
             }
           
         } catch (HibernateException e) {
