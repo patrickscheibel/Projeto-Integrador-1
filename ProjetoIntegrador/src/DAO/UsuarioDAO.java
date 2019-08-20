@@ -64,6 +64,8 @@ public class UsuarioDAO {
      
         Usuario usuario = ConsultarUsuario(id);
         if(usuario != null){
+            
+                
             sessao.delete(usuario);  
             t.commit(); 
             new AuditoriaDAO().SalvarAuditoria("Delete", usuario.toString(), usuarioTela);
@@ -104,7 +106,7 @@ public class UsuarioDAO {
         Object[] cabecalho = new Object[4];
         cabecalho[0] = "Id";
         cabecalho[1] = "Usuario";
-        cabecalho[2] = "Senha";
+        cabecalho[2] = "Login";
         cabecalho[3] = "Situacao";
         
 
@@ -126,7 +128,7 @@ public class UsuarioDAO {
                 
                 dadosTabela[lin][0] = usuario.getId();
                 dadosTabela[lin][1] = usuario.getUsuario();
-                dadosTabela[lin][2] = usuario.getSenha();
+                dadosTabela[lin][2] = usuario.getLogin();
                 dadosTabela[lin][3] = usuario.getSituacao();
                
 

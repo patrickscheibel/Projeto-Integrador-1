@@ -57,7 +57,6 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabelLegendaUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldSenha = new javax.swing.JTextField();
         jButtonVoltar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -65,6 +64,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jTextFieldUsuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldLogin = new javax.swing.JTextField();
+        jTextFieldSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuario");
@@ -72,13 +72,13 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         TabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Usuário", "Senha", "Situação", "Login"
+                "ID", "Usuário", "Situação", "Login"
             }
         ));
         jScrollPane1.setViewportView(TabelaUsuario);
@@ -100,7 +100,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Usuário");
 
-        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setText("Desativar");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
@@ -182,6 +182,19 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Login:*");
 
+        jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLoginActionPerformed(evt);
+            }
+        });
+
+        jTextFieldSenha.setText("jPasswordField1");
+        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -210,11 +223,11 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldSenha)
+                                    .addComponent(jTextFieldLogin)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabelLegendaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 90, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldLogin))))
+                                    .addComponent(jTextFieldSenha))))
                         .addGap(116, 116, 116))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -232,8 +245,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
@@ -317,13 +330,23 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new UsuarioDAO().ExcluirUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
-        new UsuarioDAO().popularTabela(TabelaUsuario);
+      
+        
+       new UsuarioDAO().ExcluirUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
+       new UsuarioDAO().popularTabela(TabelaUsuario);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
+
+    private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,7 +403,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneUsuario;
     private javax.swing.JTextField jTextFieldLogin;
-    private javax.swing.JTextField jTextFieldSenha;
+    private javax.swing.JPasswordField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }
