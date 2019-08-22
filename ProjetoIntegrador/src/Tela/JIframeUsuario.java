@@ -65,6 +65,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldLogin = new javax.swing.JTextField();
         jTextFieldSenha = new javax.swing.JPasswordField();
+        jComboBoxSituacao = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuario");
@@ -188,22 +190,30 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextFieldSenha.setText("jPasswordField1");
         jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldSenhaActionPerformed(evt);
             }
         });
 
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSituacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSituacaoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Situação: ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(90, 90, 90)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel11)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -220,13 +230,15 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextFieldLogin)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabelLegendaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 90, Short.MAX_VALUE))
+                                        .addGap(0, 88, Short.MAX_VALUE))
                                     .addComponent(jTextFieldSenha))))
                         .addGap(116, 116, 116))))
         );
@@ -247,7 +259,11 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonSalvar))
@@ -280,13 +296,18 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         jLabelLegendaUsuario.setText("Cadastro de Usuarios");
-        //Limpa os campos
-      
-        
+        //Limpa os campos         
         jTextFieldUsuario.setText("");
         jTextFieldLogin.setText("");
         jTextFieldSenha.setText("");
         
+        //Combo box situacao      
+        jComboBoxSituacao.removeAllItems();
+        jComboBoxSituacao.setEnabled(false);
+        jComboBoxSituacao.addItem("Ativado");
+        jComboBoxSituacao.addItem("Desativado");
+        jComboBoxSituacao.setSelectedItem("Ativado");
+             
         //Muda de aba
         jTabbedPaneUsuario.setSelectedIndex(1);
         jTabbedPaneUsuario.setTitleAt(1, "Cadastro");
@@ -305,7 +326,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         usuario.setUsuario(jTextFieldUsuario.getText());
         usuario.setLogin(jTextFieldLogin.getText());
         usuario.setSenha(jTextFieldSenha.getText());
-        usuario.setSituacao("Ativo");
+        usuario.setSituacao(jComboBoxSituacao.getSelectedItem().toString());
         usuario.setAuditoria(true);
         usuario.setLog(true);
         
@@ -322,8 +343,13 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jTextFieldLogin.setText(usuario.getLogin());
         jTextFieldSenha.setText(usuario.getSenha());
         
-        
-        
+        //Combo box situacao      
+        jComboBoxSituacao.removeAllItems();
+        jComboBoxSituacao.setEnabled(true);
+        jComboBoxSituacao.addItem("Ativado");
+        jComboBoxSituacao.addItem("Desativado");
+        jComboBoxSituacao.setSelectedItem(usuario.getSituacao());
+                
         jLabelLegendaUsuario.setText("Edição de Usuario");
         jTabbedPaneUsuario.setSelectedIndex(1);
         jTabbedPaneUsuario.setTitleAt(1, "Edição");
@@ -345,6 +371,10 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
+
+    private void jComboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSituacaoActionPerformed
+
+    }//GEN-LAST:event_jComboBoxSituacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,10 +420,12 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox<String> jComboBoxSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelLegendaUsuario;
     private javax.swing.JPanel jPanel1;

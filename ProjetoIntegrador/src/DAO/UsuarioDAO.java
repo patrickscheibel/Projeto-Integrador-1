@@ -68,7 +68,7 @@ public class UsuarioDAO {
             usuario.setSituacao("Desativado");
             sessao.update(usuario);  
             t.commit(); 
-            new AuditoriaDAO().SalvarAuditoria("Desativado", usuario.toString(), usuarioTela);
+            new AuditoriaDAO().SalvarAuditoria("Disabled", usuario.toString(), usuarioTela);
         }
         } catch (HibernateException e) {
             e.printStackTrace();
