@@ -85,7 +85,7 @@ public class UsuarioDAO {
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Usuario");
+                org.hibernate.Query q = sessao.createQuery("from Usuario order by status DESC");
                 resultado = q.list();
 
             } catch (HibernateException he) {
