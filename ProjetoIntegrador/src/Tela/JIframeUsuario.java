@@ -52,7 +52,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jButtonAdicionar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonExcluir = new javax.swing.JButton();
+        jButtonDesativar = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelLegendaUsuario = new javax.swing.JLabel();
@@ -100,10 +100,10 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setText("Usuário");
 
-        jButtonExcluir.setText("Desativar");
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDesativar.setText("Desativar");
+        jButtonDesativar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+                jButtonDesativarActionPerformed(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
@@ -152,7 +152,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionar)
                     .addComponent(jButtonEditar)
-                    .addComponent(jButtonExcluir))
+                    .addComponent(jButtonDesativar))
                 .addGap(21, 21, 21))
         );
 
@@ -329,12 +329,10 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jTabbedPaneUsuario.setTitleAt(1, "Edição");
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-      
-        
-       new UsuarioDAO().ExcluirUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
+    private void jButtonDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesativarActionPerformed
+       new UsuarioDAO().DesativarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
        new UsuarioDAO().popularTabela(TabelaUsuario);
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+    }//GEN-LAST:event_jButtonDesativarActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         this.dispose();
@@ -387,8 +385,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaUsuario;
     private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonDesativar;
     private javax.swing.JButton jButtonEditar;
-    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;

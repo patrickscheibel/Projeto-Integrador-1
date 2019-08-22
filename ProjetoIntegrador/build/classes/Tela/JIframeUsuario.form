@@ -71,7 +71,7 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButtonEditar" min="-2" pref="139" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jButtonExcluir" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="jButtonDesativar" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -99,7 +99,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonDesativar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -182,12 +182,12 @@
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonExcluir">
+            <Component class="javax.swing.JButton" name="jButtonDesativar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Desativar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDesativarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonFechar">

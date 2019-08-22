@@ -56,7 +56,7 @@ public class UsuarioDAO {
 
     }
     
-    public void ExcluirUsuario(Integer id, Usuario usuarioTela){
+    public void DesativarUsuario(Integer id, Usuario usuarioTela){
         Session sessao = null;
         try {
         sessao = HibernateUtil.getSessionFactory().openSession();
@@ -65,10 +65,10 @@ public class UsuarioDAO {
         Usuario usuario = ConsultarUsuario(id);
         if(usuario != null){
             
-                
-            sessao.delete(usuario);  
+            usuario.setSituacao("Desativado");
+            sessao.update(usuario);  
             t.commit(); 
-            new AuditoriaDAO().SalvarAuditoria("Delete", usuario.toString(), usuarioTela);
+            new AuditoriaDAO().SalvarAuditoria("Desativado", usuario.toString(), usuarioTela);
         }
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class UsuarioDAO {
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Usuario order by status DESC");
+                org.hibernate.Query q = sessao.createQuery("from Usuario order by situacao ASC");
                 resultado = q.list();
 
             } catch (HibernateException he) {

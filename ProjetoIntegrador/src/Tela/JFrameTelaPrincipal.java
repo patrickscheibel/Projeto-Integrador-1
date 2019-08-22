@@ -46,7 +46,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenuItemFormula = new javax.swing.JMenuItem();
         jMenuEstado = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
-        jMenuConfiguracao = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -143,14 +142,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenuConfiguracao.setText("Configuração");
-        jMenuConfiguracao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConfiguracaoActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenuConfiguracao);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -194,12 +185,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jDesktopPanel.add(jifUsuario);
     jifUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
-
-    private void jMenuConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConfiguracaoActionPerformed
-    JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
-    jDesktopPanel.add(jifconfiguracao);
-    jifconfiguracao.setVisible(true);
-    }//GEN-LAST:event_jMenuConfiguracaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
@@ -250,7 +235,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuConfiguracao;
     private javax.swing.JMenuItem jMenuEstado;
     private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;
