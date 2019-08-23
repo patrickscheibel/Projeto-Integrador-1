@@ -44,6 +44,8 @@ public class JIframeConfiguracao extends javax.swing.JInternalFrame {
         jCheckBoxLog = new javax.swing.JCheckBox();
         jButtonFechar = new javax.swing.JButton();
 
+        setTitle("Configuração");
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Configuração");
 

@@ -43,13 +43,12 @@ public class FormulaDAO {
                     new AuditoriaDAO().SalvarAuditoria("Update", formula.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
-            } else {
-                String descricao = formula.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", formula.toString(), usuario);
-            }
+            } 
                     
         } catch (HibernateException he) {          
             he.printStackTrace();
+            String descricao = formula.getId() == null ? "Insert" : "Update";
+            new LogDAO().SalvarLog(descricao, he.getCause().toString(), formula.toString(), usuario);
         } finally {
             sessao.close();
         }

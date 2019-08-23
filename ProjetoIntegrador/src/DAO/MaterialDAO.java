@@ -42,15 +42,12 @@ public class MaterialDAO {
                     new AuditoriaDAO().SalvarAuditoria("Update", material.toString(), usuario);
                     jfr.popularTabelaSalvar();
                 }
-           } else {
-                String descricao = material.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao,"Dados Invalidos ou não informados", material.toString(), usuario);
-                
-                
-            }
+           } 
           
         } catch (HibernateException he) {
             he.printStackTrace();
+            String descricao = material.getId() == null ? "Insert" : "Update";
+            new LogDAO().SalvarLog(descricao, he.getCause().toString(), material.toString(), usuario);
         } finally {
             sessao.close();
         }

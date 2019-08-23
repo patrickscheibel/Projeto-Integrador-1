@@ -44,13 +44,12 @@ public class EstadoDAO {
                     jfr.popularTabelaSalvar();
                 }
                                 
-            } else {
-                String descricao = estado.getId() == null ? "Insert" : "Update";
-                new LogDAO().SalvarLog(descricao, "Dados Invalidos ou não informados", estado.toString(), usuario);
-            }
+            } 
           
         } catch (HibernateException he) {
             he.printStackTrace();
+            String descricao = estado.getId() == null ? "Insert" : "Update";
+            new LogDAO().SalvarLog(descricao, he.getCause().toString(), estado.toString(), usuario);
         } finally {
             sessao.close();
         }
