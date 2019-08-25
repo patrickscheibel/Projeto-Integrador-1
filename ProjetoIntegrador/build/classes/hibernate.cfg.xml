@@ -43,13 +43,12 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/projetoIntegrador</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:8080/projetoIntegrador</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">postgres</property>
     <mapping class="Entidade.Cidade"/>
     <mapping class="Entidade.Estado"/>
     <mapping class="Entidade.Formula"/>
-    <mapping class="Entidade.Fornecedor"/>
     <mapping class="Entidade.Material"/>
     <mapping class="Entidade.Usuario"/>
     <mapping class="Entidade.Auditoria"/>

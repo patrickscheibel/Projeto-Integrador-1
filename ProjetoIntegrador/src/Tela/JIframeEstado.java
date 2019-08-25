@@ -257,13 +257,11 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
         Estado estado = new Estado();
         estado.setId(idEditar);
         estado.setDescricao(jTextFieldDescricao.getText());
-        
-        new EstadoDAO().SalvarEstado(estado, this, usuario);
-        
+
+        new EstadoDAO().SalvarEstado(estado, this, usuario);             
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed

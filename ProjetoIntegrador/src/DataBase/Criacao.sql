@@ -27,7 +27,7 @@ create table auditoria(
     id serial primary key not null,
     usuario_id integer not null,
     data timestamp not null,
-    descricao text not null,
+    acao text not null,
     dados text,
     FOREIGN KEY (usuario_id) REFERENCES usuario(id)	
 );
@@ -35,11 +35,12 @@ create table auditoria(
 create table log(
     id serial primary key not null,
     data timestamp not null,
-    descricao text not null,
+    acao text not null,
     erro text not null,
     dados text
 );
-				
+	
+--Repensar			
 create table estado(
     id serial PRIMARY KEY,
     descricao varchar(45)
@@ -51,15 +52,4 @@ create table cidade(
     estado_id integer not null,	 
     FOREIGN KEY (estado_id) REFERENCES estado(id)	 
 );
-			  
-create table fornecedor(
-    id serial PRIMARY KEY,
-    razao_social varchar(100) not null,
-    nome_fantasia varchar(100),
-    cnpj integer not null,
-    telefone integer,
-    endereco_id integer not null,
-    cidade_id integer not null,
-    FOREIGN KEY (endereco_id) REFERENCES estado(id),
-    FOREIGN KEY (cidade_id) REFERENCES cidade(id)
-);
+	

@@ -6,6 +6,9 @@
 package DAO;
 
 
+import static DAO.DAO.Atualizar;
+import static DAO.DAO.Excluir;
+import static DAO.DAO.Salvar;
 import Entidade.Estado;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
@@ -16,63 +19,30 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 /**
  *
  * @author conti
  */
 public class EstadoDAO {
     
-    public void SalvarEstado(Estado estado, JIframeEstado jframeEstado, Usuario usuario){
-        Session sessao = null;
-        JIframeEstado jfr = jframeEstado;
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-
-            if(!estado.getDescricao().equals("")){
-                
-                if(estado.getId() == null){                 
-                    sessao.save(estado);                     
-                    t.commit();    
-                    new AuditoriaDAO().SalvarAuditoria("Insert", estado.toString(), usuario);
-                    jfr.popularTabelaSalvar();
-                } else {
-                    sessao.update(estado);  
-                    t.commit();
-                    new AuditoriaDAO().SalvarAuditoria("Update", estado.toString(), usuario);
-                    jfr.popularTabelaSalvar();
-                }
-                                
-            } 
-          
-        } catch (HibernateException he) {
-            he.printStackTrace();
-            String descricao = estado.getId() == null ? "Insert" : "Update";
-            new LogDAO().SalvarLog(descricao, he.getCause().toString(), estado.toString(), usuario);
-        } finally {
-            sessao.close();
+    public void SalvarEstado(Estado estado, JIframeEstado jIframeEstado, Usuario usuario){
+        JIframeEstado jif = jIframeEstado;
+        if(!estado.getDescricao().isEmpty()){
+           if(estado.getId() == null){
+            Salvar(estado, usuario);
+            jif.popularTabelaSalvar();
+           } else {
+            Atualizar(estado, usuario);  
+            jif.popularTabelaSalvar();
+           }
         }
-
     }
     
-    public void ExcluirEstado(Integer id, Usuario usuario){
-        Session sessao = null;
-        try {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = sessao.beginTransaction();
-     
-        Estado estado = ConsultarEstado(id);
-        if(estado != null){
-            sessao.delete(estado);  
-            t.commit(); 
-            new AuditoriaDAO().SalvarAuditoria("Delete", estado.toString(), usuario);
+    public void ExcluirEstado(Integer estadoId, Usuario usuario){
+        if(usuario != null){
+            Estado estado = new EstadoDAO().ConsultarEstado(estadoId);         
+            Excluir(estado, usuario);
         }
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        } finally {
-            sessao.close();
-        }  
     }
           
     public List<Estado> ConsultarTodos() {
@@ -91,10 +61,7 @@ public class EstadoDAO {
             }
             return resultado;
         }           
-      
-   
-    
-       //Popular por um id
+       
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;

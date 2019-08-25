@@ -1,6 +1,7 @@
 package Entidade;
 // Generated 03/08/2019 20:15:02 by Hibernate Tools 4.3.1
 
+import com.sun.istack.internal.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Estado implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull()
     @Column(name="descricao", length = 45)
     private String descricao;
 

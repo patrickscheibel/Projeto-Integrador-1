@@ -41,7 +41,6 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="projetoIntegrador" match-schema="public"/>
-  <table-filter match-name="fornecedor"/>
   <table-filter match-name="formula"/>
   <table-filter match-name="estado"/>
   <table-filter match-name="material"/>

@@ -39,8 +39,8 @@ public class Auditoria {
     private Calendar data;
     
     @NotNull()
-    @Column(name = "descricao")
-    private String descricao;
+    @Column(name = "acao")
+    private String acao;
     
     @NotNull()
     @Column(name = "dados")
@@ -52,13 +52,13 @@ public class Auditoria {
         this.id = id;
         this.usuario = usuario;
         this.data = data;
-        this.descricao = descricao;
+        this.acao = descricao;
         this.dados = dados;
     }
 
     @Override
     public String toString() {
-        return "Auditoria{" + "id=" + id + ", usuario=" + usuario + ", data=" + data + ", descricao=" + descricao + ", dados=" + dados + '}';
+        return "Auditoria{" + "id=" + id + ", usuario=" + usuario + ", data=" + data + ", descricao=" + acao + ", dados=" + dados + '}';
     }
     
     public Calendar dataAtual(){
@@ -90,11 +90,11 @@ public class Auditoria {
     }
 
     public String getDescricao() {
-        return descricao;
+        return acao;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.acao = descricao;
     }
 
     public String getDados() {

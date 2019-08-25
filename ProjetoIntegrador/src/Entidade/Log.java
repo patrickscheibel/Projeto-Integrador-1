@@ -31,8 +31,8 @@ public class Log {
     private Calendar data;
     
     @NotNull()
-    @Column(name = "descricao")
-    private String descricao;
+    @Column(name = "acao")
+    private String acao;
     
     @NotNull()
     @Column(name = "erro")
@@ -47,14 +47,14 @@ public class Log {
     public Log(int id, Calendar data, String descricao, String erro, String dados) {
         this.id = id;
         this.data = data;
-        this.descricao = descricao;
+        this.acao = descricao;
         this.erro = erro;
         this.dados = dados;
     }
 
     @Override
     public String toString() {
-        return "Log{" + "id=" + id + ", data=" + data + ", descricao=" + descricao + ", erro=" + erro + ", dados=" + dados + '}';
+        return "Log{" + "id=" + id + ", data=" + data + ", descricao=" + acao + ", erro=" + erro + ", dados=" + dados + '}';
     }
     
     public Calendar dataAtual(){
@@ -78,11 +78,11 @@ public class Log {
     }
 
     public String getDescricao() {
-        return descricao;
+        return acao;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.acao = descricao;
     }
     
     public String getErro() {
