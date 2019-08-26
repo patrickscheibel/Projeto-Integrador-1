@@ -6,12 +6,10 @@
 package DAO;
 
 
-import static DAO.DAO.Atualizar;
-import static DAO.DAO.Excluir;
-import static DAO.DAO.Salvar;
 import Entidade.Estado;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
+import Tela.Apoio.DlgAviso;
 import Tela.JIframeEstado;
 import java.util.List;
 import javax.swing.JTable;
@@ -23,18 +21,20 @@ import org.hibernate.Session;
  *
  * @author conti
  */
-public class EstadoDAO {
+public class EstadoDAO extends DAO{
     
     public void SalvarEstado(Estado estado, JIframeEstado jIframeEstado, Usuario usuario){
         JIframeEstado jif = jIframeEstado;
         if(!estado.getDescricao().isEmpty()){
-           if(estado.getId() == null){
-            Salvar(estado, usuario);
-            jif.popularTabelaSalvar();
-           } else {
-            Atualizar(estado, usuario);  
-            jif.popularTabelaSalvar();
-           }
+            if(estado.getId() == null){
+                Salvar(estado, usuario);
+                jif.popularTabelaSalvar();
+            } else {
+                Atualizar(estado, usuario);  
+                jif.popularTabelaSalvar();
+            }
+        } else {
+            new DlgAviso("Descrição Incorreta ou invalida");
         }
     }
     

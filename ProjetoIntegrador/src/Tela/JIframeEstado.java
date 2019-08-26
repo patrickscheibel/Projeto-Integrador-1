@@ -240,9 +240,7 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         jLabelLegendaEstado.setText("Cadastro de Estados");
-        //Limpa os campos
-      
-        
+        //Limpa os campos           
         jTextFieldDescricao.setText("");
         
         //Muda de aba
@@ -265,21 +263,20 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-      
-        Estado estado = new EstadoDAO().ConsultarEstado((int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0));
+        int id = (int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0);
+        Estado estado = new EstadoDAO().ConsultarEstado(id);
         
         idEditar = estado.getId();
         jTextFieldDescricao.setText(estado.getDescricao());
-        
-        
-        
+                    
         jLabelLegendaEstado.setText("Edição de Estado");
         jTabbedPaneEstado.setSelectedIndex(1);
         jTabbedPaneEstado.setTitleAt(1, "Edição");
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new EstadoDAO().ExcluirEstado((int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0), usuario);
+        int id = (int) TabelaEstado.getValueAt(TabelaEstado.getSelectedRow(), 0);
+        new EstadoDAO().ExcluirEstado(id, usuario);
         new EstadoDAO().popularTabela(TabelaEstado);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -287,41 +284,6 @@ public class JIframeEstado extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(JIframeFormula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new JIframeFormula().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaEstado;

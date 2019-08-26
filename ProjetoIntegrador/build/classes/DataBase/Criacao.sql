@@ -46,6 +46,7 @@ create table estado(
     descricao varchar(45)
 );
 
+--Repensar
 create table cidade(
     id serial PRIMARY KEY,
     descricao varchar(45) not null,

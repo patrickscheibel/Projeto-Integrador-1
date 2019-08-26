@@ -5,34 +5,23 @@
  */
 package Tela.Apoio;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author Scheibel
  */
 public class DlgAviso extends javax.swing.JDialog {
-
-    JFrame frame = new JFrame();
-    JDialog dialog = new JDialog();
+  
     /**
-     * Creates new form DlgComplemetar
+     * Creates new form DlgAviso
      */
-    public DlgAviso(JDialog tela, String aviso) {
+    public DlgAviso(String mensagem) {
         initComponents();
-        setModal(true);
-        dialog = tela;
-        jLabelAviso.setText(aviso);
+        JlabelAviso.setText(mensagem);
+        setModal(true);     
         this.setLocationRelativeTo(null);
-    }
-    
-    public DlgAviso(JFrame tela, String aviso) {
-        initComponents();
-        setModal(true);
-        frame = tela;
-        jLabelAviso.setText(aviso);
-        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -44,62 +33,53 @@ public class DlgAviso extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelAviso = new javax.swing.JLabel();
-        jButtonVoltar = new javax.swing.JButton();
+        jButtonFechar = new javax.swing.JButton();
+        JlabelAviso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Aviso");
 
-        jLabelAviso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabelAviso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButtonVoltar.setText("Voltar");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFechar.setText("Fechar");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
+                jButtonFecharActionPerformed(evt);
             }
         });
+
+        JlabelAviso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabelAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonVoltar)
-                .addGap(75, 75, 75))
+                .addContainerGap(133, Short.MAX_VALUE)
+                .addComponent(jButtonFechar)
+                .addGap(123, 123, 123))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(JlabelAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabelAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButtonVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(JlabelAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonFechar)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        if(frame != null){
-            this.dispose();
-            frame.setVisible(true);
-        }
-        if(dialog != null){
-            this.dispose();
-            dialog.setVisible(true);
-        }
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
-
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        this.dispose();         
+    }//GEN-LAST:event_jButtonFecharActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JLabel jLabelAviso;
+    private javax.swing.JLabel JlabelAviso;
+    private javax.swing.JButton jButtonFechar;
     // End of variables declaration//GEN-END:variables
 }
