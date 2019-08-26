@@ -5,8 +5,11 @@
  */
 package DAO;
 
+import static DAO.DAO.Atualizar;
+import static DAO.DAO.Salvar;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
+import Tela.Apoio.DlgAviso;
 import Tela.JIframeUsuario;
 import java.util.List;
 import javax.swing.JTable;
@@ -20,39 +23,28 @@ import org.hibernate.Transaction;
  *
  * @author patrick.scheibel
  */
-public class UsuarioDAO {
+public class UsuarioDAO extends DAO{
     
-    public void SalvarUsuario(Usuario usuario, JIframeUsuario jframeUsuario, Usuario usuarioTela){
-        Session sessao = null;
-        JIframeUsuario jfr = jframeUsuario;
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-
-            if(!usuario.getUsuario().equals("") && !usuario.getSenha().equals("")&& !usuario.getLogin().equals("")){
-                
-                if(usuario.getId() == null){    
-                    System.out.println(usuario.toString());
-                    sessao.save(usuario);                     
-                    t.commit();    
-                    new AuditoriaDAO().SalvarAuditoria("Insert", usuario.toString(), usuarioTela);
-                    jfr.popularTabelaSalvar();
+    public void SalvarUsuario(Usuario usuario, JIframeUsuario jIframeUsuario, Usuario usuarioTela){
+        JIframeUsuario jif = jIframeUsuario;
+       if(!usuario.getUsuario().isEmpty() && !usuario.getLogin().isEmpty() && !usuario.getSenha().isEmpty()){
+            if(usuario.getId() == null){
+                if(Salvar(usuario, usuario) == true) {
+                    jif.popularTabelaSalvar();
                 } else {
-                    sessao.update(usuario);  
-                    t.commit(); 
-                    new AuditoriaDAO().SalvarAuditoria("Update", usuario.toString(), usuarioTela);
-                    jfr.popularTabelaSalvar();
-                }
-            } 
-          
-        } catch (HibernateException he) {
-            he.printStackTrace();
-            String descricao = usuario.getId() == null ? "Insert" : "Update";
-            new LogDAO().SalvarLog(descricao, he.getCause().toString(), usuario.toString(), usuario);
-        } finally {
-            sessao.close();
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+            } else {
+                if(Atualizar(usuario, usuario) == true){
+                    jif.popularTabelaSalvar();
+                } else {
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+                
+            }
+        } else {
+            new DlgAviso("Descrição Incorreta ou invalida");
         }
-
     }
     
     public void DesativarUsuario(Integer id, Usuario usuarioTela){

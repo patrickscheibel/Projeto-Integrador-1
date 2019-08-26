@@ -5,9 +5,13 @@
  */
 package DAO;
 
+import static DAO.DAO.Atualizar;
+import static DAO.DAO.Excluir;
+import static DAO.DAO.Salvar;
 import Entidade.Formula;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
+import Tela.Apoio.DlgAviso;
 import Tela.JIframeFormula;
 import java.util.List;
 import javax.swing.JTable;
@@ -21,57 +25,36 @@ import org.hibernate.Transaction;
  *
  * @author patrick.scheibel
  */
-public class FormulaDAO {
+public class FormulaDAO extends DAO{
     
-    public void SalvarFormula(Formula formula, JIframeFormula jframeFormula, Usuario usuario){
-        Session sessao = null;
-        JIframeFormula jfr = jframeFormula;
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-                    
-            if(!formula.getNome().equals("") && !formula.getDescricao().equals("")){
-                
-                if(formula.getId() == null){                 
-                    sessao.save(formula);                     
-                    t.commit();    
-                    new AuditoriaDAO().SalvarAuditoria("Insert", formula.toString(), usuario);
-                    jfr.popularTabelaSalvar();
+    public void SalvarFormula(Formula formula, JIframeFormula jIframeFormula, Usuario usuario){
+         JIframeFormula jif = jIframeFormula;
+        if(!formula.getDescricao().isEmpty() && !formula.getNome().isEmpty()){
+            if(formula.getId() == null){
+                if(Salvar(formula, usuario) == true) {
+                    jif.popularTabelaSalvar();
                 } else {
-                    sessao.update(formula);  
-                    t.commit(); 
-                    new AuditoriaDAO().SalvarAuditoria("Update", formula.toString(), usuario);
-                    jfr.popularTabelaSalvar();
-                }
-            } 
-                    
-        } catch (HibernateException he) {          
-            he.printStackTrace();
-            String descricao = formula.getId() == null ? "Insert" : "Update";
-            new LogDAO().SalvarLog(descricao, he.getCause().toString(), formula.toString(), usuario);
-        } finally {
-            sessao.close();
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+            } else {
+                if(Atualizar(formula, usuario) == true){
+                    jif.popularTabelaSalvar();
+                } else {
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+                
+            }
+        } else {
+            new DlgAviso("Descrição Incorreta ou invalida");
         }
 
     }
     
-    public void ExcluirFormula(Integer id, Usuario usuario){
-        Session sessao = null;
-        Formula formula = ConsultarFormula(id);
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-
-            if(formula != null){
-                sessao.delete(formula);  
-                t.commit(); 
-                new AuditoriaDAO().SalvarAuditoria("Delete", formula.toString(), usuario);
-            }
-        } catch (HibernateException he) {         
-            he.printStackTrace();
-        } finally {
-            sessao.close();
-        }  
+    public void ExcluirFormula(Integer formulaId, Usuario usuario){
+        if(usuario != null){
+            Formula formula = new FormulaDAO().ConsultarFormula(formulaId);         
+            Excluir(formula, usuario);
+        }
     }
           
     public List<Formula> ConsultarTodos() {

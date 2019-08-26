@@ -5,9 +5,13 @@
  */
 package DAO;
 
+import static DAO.DAO.Atualizar;
+import static DAO.DAO.Excluir;
+import static DAO.DAO.Salvar;
 import Entidade.Material;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
+import Tela.Apoio.DlgAviso;
 import Tela.JIframeMaterial;
 import java.util.List;
 import javax.swing.JTable;
@@ -21,56 +25,35 @@ import org.hibernate.Transaction;
  *
  * @author patrick.scheibel
  */
-public class MaterialDAO {
+public class MaterialDAO extends DAO{
       
-    public void SalvarMaterial(Material material, JIframeMaterial jframeMaterial, Usuario usuario){
-        Session sessao = null;
-        JIframeMaterial jfr = jframeMaterial;
-        try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-
-            if(!material.getDescricao().equals("")){
-                if(material.getId() == null){
-                    sessao.save(material);  
-                    t.commit();
-                    new AuditoriaDAO().SalvarAuditoria("Insert", material.toString(), usuario);
-                    jfr.popularTabelaSalvar();                 
+    public void SalvarMaterial(Material material, JIframeMaterial jIframeMaterial, Usuario usuario){
+        JIframeMaterial jif = jIframeMaterial;
+        if(!material.getDescricao().isEmpty()){
+            if(material.getId() == null){
+                if(Salvar(material, usuario) == true) {
+                    jif.popularTabelaSalvar();
                 } else {
-                    sessao.update(material);  
-                    t.commit(); 
-                    new AuditoriaDAO().SalvarAuditoria("Update", material.toString(), usuario);
-                    jfr.popularTabelaSalvar();
-                }
-           } 
-          
-        } catch (HibernateException he) {
-            he.printStackTrace();
-            String descricao = material.getId() == null ? "Insert" : "Update";
-            new LogDAO().SalvarLog(descricao, he.getCause().toString(), material.toString(), usuario);
-        } finally {
-            sessao.close();
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+            } else {
+                if(Atualizar(material, usuario) == true){
+                    jif.popularTabelaSalvar();
+                } else {
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+                
+            }
+        } else {
+            new DlgAviso("Descrição Incorreta ou invalida");
         }
-
     }
     
-    public void ExcluirMaterial(Integer id, Usuario usuario){
-        Session sessao = null;
-        try {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = sessao.beginTransaction();
-     
-        Material material = ConsultarMaterial(id);
-        if(material != null){
-            sessao.delete(material);
-            t.commit();       
-            new AuditoriaDAO().SalvarAuditoria("Delete", material.toString(), usuario);
+    public void ExcluirMaterial(Integer materialId, Usuario usuario){
+       if(usuario != null){
+            Material material = new MaterialDAO().ConsultarMaterial(materialId);         
+            Excluir(material, usuario);
         }
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        } finally {
-            sessao.close();
-        }  
     }
           
     public List<Material> ConsultarTodos() {
