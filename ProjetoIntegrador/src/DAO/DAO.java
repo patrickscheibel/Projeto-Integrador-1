@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  */
 public class DAO {
     
-    public static void Salvar(Object object, Usuario usuario){
+    public static boolean Salvar(Object object, Usuario usuario){
         Session sessao = null;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
@@ -27,7 +27,8 @@ public class DAO {
             if(object != null){                             
                 sessao.save(object);                     
                 t.commit();    
-                new AuditoriaDAO().SalvarAuditoria("Insert", object.toString(), usuario);                              
+                new AuditoriaDAO().SalvarAuditoria("Insert", object.toString(), usuario);
+                return true;
             }         
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -35,9 +36,10 @@ public class DAO {
         } finally {
             sessao.close();
         }
+        return false;
     }
     
-    public static void Atualizar(Object object, Usuario usuario){
+    public static boolean Atualizar(Object object, Usuario usuario){
         Session sessao = null;
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
@@ -46,7 +48,8 @@ public class DAO {
             if(object != null){                             
                 sessao.update(object);                     
                 t.commit();    
-                new AuditoriaDAO().SalvarAuditoria("Update", object.toString(), usuario);                              
+                new AuditoriaDAO().SalvarAuditoria("Update", object.toString(), usuario);   
+                return true;
             }         
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -54,6 +57,7 @@ public class DAO {
         } finally {
             sessao.close();
         }
+        return false;
     }
     
     public static void Excluir(Object object, Usuario usuario){

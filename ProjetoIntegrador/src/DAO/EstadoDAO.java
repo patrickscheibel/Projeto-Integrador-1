@@ -27,11 +27,18 @@ public class EstadoDAO extends DAO{
         JIframeEstado jif = jIframeEstado;
         if(!estado.getDescricao().isEmpty()){
             if(estado.getId() == null){
-                Salvar(estado, usuario);
-                jif.popularTabelaSalvar();
+                if(Salvar(estado, usuario) == true) {
+                    jif.popularTabelaSalvar();
+                } else {
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
             } else {
-                Atualizar(estado, usuario);  
-                jif.popularTabelaSalvar();
+                if(Atualizar(estado, usuario) == true){
+                    jif.popularTabelaSalvar();
+                } else {
+                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                } 
+                
             }
         } else {
             new DlgAviso("Descrição Incorreta ou invalida");
