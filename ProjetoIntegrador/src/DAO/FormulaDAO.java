@@ -34,13 +34,13 @@ public class FormulaDAO extends DAO{
                 if(Salvar(formula, usuario) == true) {
                     jif.popularTabelaSalvar();
                 } else {
-                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(formula, usuario) == true){
                     jif.popularTabelaSalvar();
                 } else {
-                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
                 
             }

@@ -46,6 +46,8 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenuItemFormula = new javax.swing.JMenuItem();
         jMenuEstado = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
+        jMenuMaterial1 = new javax.swing.JMenuItem();
+        jMenuMaterial2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -140,6 +142,22 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuUsuario);
 
+        jMenuMaterial1.setText("TipoMaterial");
+        jMenuMaterial1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMaterial1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuMaterial1);
+
+        jMenuMaterial2.setText("CorMaterial");
+        jMenuMaterial2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMaterial2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuMaterial2);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -192,6 +210,18 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jifconfiguracao.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial1ActionPerformed
+    JIframeTipoMaterial jifTipoMaterial = new JIframeTipoMaterial(usuario);    
+    jDesktopPanel.add(jifTipoMaterial);
+    jifTipoMaterial.setVisible(true);
+    }//GEN-LAST:event_jMenuMaterial1ActionPerformed
+
+    private void jMenuMaterial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial2ActionPerformed
+    JIframeCorMaterial jifCorMaterial = new JIframeCorMaterial(usuario);    
+    jDesktopPanel.add(jifCorMaterial);
+    jifCorMaterial.setVisible(true);
+    }//GEN-LAST:event_jMenuMaterial2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,6 +268,8 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuEstado;
     private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;
+    private javax.swing.JMenuItem jMenuMaterial1;
+    private javax.swing.JMenuItem jMenuMaterial2;
     private javax.swing.JMenuItem jMenuUsuario;
     // End of variables declaration//GEN-END:variables
 }

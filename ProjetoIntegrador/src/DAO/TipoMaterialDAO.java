@@ -8,11 +8,11 @@ package DAO;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
-import Entidade.Material;
+import Entidade.TipoMaterial;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIframeMaterial;
+import Tela.JIframeTipoMaterial;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,19 +25,19 @@ import org.hibernate.Transaction;
  *
  * @author patrick.scheibel
  */
-public class MaterialDAO extends DAO{
-      
-    public void SalvarMaterial(Material material, JIframeMaterial jIframeMaterial, Usuario usuario){
-        JIframeMaterial jif = jIframeMaterial;
-        if(!material.getDescricao().isEmpty()){
-            if(material.getId() == null){
-                if(Salvar(material, usuario) == true) {
+public class TipoMaterialDAO extends DAO{
+    
+    public void SalvarTipoMaterial(TipoMaterial tipoMaterial, JIframeTipoMaterial jIframeTipoMaterial, Usuario usuario){
+         JIframeTipoMaterial jif = jIframeTipoMaterial;
+        if(!tipoMaterial.getDescricao().isEmpty()){
+            if(tipoMaterial.getId() == null){
+                if(Salvar(tipoMaterial, usuario) == true) {
                     jif.popularTabelaSalvar();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
-                if(Atualizar(material, usuario) == true){
+                if(Atualizar(tipoMaterial, usuario) == true){
                     jif.popularTabelaSalvar();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
@@ -47,16 +47,17 @@ public class MaterialDAO extends DAO{
         } else {
             new DlgAviso("Descrição Incorreta ou invalida");
         }
+
     }
     
-    public void ExcluirMaterial(Integer materialId, Usuario usuario){
-       if(usuario != null){
-            Material material = new MaterialDAO().ConsultarMaterial(materialId);         
-            Excluir(material, usuario);
+    public void ExcluirTipoMaterial(Integer tipoMaterialId, Usuario usuario){
+        if(usuario != null){
+            TipoMaterial tipoMaterial = new TipoMaterialDAO().ConsultarTipoMaterial(tipoMaterialId);         
+            Excluir(tipoMaterial, usuario);
         }
     }
           
-    public List<Material> ConsultarTodos() {
+    public List<TipoMaterial> ConsultarTodos() {
 //    - método para consultar
         List resultado = null;
 
@@ -64,7 +65,7 @@ public class MaterialDAO extends DAO{
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Material");
+                org.hibernate.Query q = sessao.createQuery("from TipoMaterial");
                 resultado = q.list();
 
             } catch (HibernateException he) {
@@ -79,24 +80,21 @@ public class MaterialDAO extends DAO{
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Material> lista = ConsultarTodos();
+        List<TipoMaterial> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[6];
+        Object[] cabecalho = new Object[2];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
-        cabecalho[2] = "Tipo";
-        cabecalho[3] = "Tamanho";
-        cabecalho[4] = "Aplicação";
-        cabecalho[5] = "Preço";
+        
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][6];
+            dadosTabela = new Object[lista.size()][2];
 
         } catch (Exception e) {
-            System.out.println("Erro ao consultar os Materiais: " + e);
+            System.out.println("Erro ao consultar os Tipo_Material: " + e);
         }
 
         int lin = 0;
@@ -104,14 +102,11 @@ public class MaterialDAO extends DAO{
         // efetua consulta na tabela
         try {
           
-            for (Material material : lista) {
+            for (TipoMaterial tipoMaterial : lista) {
                 
-                dadosTabela[lin][0] = material.getId();
-                dadosTabela[lin][1] = material.getDescricao();
-                dadosTabela[lin][2] = material.getTipo();
-                dadosTabela[lin][3] = material.getTamanho();
-                dadosTabela[lin][4] = material.getAplicacao();
-                dadosTabela[lin][5] = material.getPreco();
+                dadosTabela[lin][0] = tipoMaterial.getId();
+                dadosTabela[lin][1] = tipoMaterial.getDescricao();
+               
 
                 lin++;
             }
@@ -148,19 +143,19 @@ public class MaterialDAO extends DAO{
 
     }
     
-    public Material ConsultarMaterial(int id) {
-     Material material = new Material();
+    public TipoMaterial ConsultarTipoMaterial(int id) {
+     TipoMaterial tipoMaterial = new TipoMaterial();
 
          try {
              Session sessao = HibernateUtil.getSessionFactory().openSession();
              sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from Material where id = " + id);
-             material = Material.class.cast(q.uniqueResult());
+             org.hibernate.Query q = sessao.createQuery("from TipoMaterial where id = " + id);
+             tipoMaterial = TipoMaterial.class.cast(q.uniqueResult());
 
          } catch (HibernateException he) {
              he.printStackTrace();
          }
-         return material;
+         return tipoMaterial;
      }    
 }

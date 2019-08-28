@@ -32,13 +32,13 @@ public class UsuarioDAO extends DAO{
                 if(Salvar(usuario, usuario) == true) {
                     jif.popularTabelaSalvar();
                 } else {
-                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(usuario, usuario) == true){
                     jif.popularTabelaSalvar();
                 } else {
-                    new DlgAviso("Descrição deve ter no minimo 45 caracteres");
+                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
                 
             }
