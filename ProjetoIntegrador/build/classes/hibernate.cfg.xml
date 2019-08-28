@@ -49,6 +49,8 @@ Contributor(s):
     <mapping class="Entidade.Cidade"/>
     <mapping class="Entidade.Estado"/>
     <mapping class="Entidade.Formula"/>
+    <mapping class="Entidade.CorMaterial"/>
+    <mapping class="Entidade.TipoMaterial"/>
     <mapping class="Entidade.Material"/>
     <mapping class="Entidade.Usuario"/>
     <mapping class="Entidade.Auditoria"/>
