@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -82,18 +81,19 @@ public class MaterialDAO extends DAO{
         List<Material> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[6];
+        Object[] cabecalho = new Object[7];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Descrição";
-        cabecalho[2] = "Tipo";
-        cabecalho[3] = "Tamanho";
-        cabecalho[4] = "Aplicação";
-        cabecalho[5] = "Preço";
+        cabecalho[1] = "Tipo";
+        cabecalho[2] = "Descrição";
+        cabecalho[3] = "Cor";
+        cabecalho[4] = "Emissividade";
+        cabecalho[5] = "Condução Térmica";   
+        cabecalho[6] = "Preço";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][6];
+            dadosTabela = new Object[lista.size()][7];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar os Materiais: " + e);
@@ -107,11 +107,12 @@ public class MaterialDAO extends DAO{
             for (Material material : lista) {
                 
                 dadosTabela[lin][0] = material.getId();
-                dadosTabela[lin][1] = material.getDescricao();
-                dadosTabela[lin][2] = material.getTipo();
-                dadosTabela[lin][3] = material.getTamanho();
-                dadosTabela[lin][4] = material.getAplicacao();
-                dadosTabela[lin][5] = material.getPreco();
+                dadosTabela[lin][1] = material.getTipoMaterial();
+                dadosTabela[lin][2] = material.getDescricao();             
+                dadosTabela[lin][3] = material.getCorMaterial();
+                dadosTabela[lin][4] = material.getEmissividade();
+                dadosTabela[lin][5] = material.getConducaoTermica();
+                dadosTabela[lin][6] = material.getPreco();
 
                 lin++;
             }

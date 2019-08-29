@@ -19,7 +19,7 @@ create table tipo_material(
 					  
 create table material(
     id serial PRIMARY KEY,
-    tipo_id integer not null,
+    tipo_material_id integer not null,
     descricao varchar(100) not null,
     cor_id integer not null,    
     emissividade decimal(10,2) not null,

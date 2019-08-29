@@ -160,7 +160,7 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
 
         jLabel2.setText("Descricão: * ");
 
-        jLabel5.setText("Radiação maxima");
+        jLabel5.setText("Radiação maxima: *");
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -176,21 +176,13 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
             }
         });
 
-        try {
-            jFormattedTextFieldRminima.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldRminima.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
         jLabel11.setText("Campos com (*) são obrigatórios");
 
-        jLabel6.setText("Radiação mínima");
+        jLabel6.setText("Radiação mínima: *");
 
-        try {
-            jFormattedTextFieldRmaxima.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldRmaxima.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,7 +217,7 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
                                             .addComponent(jFormattedTextFieldRminima, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(79, Short.MAX_VALUE)
+                        .addContainerGap(66, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
@@ -297,8 +289,10 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
         
         idEditar = corMaterial.getId();
         jTextFieldDescricao.setText(corMaterial.getDescricao());
-        jFormattedTextFieldRminima.setText(corMaterial.getRadiacao_minima().toString());
-        jFormattedTextFieldRmaxima.setText(corMaterial.getRadiacao_maxima().toString());
+        jFormattedTextFieldRminima.setText("");
+        jFormattedTextFieldRmaxima.setText("");
+        jFormattedTextFieldRminima.setText("" + corMaterial.getRadiacaoMinima());
+        jFormattedTextFieldRmaxima.setText("" + corMaterial.getRadiacaoMaxima());
         
         jLabelLegendaCorMaterial.setText("Edição de CorMaterial");
         jTabbedPaneCorMaterial.setSelectedIndex(1);
@@ -319,8 +313,8 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
         CorMaterial corMaterial = new CorMaterial();
         corMaterial.setId(idEditar);
         corMaterial.setDescricao(jTextFieldDescricao.getText());
-        corMaterial.setRadiacao_minima(!jFormattedTextFieldRminima.getText().equals("   .  ") ? new BigDecimal(jFormattedTextFieldRminima.getText()) : new BigDecimal(0));
-        corMaterial.setRadiacao_maxima(!jFormattedTextFieldRmaxima.getText().equals("   .  ") ? new BigDecimal(jFormattedTextFieldRmaxima.getText()) : new BigDecimal(0));
+        corMaterial.setRadiacaoMinima(!jFormattedTextFieldRminima.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldRminima.getText()) : 0);
+        corMaterial.setRadiacaoMaxima(!jFormattedTextFieldRmaxima.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldRmaxima.getText()) : 0);
 
         new CorMaterialDAO().SalvarCorMaterial(corMaterial, this, usuario);
 

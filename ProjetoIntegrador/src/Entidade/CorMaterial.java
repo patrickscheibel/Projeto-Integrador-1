@@ -5,7 +5,6 @@
  */
 package Entidade;
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,28 +28,23 @@ public class CorMaterial  implements java.io.Serializable {
      private String descricao;
      
      @Column(name = "radiacao_minima", precision = 10)
-     private BigDecimal radiacao_minima;
+     private double radiacaoMinima;
      
      @Column(name = "radiacao_maxima", precision = 10)
-     private BigDecimal radiacao_maxima;
+     private double radiacaoMaxima;
 
-    public CorMaterial() {
-    }
-
-	
-    public CorMaterial(int id) {
-        this.id = id;
-    }
-    public CorMaterial(Integer id, String descricao, BigDecimal radiacao_minima, BigDecimal radiacao_maxima) {
+    public CorMaterial() {}  
+    
+    public CorMaterial(Integer id, String descricao, double radiacaoMinima, double radiacaoMaxima) {
        this.id = id;
        this.descricao = descricao;
-       this.radiacao_minima = radiacao_minima;
-       this.radiacao_maxima = radiacao_maxima;
+       this.radiacaoMinima = radiacaoMinima;
+       this.radiacaoMaxima = radiacaoMaxima;
     }
 
     @Override
     public String toString() {
-        return "CorMaterial{" + "id=" + id + ", descricao=" + descricao + ", preco=" + radiacao_minima + ", preco=" + radiacao_maxima + '}';
+        return "CorMaterial{" + "id=" + id + ", descricao=" + descricao + ", preco=" + radiacaoMinima + ", preco=" + radiacaoMaxima + '}';
     }
     
     public Integer getId() {
@@ -68,20 +62,20 @@ public class CorMaterial  implements java.io.Serializable {
         this.descricao = descricao;
     }
 
-    public BigDecimal getRadiacao_minima() {
-        return radiacao_minima;
+    public double getRadiacaoMinima() {
+        return radiacaoMinima;
     }
 
-    public void setRadiacao_minima(BigDecimal radiacao_minima) {
-        this.radiacao_minima = radiacao_minima;
+    public void setRadiacaoMinima(double radiacaoMinima) {
+        this.radiacaoMinima = radiacaoMinima;
     }
 
-    public BigDecimal getRadiacao_maxima() {
-        return radiacao_maxima;
+    public double getRadiacaoMaxima() {
+        return radiacaoMaxima;
     }
 
-    public void setRadiacao_maxima(BigDecimal radiacao_maxima) {
-        this.radiacao_maxima = radiacao_maxima;
+    public void setRadiacaoMaxima(double radiacaoMaxima) {
+        this.radiacaoMaxima = radiacaoMaxima;
     }
     
     

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,47 +19,49 @@ import javax.persistence.Table;
 @Table(name = "material")
 public class Material  implements java.io.Serializable {
 
-     @Id
-     @Column(name="id")
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer id;
-     
-     @Column(name = "descricao", length = 100)
-     private String descricao;
-     
-     @Column(name = "tipo", length = 100)
-     private String tipo;
-     
-     @Column(name = "tamanho", length = 20)
-     private String tamanho;
-     
-     @Column(name = "aplicacao", length = 100)
-     private String aplicacao;
-     
-     @Column(name = "preco", precision = 10)
-     private BigDecimal preco;
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne()
+    @JoinColumn(name = "tipo_material_id", nullable = false)
+    private TipoMaterial tipoMaterial;
+    
+    @Column(name = "descricao", length = 100)
+    private String descricao;
+
+    @ManyToOne()
+    @JoinColumn(name = "cor_material_id", nullable = false)
+    private CorMaterial corMaterial;
+
+    @Column(name = "emissividade", precision = 10)
+    private double emissividade;
+
+    @Column(name = "conducao_termica", precision = 10)
+    private double conducaoTermica;
+    
+    @Column(name = "preco", precision = 10)
+    private double preco;
 
     public Material() {
     }
 
-	
-    public Material(int id) {
+    public Material(Integer id, TipoMaterial tipoMaterial, String descricao, CorMaterial corMaterial, double emissividade, double conducaoTermica, double preco) {
         this.id = id;
-    }
-    public Material(Integer id, String descricao, String tipo, String tamanho, String aplicacao, BigDecimal preco) {
-       this.id = id;
-       this.descricao = descricao;
-       this.tipo = tipo;
-       this.aplicacao = aplicacao;
-       this.preco = preco;
-       this.tamanho = tamanho;
+        this.tipoMaterial = tipoMaterial;
+        this.descricao = descricao;
+        this.corMaterial = corMaterial;
+        this.emissividade = emissividade;
+        this.conducaoTermica = conducaoTermica;
+        this.preco = preco;
     }
 
     @Override
     public String toString() {
-        return "Material{" + "id=" + id + ", descricao=" + descricao + ", tipo=" + tipo + ", tamanho=" + tamanho + ", aplicacao=" + aplicacao + ", preco=" + preco + '}';
+        return "Material{" + "id=" + id + ", tipoMaterial=" + tipoMaterial + ", descricao=" + descricao + ", corMaterial=" + corMaterial + ", emissividade=" + emissividade + ", conducaoTermica=" + conducaoTermica + ", preco=" + preco + '}';
     }
-    
+       
     public Integer getId() {
         return this.id;
     }
@@ -72,35 +76,47 @@ public class Material  implements java.io.Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public String getTipo() {
-        return this.tipo;
-    }
-    
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    public String getAplicacao() {
-        return this.aplicacao;
-    }
-    
-    public void setAplicacao(String aplicacao) {
-        this.aplicacao = aplicacao;
-    }
-    public BigDecimal getPreco() {
-        return this.preco;
-    }
-    
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-    
-    public String getTamanho() {
-        return tamanho;
+
+    public TipoMaterial getTipoMaterial() {
+        return tipoMaterial;
     }
 
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
+    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+        this.tipoMaterial = tipoMaterial;
     }
+
+    public CorMaterial getCorMaterial() {
+        return corMaterial;
+    }
+
+    public void setCorMaterial(CorMaterial corMaterial) {
+        this.corMaterial = corMaterial;
+    }
+
+    public double getEmissividade() {
+        return emissividade;
+    }
+
+    public void setEmissividade(double emissividade) {
+        this.emissividade = emissividade;
+    }
+
+    public double getConducaoTermica() {
+        return conducaoTermica;
+    }
+
+    public void setConducaoTermica(double conducaoTermica) {
+        this.conducaoTermica = conducaoTermica;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+     
 }
 
 

@@ -45,7 +45,7 @@ public class CorMaterialDAO extends DAO{
                 
             }
         } else {
-            new DlgAviso("Descrição Incorreta ou invalida");
+            new DlgAviso("Dados Incorretos ou invalidos");
         }
     }
     
@@ -106,8 +106,8 @@ public class CorMaterialDAO extends DAO{
                 
                 dadosTabela[lin][0] = corMaterial.getId();
                 dadosTabela[lin][1] = corMaterial.getDescricao();
-                dadosTabela[lin][2] = corMaterial.getRadiacao_minima();
-                dadosTabela[lin][3] = corMaterial.getRadiacao_maxima();
+                dadosTabela[lin][2] = corMaterial.getRadiacaoMinima();
+                dadosTabela[lin][3] = corMaterial.getRadiacaoMaxima();
                 
 
                 lin++;
