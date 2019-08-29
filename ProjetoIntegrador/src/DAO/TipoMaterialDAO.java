@@ -5,21 +5,23 @@
  */
 package DAO;
 
+import Apoio.ComboItem;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
+import Entidade.Formula;
 import Entidade.TipoMaterial;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.JIframeTipoMaterial;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -146,16 +148,44 @@ public class TipoMaterialDAO extends DAO{
     public TipoMaterial ConsultarTipoMaterial(int id) {
      TipoMaterial tipoMaterial = new TipoMaterial();
 
-         try {
-             Session sessao = HibernateUtil.getSessionFactory().openSession();
-             sessao.beginTransaction();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from TipoMaterial where id = " + id);
-             tipoMaterial = TipoMaterial.class.cast(q.uniqueResult());
+            org.hibernate.Query q = sessao.createQuery("from TipoMaterial where id = " + id);
+            tipoMaterial = TipoMaterial.class.cast(q.uniqueResult());
 
-         } catch (HibernateException he) {
-             he.printStackTrace();
-         }
-         return tipoMaterial;
-     }    
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return tipoMaterial;
+    }    
+    
+    
+    public void popularCombo(String order, JComboBox combo) {
+        
+        List<TipoMaterial> resultado = null;
+        combo.removeAllItems();
+
+        ComboItem item = new ComboItem();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from tipo_material order by " + order);
+            resultado = q.list();
+          
+            for (TipoMaterial tipo : resultado) {
+                item = new ComboItem();
+                item.setCodigo(tipo.getId());
+                item.setDescricao(tipo.getDescricao());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
 }

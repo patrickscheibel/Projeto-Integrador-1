@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Apoio.ComboItem;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
@@ -14,12 +15,12 @@ import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.JIframeCorMaterial;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -146,18 +147,45 @@ public class CorMaterialDAO extends DAO{
     }
     
     public CorMaterial ConsultarCorMaterial(int id) {
-     CorMaterial corMaterial = new CorMaterial();
+    CorMaterial corMaterial = new CorMaterial();
 
-         try {
-             Session sessao = HibernateUtil.getSessionFactory().openSession();
-             sessao.beginTransaction();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from CorMaterial where id = " + id);
-             corMaterial = CorMaterial.class.cast(q.uniqueResult());
+            org.hibernate.Query q = sessao.createQuery("from CorMaterial where id = " + id);
+            corMaterial = CorMaterial.class.cast(q.uniqueResult());
 
-         } catch (HibernateException he) {
-             he.printStackTrace();
-         }
-         return corMaterial;
-     }    
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return corMaterial;
+    }   
+    
+    public void popularCombo(String order, JComboBox combo) {
+        
+        List<CorMaterial> resultado = null;
+        combo.removeAllItems();
+
+        ComboItem item = new ComboItem();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from cor_material order by " + order);
+            resultado = q.list();
+          
+            for (CorMaterial cor : resultado) {
+                item = new ComboItem();
+                item.setCodigo(cor.getId());
+                item.setDescricao(cor.getDescricao());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
 }

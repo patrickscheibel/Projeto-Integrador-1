@@ -5,8 +5,10 @@
  */
 package Tela;
 
+import DAO.CorMaterialDAO;
 import Entidade.Material;
 import DAO.MaterialDAO;
+import DAO.TipoMaterialDAO;
 import Entidade.Usuario;
 import java.math.BigDecimal;
 
@@ -312,9 +314,9 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         jLabelLegendaMaterial.setText("Cadastro de Material");
         //Limpa os campos
-        jComboBoxTipo;
+        new TipoMaterialDAO().popularCombo("ASC", jComboBoxTipo);
         jTextFieldDescricao.setText("");
-        jComboBoxCor;
+        new CorMaterialDAO().popularCombo("ASC", jComboBoxCor);
         jFormattedTextEmissividade.setText("");
         jFormattedTextConducaoTermica.setText("");
         jFormattedTextFieldPreco.setText("");
