@@ -44,7 +44,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuMaterial = new javax.swing.JMenuItem();
         jMenuItemFormula = new javax.swing.JMenuItem();
-        jMenuEstado = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
         jMenuMaterial1 = new javax.swing.JMenuItem();
         jMenuMaterial2 = new javax.swing.JMenuItem();
@@ -126,14 +125,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItemFormula);
 
-        jMenuEstado.setText("Estado");
-        jMenuEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuEstadoActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuEstado);
-
         jMenuUsuario.setText("Usuário");
         jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +133,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuUsuario);
 
-        jMenuMaterial1.setText("TipoMaterial");
+        jMenuMaterial1.setText("Tipo de Material");
         jMenuMaterial1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuMaterial1ActionPerformed(evt);
@@ -150,7 +141,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuMaterial1);
 
-        jMenuMaterial2.setText("CorMaterial");
+        jMenuMaterial2.setText("Cor do Material");
         jMenuMaterial2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuMaterial2ActionPerformed(evt);
@@ -191,12 +182,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jDesktopPanel.add(jifFormula);
     jifFormula.setVisible(true);
     }//GEN-LAST:event_jMenuItemFormulaActionPerformed
-
-    private void jMenuEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEstadoActionPerformed
-    JIframeEstado jifEstado = new JIframeEstado(usuario);    
-    jDesktopPanel.add(jifEstado);
-    jifEstado.setVisible(true);
-    }//GEN-LAST:event_jMenuEstadoActionPerformed
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
     JIframeUsuario jifUsuario = new JIframeUsuario(usuario);    
@@ -265,7 +250,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuEstado;
     private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;
     private javax.swing.JMenuItem jMenuMaterial1;

@@ -25,14 +25,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemFormulaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuEstado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Estado"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuEstadoActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
@@ -43,7 +35,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuMaterial1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TipoMaterial"/>
+                <Property name="text" type="java.lang.String" value="Tipo de Material"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuMaterial1ActionPerformed"/>
@@ -51,7 +43,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuMaterial2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CorMaterial"/>
+                <Property name="text" type="java.lang.String" value="Cor do Material"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuMaterial2ActionPerformed"/>

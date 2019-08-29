@@ -19,7 +19,7 @@ create table tipo_material(
 					  
 create table material(
     id serial PRIMARY KEY,
-    tipo_material_id integer not null,
+    tipo_id integer not null,
     descricao varchar(100) not null,
     cor_id integer not null,    
     emissividade decimal(10,2) not null,
@@ -55,19 +55,5 @@ create table log(
     acao text not null,
     erro text not null,
     dados text
-);
-	
---Repensar			
-create table estado(
-    id serial PRIMARY KEY,
-    descricao varchar(45)
-);
-
---Repensar
-create table cidade(
-    id serial PRIMARY KEY,
-    descricao varchar(45) not null,
-    estado_id integer not null,	 
-    FOREIGN KEY (estado_id) REFERENCES estado(id)	 
 );
 	

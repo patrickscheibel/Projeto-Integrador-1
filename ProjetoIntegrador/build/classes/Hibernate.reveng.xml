@@ -42,11 +42,9 @@ Contributor(s):
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="projetoIntegrador" match-schema="public"/>
   <table-filter match-name="formula"/>
-  <table-filter match-name="estado"/>
   <table-filter match-name="cor_material"/>
   <table-filter match-name="tipo_material"/>
   <table-filter match-name="material"/>
-  <table-filter match-name="cidade"/>
   <table-filter match-name="usuario"/>
   <table-filter match-name="auditoria"/>
   <table-filter match-name="log"/>

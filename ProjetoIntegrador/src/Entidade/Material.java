@@ -25,14 +25,14 @@ public class Material  implements java.io.Serializable {
     private Integer id;
 
     @ManyToOne()
-    @JoinColumn(name = "tipo_material_id", nullable = false)
+    @JoinColumn(name = "tipo_id", nullable = false)
     private TipoMaterial tipoMaterial;
     
     @Column(name = "descricao", length = 100)
     private String descricao;
 
     @ManyToOne()
-    @JoinColumn(name = "cor_material_id", nullable = false)
+    @JoinColumn(name = "cor_id", nullable = false)
     private CorMaterial corMaterial;
 
     @Column(name = "emissividade", precision = 10)
