@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Apoio.ComboItem;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
