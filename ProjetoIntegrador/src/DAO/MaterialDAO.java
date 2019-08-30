@@ -28,7 +28,7 @@ public class MaterialDAO extends DAO{
       
     public void SalvarMaterial(Material material, JIframeMaterial jIframeMaterial, Usuario usuario){
         JIframeMaterial jif = jIframeMaterial;
-        if(!material.getDescricao().isEmpty()){
+        if(!material.getDescricao().isEmpty() && material.getTipoMaterial() != null && material.getCorMaterial() != null){
             if(material.getId() == null){
                 if(Salvar(material, usuario) == true) {
                     jif.popularTabelaSalvar();
@@ -107,9 +107,9 @@ public class MaterialDAO extends DAO{
             for (Material material : lista) {
                 
                 dadosTabela[lin][0] = material.getId();
-                dadosTabela[lin][1] = material.getTipoMaterial();
+                dadosTabela[lin][1] = material.getTipoMaterial().getDescricao();
                 dadosTabela[lin][2] = material.getDescricao();             
-                dadosTabela[lin][3] = material.getCorMaterial();
+                dadosTabela[lin][3] = material.getCorMaterial().getDescricao();
                 dadosTabela[lin][4] = material.getEmissividade();
                 dadosTabela[lin][5] = material.getConducaoTermica();
                 dadosTabela[lin][6] = material.getPreco();

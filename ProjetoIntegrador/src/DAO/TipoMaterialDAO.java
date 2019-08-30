@@ -161,31 +161,4 @@ public class TipoMaterialDAO extends DAO{
         return tipoMaterial;
     }    
     
-    
-    public void popularCombo(String order, JComboBox combo) {
-        
-        List<TipoMaterial> resultado = null;
-        combo.removeAllItems();
-
-        ComboItem item = new ComboItem();
-        item.setCodigo(0);
-        item.setDescricao("Selecione");
-        combo.addItem(item);
-
-        try {
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            org.hibernate.Query q = sessao.createQuery("from tipo_material order by " + order);
-            resultado = q.list();
-          
-            for (TipoMaterial tipo : resultado) {
-                item = new ComboItem();
-                item.setCodigo(tipo.getId());
-                item.setDescricao(tipo.getDescricao());
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao popular Combo = " + e.toString());
-        }
-    }
 }

@@ -5,7 +5,6 @@
  */
 package Tela.Apoio;
 
-import javax.swing.JInternalFrame;
 
 /**
  *

@@ -27,6 +27,8 @@ public class JIframeTipoMaterial extends javax.swing.JInternalFrame {
         usuario = usuarios;
     }
     
+    public JIframeTipoMaterial(){}
+    
     public void popularTabelaSalvar(){
         new TipoMaterialDAO().popularTabela(TabelaTipoMaterial);
         jTabbedPaneTipoMaterial.setSelectedIndex(0);

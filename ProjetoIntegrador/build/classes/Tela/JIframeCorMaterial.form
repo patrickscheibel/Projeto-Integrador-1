@@ -248,7 +248,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="66" max="32767" attributes="0"/>
+                              <EmptySpace pref="73" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -309,7 +309,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Radia&#xe7;&#xe3;o maxima: *"/>
+                <Property name="text" type="java.lang.String" value="Radia&#xe7;&#xe3;o maxima: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVoltar">
@@ -342,7 +342,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Radia&#xe7;&#xe3;o m&#xed;nima: *"/>
+                <Property name="text" type="java.lang.String" value="Radia&#xe7;&#xe3;o m&#xed;nima: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldRmaxima">

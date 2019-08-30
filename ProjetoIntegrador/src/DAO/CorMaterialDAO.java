@@ -32,6 +32,7 @@ public class CorMaterialDAO extends DAO{
         JIframeCorMaterial jif = jIframeCorMaterial;
         if(!corMaterial.getDescricao().isEmpty()){
             if(corMaterial.getId() == null){
+                            System.out.println("S: " + corMaterial.getDescricao());
                 if(Salvar(corMaterial, usuario) == true) {
                     jif.popularTabelaSalvar();
                 } else {
@@ -86,8 +87,8 @@ public class CorMaterialDAO extends DAO{
         Object[] cabecalho = new Object[4];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
-        cabecalho[2] = "Radiacao_Minima";
-        cabecalho[3] = "Radiacao_Maxima";
+        cabecalho[2] = "Radiacao Minima";
+        cabecalho[3] = "Radiacao Maxima";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
@@ -162,30 +163,4 @@ public class CorMaterialDAO extends DAO{
         return corMaterial;
     }   
     
-    public void popularCombo(String order, JComboBox combo) {
-        
-        List<CorMaterial> resultado = null;
-        combo.removeAllItems();
-
-        ComboItem item = new ComboItem();
-        item.setCodigo(0);
-        item.setDescricao("Selecione");
-        combo.addItem(item);
-
-        try {
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            org.hibernate.Query q = sessao.createQuery("from cor_material order by " + order);
-            resultado = q.list();
-          
-            for (CorMaterial cor : resultado) {
-                item = new ComboItem();
-                item.setCodigo(cor.getId());
-                item.setDescricao(cor.getDescricao());
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao popular Combo = " + e.toString());
-        }
-    }
 }

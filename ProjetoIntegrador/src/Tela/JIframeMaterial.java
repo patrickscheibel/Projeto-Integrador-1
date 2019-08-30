@@ -9,6 +9,8 @@ import DAO.CorMaterialDAO;
 import Entidade.Material;
 import DAO.MaterialDAO;
 import DAO.TipoMaterialDAO;
+import Entidade.CorMaterial;
+import Entidade.TipoMaterial;
 import Entidade.Usuario;
 import java.math.BigDecimal;
 
@@ -20,6 +22,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
 
     Integer idEditar;
     Usuario usuario = new Usuario();
+    Material material;
     /**
      * Creates new form JframeMaterial
      */
@@ -28,13 +31,27 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jTabbedPaneMaterial.setEnabled(false);
         new MaterialDAO().popularTabela(TabelaMaterial);
         usuario = usuarios;
+        jTextFieldTipo.setEnabled(false);
+        jTextFieldCor.setEnabled(false);
     }
+    
+    public JIframeMaterial(){}
     
     public void popularTabelaSalvar(){
         new MaterialDAO().popularTabela(TabelaMaterial);
         jTabbedPaneMaterial.setSelectedIndex(0);
         jTabbedPaneMaterial.setTitleAt(1, "");
         idEditar = null;
+    }
+    
+    public void setTipo(TipoMaterial tipoMaterial){
+        jTextFieldTipo.setText(tipoMaterial.getDescricao());
+        material.setTipoMaterial(tipoMaterial);
+    }
+    
+    public void setCor(CorMaterial corMaterial){
+        jTextFieldCor.setText(corMaterial.getDescricao());
+        material.setCorMaterial(corMaterial);
     }
 
     /**
@@ -65,13 +82,15 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jFormattedTextFieldPreco = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxTipo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxCor = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextEmissividade = new javax.swing.JFormattedTextField();
         jFormattedTextConducaoTermica = new javax.swing.JFormattedTextField();
+        jTextFieldTipo = new javax.swing.JTextField();
+        jButtonBuscarTipo = new javax.swing.JButton();
+        jTextFieldCor = new javax.swing.JTextField();
+        jButtonBuscarCor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Material");
@@ -151,7 +170,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFechar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionar)
@@ -182,17 +201,13 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
             }
         });
 
-        jFormattedTextFieldPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.00"))));
+        jFormattedTextFieldPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###.##"))));
 
         jLabel11.setText("Campos com (*) são obrigatórios");
 
         jLabel7.setText("Tipo: * ");
 
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Cor: *");
-
-        jComboBoxCor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setText("Emissividade:");
 
@@ -201,6 +216,20 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jFormattedTextEmissividade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
         jFormattedTextConducaoTermica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
+
+        jButtonBuscarTipo.setText("Buscar");
+        jButtonBuscarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarTipoActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscarCor.setText("Buscar");
+        jButtonBuscarCor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarCorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,12 +268,19 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                                     .addComponent(jLabel8))
                                 .addGap(60, 60, 60)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabelLegendaMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jComboBoxCor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonBuscarTipo))
+                                            .addComponent(jLabelLegendaMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jTextFieldCor, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonBuscarCor)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(88, 88, 88))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -252,22 +288,30 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabelLegendaMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel7)
+                                .addGap(10, 10, 10)))
                         .addGap(12, 12, 12)
                         .addComponent(jLabel2)
-                        .addGap(24, 65, Short.MAX_VALUE))
+                        .addGap(24, 70, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscarTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonBuscarCor)))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -280,7 +324,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonSalvar))
@@ -313,10 +357,11 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         jLabelLegendaMaterial.setText("Cadastro de Material");
+        material = new Material();
         //Limpa os campos
-        new TipoMaterialDAO().popularCombo("ASC", jComboBoxTipo);
+        jTextFieldTipo.setText("");
         jTextFieldDescricao.setText("");
-        new CorMaterialDAO().popularCombo("ASC", jComboBoxCor);
+        jTextFieldCor.setText("");
         jFormattedTextEmissividade.setText("");
         jFormattedTextConducaoTermica.setText("");
         jFormattedTextFieldPreco.setText("");
@@ -331,12 +376,9 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
-        Material material = new Material();
-        material.setId(idEditar);
-        material.setTipoMaterial(jComboBoxTipo);
-        material.setDescricao(jTextFieldDescricao.getText());
-        material.setCorMaterial(jComboBoxCor);
+          
+        material.setId(idEditar);       
+        material.setDescricao(jTextFieldDescricao.getText());        
         material.setEmissividade(!jFormattedTextEmissividade.getText().isEmpty() ? Double.valueOf(jFormattedTextEmissividade.getText()) : 0);
         material.setConducaoTermica(!jFormattedTextConducaoTermica.getText().isEmpty() ? Double.valueOf(jFormattedTextConducaoTermica.getText()) : 0);
         material.setPreco(!jFormattedTextFieldPreco.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldPreco.getText()) : 0);
@@ -346,13 +388,13 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-      
-        Material material = new MaterialDAO().ConsultarMaterial((int) TabelaMaterial.getValueAt(TabelaMaterial.getSelectedRow(), 0));
+        
+        material = new MaterialDAO().ConsultarMaterial((int) TabelaMaterial.getValueAt(TabelaMaterial.getSelectedRow(), 0));
         
         idEditar = material.getId();
-        jComboBoxTipo;
+        jTextFieldTipo.setText(material.getTipoMaterial().getDescricao());
         jTextFieldDescricao.setText(material.getDescricao());
-        jComboBoxCor;
+        jTextFieldCor.setText(material.getCorMaterial().getDescricao());
         jFormattedTextEmissividade.setText("" + material.getEmissividade());
         jFormattedTextConducaoTermica.setText("" + material.getConducaoTermica());
         jFormattedTextFieldPreco.setText("" + material.getPreco());
@@ -370,6 +412,14 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonBuscarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarTipoActionPerformed
+        DlgSelecionarTipoMaterial dlg = new DlgSelecionarTipoMaterial(this);
+    }//GEN-LAST:event_jButtonBuscarTipoActionPerformed
+
+    private void jButtonBuscarCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCorActionPerformed
+        DlgSelecionarCorMaterial dlg = new DlgSelecionarCorMaterial(this); 
+    }//GEN-LAST:event_jButtonBuscarCorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,13 +460,13 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaMaterial;
     private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonBuscarCor;
+    private javax.swing.JButton jButtonBuscarTipo;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JComboBox<String> jComboBoxCor;
-    private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JFormattedTextField jFormattedTextConducaoTermica;
     private javax.swing.JFormattedTextField jFormattedTextEmissividade;
     private javax.swing.JFormattedTextField jFormattedTextFieldPreco;
@@ -433,6 +483,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneMaterial;
+    private javax.swing.JTextField jTextFieldCor;
     private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldTipo;
     // End of variables declaration//GEN-END:variables
 }

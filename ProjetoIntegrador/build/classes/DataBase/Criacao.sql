@@ -24,8 +24,8 @@ create table material(
     cor_id integer not null,    
     emissividade decimal(10,2) not null,
     conducao_termica decimal(10,2) not null,
-    --preco decimal(10,2),
-    preco money,
+    preco decimal(10,2),
+--     preco money,
     FOREIGN KEY (cor_id) REFERENCES cor_material(id),
     FOREIGN KEY (tipo_id) REFERENCES tipo_material(id)
 );

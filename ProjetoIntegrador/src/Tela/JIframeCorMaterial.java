@@ -160,7 +160,7 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
 
         jLabel2.setText("Descricão: * ");
 
-        jLabel5.setText("Radiação maxima: *");
+        jLabel5.setText("Radiação maxima: ");
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +180,7 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
 
         jLabel11.setText("Campos com (*) são obrigatórios");
 
-        jLabel6.setText("Radiação mínima: *");
+        jLabel6.setText("Radiação mínima: ");
 
         jFormattedTextFieldRmaxima.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
@@ -217,7 +217,7 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
                                             .addComponent(jFormattedTextFieldRminima, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(66, Short.MAX_VALUE)
+                        .addContainerGap(73, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
