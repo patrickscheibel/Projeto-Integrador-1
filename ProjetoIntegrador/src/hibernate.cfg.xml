@@ -53,5 +53,7 @@ Contributor(s):
     <mapping class="Entidade.Usuario"/>
     <mapping class="Entidade.Auditoria"/>
     <mapping class="Entidade.Log"/>
+    <mapping class="Entidade.Permissao"/>
+    <mapping class="Entidade.GrupoPermissao"/>
   </session-factory>
 </hibernate-configuration>

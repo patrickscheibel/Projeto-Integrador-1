@@ -48,4 +48,6 @@ Contributor(s):
   <table-filter match-name="usuario"/>
   <table-filter match-name="auditoria"/>
   <table-filter match-name="log"/>
+  <table-filter match-name="permissao"/>
+  <table-filter match-name="grupo_permissao"/>
 </hibernate-reverse-engineering>

@@ -25,7 +25,6 @@ create table material(
     emissividade decimal(10,2) not null,
     conducao_termica decimal(10,2) not null,
     preco decimal(10,2),
---     preco money,
     FOREIGN KEY (cor_id) REFERENCES cor_material(id),
     FOREIGN KEY (tipo_id) REFERENCES tipo_material(id)
 );
@@ -56,4 +55,21 @@ create table log(
     erro text not null,
     dados text
 );
-	
+
+create table permissao(
+    id serial primary key,
+    descricao varchar(100) not null
+);
+
+create table grupo_permissao(
+    id serial primary key,
+    descricao varchar(100) not null
+);
+
+-- create table premissao_grupo_permissao(
+--     id serial primary key,
+--     permissao_id integer not null,
+--     grupo_permissao_id integer not null,
+--     FOREIGN KEY (permissao_id) REFERENCES permissao(id),
+--     FOREIGN KEY (grupo_permissao_id) REFERENCES grupo_permissao(id),
+-- );

@@ -47,6 +47,10 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenuUsuario = new javax.swing.JMenuItem();
         jMenuMaterial1 = new javax.swing.JMenuItem();
         jMenuMaterial2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -151,6 +155,19 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu1.setText("Permissão");
+
+        jMenuItem2.setText("Permissões");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Grupos de Permissões");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Configuração das permissões");
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,8 +265,12 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemFormula;
     private javax.swing.JMenuItem jMenuMaterial;
     private javax.swing.JMenuItem jMenuMaterial1;
