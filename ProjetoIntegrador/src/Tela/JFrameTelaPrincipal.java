@@ -158,9 +158,19 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Permissão");
 
         jMenuItem2.setText("Permissões");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Grupos de Permissões");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Configuração das permissões");
@@ -223,6 +233,18 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     jDesktopPanel.add(jifCorMaterial);
     jifCorMaterial.setVisible(true);
     }//GEN-LAST:event_jMenuMaterial2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    JIframePermissao jifPermissao = new JIframePermissao(usuario);    
+    jDesktopPanel.add(jifPermissao);
+    jifPermissao.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    JIframeGrupoPermissao jifGrupoPermissao = new JIframeGrupoPermissao(usuario);    
+    jDesktopPanel.add(jifGrupoPermissao);
+    jifGrupoPermissao.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
