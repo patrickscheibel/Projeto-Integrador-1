@@ -6,6 +6,8 @@
 package Tela;
 
 import DAO.GrupoPermissaoDAO;
+import DAO.PermissaoGrupoPermissaoDAO;
+import DAO.UsuarioDAO;
 import Entidade.GrupoPermissao;
 import Entidade.Usuario;
 
@@ -16,6 +18,7 @@ import Entidade.Usuario;
 public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
 
     Integer idEditar;
+    GrupoPermissao grupoPermissao = new GrupoPermissao();
     Usuario usuario = new Usuario();
     /**
      * Creates new form JframeMaterial
@@ -34,6 +37,10 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
         jTabbedPaneGrupoPermissao.setSelectedIndex(0);
         jTabbedPaneGrupoPermissao.setTitleAt(1, "");
         idEditar = null;
+    }
+    
+    public void popularTabelaPermissao(){
+        new PermissaoGrupoPermissaoDAO().popularTabela(jTablePermissoes, grupoPermissao);
     }
 
     /**
@@ -54,6 +61,7 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonExcluir = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
+        jButtonPermissao = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelLegendaGrupoPermissao = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -61,6 +69,13 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
         jButtonVoltar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonAdicionarPermissao = new javax.swing.JButton();
+        jButtonRemoverPermissao = new javax.swing.JButton();
+        jButtonPermissaoVoltar = new javax.swing.JButton();
+        jLabelLegendaPermissao = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTablePermissoes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Grupo de Permissão");
@@ -110,30 +125,37 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonPermissao.setText("Permissão");
+        jButtonPermissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPermissaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 45, Short.MAX_VALUE)
-                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
                 .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jButtonPermissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,12 +165,13 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFechar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionar)
                     .addComponent(jButtonEditar)
-                    .addComponent(jButtonExcluir))
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButtonPermissao))
                 .addGap(21, 21, 21))
         );
 
@@ -227,6 +250,81 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
 
         jTabbedPaneGrupoPermissao.addTab("", jPanel2);
 
+        jButtonAdicionarPermissao.setText("Adicionar");
+        jButtonAdicionarPermissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarPermissaoActionPerformed(evt);
+            }
+        });
+
+        jButtonRemoverPermissao.setText("Remover");
+        jButtonRemoverPermissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverPermissaoActionPerformed(evt);
+            }
+        });
+
+        jButtonPermissaoVoltar.setText("Voltar");
+        jButtonPermissaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPermissaoVoltarActionPerformed(evt);
+            }
+        });
+
+        jLabelLegendaPermissao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jTablePermissoes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Permissão"
+            }
+        ));
+        jScrollPane2.setViewportView(jTablePermissoes);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabelLegendaPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonPermissaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButtonAdicionarPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jButtonRemoverPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabelLegendaPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAdicionarPermissao)
+                    .addComponent(jButtonRemoverPermissao)
+                    .addComponent(jButtonPermissaoVoltar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneGrupoPermissao.addTab("", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,7 +375,7 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
       
-        GrupoPermissao grupoPermissao = new GrupoPermissaoDAO().ConsultarGrupoPermissao((int) TabelaGrupoPermissao.getValueAt(TabelaGrupoPermissao.getSelectedRow(), 0));
+        GrupoPermissao grupoPermissao = new GrupoPermissaoDAO().ConsultarGrupoPermissaoComId((int) TabelaGrupoPermissao.getValueAt(TabelaGrupoPermissao.getSelectedRow(), 0));
         
         idEditar = grupoPermissao.getId();
         jTextFieldDescricao.setText(grupoPermissao.getDescricao());
@@ -301,6 +399,31 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
     private void jTextFieldDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDescricaoActionPerformed
+
+    private void jButtonPermissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPermissaoActionPerformed
+        grupoPermissao = new GrupoPermissaoDAO().ConsultarGrupoPermissaoComId((int) TabelaGrupoPermissao.getValueAt(TabelaGrupoPermissao.getSelectedRow(), 0));
+        
+        jLabelLegendaPermissao.setText("Permissões");
+        jTabbedPaneGrupoPermissao.setSelectedIndex(2);
+        jTabbedPaneGrupoPermissao.setTitleAt(2, "Permissão");
+        
+        new PermissaoGrupoPermissaoDAO().popularTabela(jTablePermissoes, grupoPermissao);   
+    }//GEN-LAST:event_jButtonPermissaoActionPerformed
+
+    private void jButtonAdicionarPermissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPermissaoActionPerformed
+        new DlgSelecionarPermissao(this, usuario, grupoPermissao);
+    }//GEN-LAST:event_jButtonAdicionarPermissaoActionPerformed
+
+    private void jButtonRemoverPermissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPermissaoActionPerformed
+        new PermissaoGrupoPermissaoDAO().ExcluirPermissaoGrupoPermissao((int) jTablePermissoes.getValueAt(jTablePermissoes.getSelectedRow(), 0), usuario);
+        new PermissaoGrupoPermissaoDAO().popularTabela(jTablePermissoes, grupoPermissao);
+    }//GEN-LAST:event_jButtonRemoverPermissaoActionPerformed
+
+    private void jButtonPermissaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPermissaoVoltarActionPerformed
+        grupoPermissao = null;
+        jTabbedPaneGrupoPermissao.setSelectedIndex(0);
+        jTabbedPaneGrupoPermissao.setTitleAt(2, "");
+    }//GEN-LAST:event_jButtonPermissaoVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,19 +464,27 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaGrupoPermissao;
     private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonAdicionarPermissao;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonPermissao;
+    private javax.swing.JButton jButtonPermissaoVoltar;
+    private javax.swing.JButton jButtonRemoverPermissao;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelLegendaGrupoPermissao;
+    private javax.swing.JLabel jLabelLegendaPermissao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPaneGrupoPermissao;
+    private javax.swing.JTable jTablePermissoes;
     private javax.swing.JTextField jTextFieldDescricao;
     // End of variables declaration//GEN-END:variables
 }

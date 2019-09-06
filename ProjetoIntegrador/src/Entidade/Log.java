@@ -6,6 +6,7 @@
 package Entidade;
 
 import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "log")
-public class Log {
+public class Log implements Serializable{
     
     @Id
     @Column(name="id")

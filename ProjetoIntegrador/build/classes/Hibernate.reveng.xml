@@ -50,4 +50,5 @@ Contributor(s):
   <table-filter match-name="log"/>
   <table-filter match-name="permissao"/>
   <table-filter match-name="grupo_permissao"/>
+  <table-filter match-name="permissao_grupo_permissao"/>
 </hibernate-reverse-engineering>

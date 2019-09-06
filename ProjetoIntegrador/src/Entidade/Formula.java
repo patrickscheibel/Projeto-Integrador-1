@@ -2,6 +2,7 @@ package Entidade;
 // Generated 03/08/2019 20:15:02 by Hibernate Tools 4.3.1
 
 import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "formula")
-public class Formula  implements java.io.Serializable {
+public class Formula  implements Serializable {
     
      @Id
      @Column(name="id")

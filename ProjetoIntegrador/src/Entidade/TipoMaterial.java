@@ -6,6 +6,7 @@
 package Entidade;
 
 import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tipo_material")
-public class TipoMaterial  implements java.io.Serializable {
+public class TipoMaterial  implements Serializable {
     
      @Id
      @Column(name="id")

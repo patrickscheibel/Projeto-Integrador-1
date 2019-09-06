@@ -5,9 +5,12 @@
  */
 package Tela;
 
+import DAO.GrupoPermissaoDAO;
 import DAO.UsuarioDAO;
 import Entidade.Usuario;
 import DAO.MaterialDAO;
+import DAO.PermissaoGrupoPermissaoDAO;
+import Entidade.PermissaoGrupoPermissao;
 import java.math.BigDecimal;
 
 /**
@@ -28,6 +31,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         new UsuarioDAO().popularTabela(TabelaUsuario);
         usuarioTela = usuarios;
     }
+    
+    public JIframeUsuario(){}
     
     public void popularTabelaSalvar(){
         new UsuarioDAO().popularTabela(TabelaUsuario);
@@ -57,7 +62,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabelLegendaUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButtonVoltar = new javax.swing.JButton();
+        jButtonEdicaoVoltar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -67,6 +72,8 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jTextFieldSenha = new javax.swing.JPasswordField();
         jComboBoxSituacao = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxGrupoPermissao = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuario");
@@ -80,7 +87,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Usuário", "Situação", "Login"
+                "ID", "Usuário", "Login", "Situação"
             }
         ));
         jScrollPane1.setViewportView(TabelaUsuario);
@@ -122,24 +129,22 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 45, Short.MAX_VALUE)
-                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDesativar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +154,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFechar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionar)
@@ -164,10 +169,10 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Senha: * ");
 
-        jButtonVoltar.setText("Voltar");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEdicaoVoltar.setText("Voltar");
+        jButtonEdicaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
+                jButtonEdicaoVoltarActionPerformed(evt);
             }
         });
 
@@ -205,6 +210,10 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Situação: ");
 
+        jLabel6.setText("Grupo de Permissão: *");
+
+        jComboBoxGrupoPermissao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -219,27 +228,27 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldUsuario))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonEdicaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
                                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldUsuario)
                                     .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextFieldLogin)
+                                    .addComponent(jTextFieldSenha)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabelLegendaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 88, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldSenha))))
+                                        .addGap(0, 32, Short.MAX_VALUE))
+                                    .addComponent(jComboBoxGrupoPermissao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(116, 116, 116))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -259,13 +268,17 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(42, 42, 42)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBoxGrupoPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVoltar)
+                    .addComponent(jButtonEdicaoVoltar)
                     .addComponent(jButtonSalvar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
@@ -280,7 +293,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneUsuario)
+                .addComponent(jTabbedPaneUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -294,75 +307,9 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
-        jLabelLegendaUsuario.setText("Cadastro de Usuarios");
-        //Limpa os campos         
-        jTextFieldUsuario.setText("");
-        jTextFieldLogin.setText("");
-        jTextFieldSenha.setText("");
-        
-        //Combo box situacao      
-        jComboBoxSituacao.removeAllItems();
-        jComboBoxSituacao.setEnabled(false);
-        jComboBoxSituacao.addItem("Ativado");
-        jComboBoxSituacao.addItem("Desativado");
-        jComboBoxSituacao.setSelectedItem("Ativado");
-             
-        //Muda de aba
-        jTabbedPaneUsuario.setSelectedIndex(1);
-        jTabbedPaneUsuario.setTitleAt(1, "Cadastro");
-    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+    private void jComboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSituacaoActionPerformed
 
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        jTabbedPaneUsuario.setSelectedIndex(0);
-        jTabbedPaneUsuario.setTitleAt(1, "");
-        idEditar = null;
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
-
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
-        Usuario usuario = new Usuario();
-        usuario.setId(idEditar);
-        usuario.setUsuario(jTextFieldUsuario.getText());
-        usuario.setLogin(jTextFieldLogin.getText());
-        usuario.setSenha(jTextFieldSenha.getText());
-        usuario.setSituacao(jComboBoxSituacao.getSelectedItem().toString());
-        usuario.setAuditoria(true);
-        usuario.setLog(true);
-        
-        new UsuarioDAO().SalvarUsuario(usuario, this, usuarioTela);
-        
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-      
-        Usuario usuario = new UsuarioDAO().ConsultarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0));
-        
-        idEditar = usuario.getId();
-        jTextFieldUsuario.setText(usuario.getUsuario());
-        jTextFieldLogin.setText(usuario.getLogin());
-        jTextFieldSenha.setText(usuario.getSenha());
-        
-        //Combo box situacao      
-        jComboBoxSituacao.removeAllItems();
-        jComboBoxSituacao.setEnabled(true);
-        jComboBoxSituacao.addItem("Ativado");
-        jComboBoxSituacao.addItem("Desativado");
-        jComboBoxSituacao.setSelectedItem(usuario.getSituacao());
-                
-        jLabelLegendaUsuario.setText("Edição de Usuario");
-        jTabbedPaneUsuario.setSelectedIndex(1);
-        jTabbedPaneUsuario.setTitleAt(1, "Edição");
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void jButtonDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesativarActionPerformed
-       new UsuarioDAO().DesativarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
-       new UsuarioDAO().popularTabela(TabelaUsuario);
-    }//GEN-LAST:event_jButtonDesativarActionPerformed
-
-    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButtonFecharActionPerformed
+    }//GEN-LAST:event_jComboBoxSituacaoActionPerformed
 
     private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
         // TODO add your handling code here:
@@ -372,9 +319,81 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
-    private void jComboBoxSituacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSituacaoActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
-    }//GEN-LAST:event_jComboBoxSituacaoActionPerformed
+        Usuario usuario = new Usuario();
+        usuario.setId(idEditar);
+        usuario.setUsuario(jTextFieldUsuario.getText());
+        usuario.setLogin(jTextFieldLogin.getText());
+        usuario.setSenha(jTextFieldSenha.getText());
+        usuario.setGrupoPermissao(new GrupoPermissaoDAO().ConsultarGrupoPermissaoComDescricao(jComboBoxGrupoPermissao.getSelectedItem().toString()));
+        usuario.setSituacao(jComboBoxSituacao.getSelectedItem().toString());
+        usuario.setAuditoria(true);
+        usuario.setLog(true);
+
+        new UsuarioDAO().SalvarUsuario(usuario, this, usuarioTela);
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonEdicaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEdicaoVoltarActionPerformed
+        jTabbedPaneUsuario.setSelectedIndex(0);
+        jTabbedPaneUsuario.setTitleAt(1, "");
+        idEditar = null;
+    }//GEN-LAST:event_jButtonEdicaoVoltarActionPerformed
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesativarActionPerformed
+        new UsuarioDAO().DesativarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0), usuarioTela);
+        new UsuarioDAO().popularTabela(TabelaUsuario);
+    }//GEN-LAST:event_jButtonDesativarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        Usuario usuario = new UsuarioDAO().ConsultarUsuario((int) TabelaUsuario.getValueAt(TabelaUsuario.getSelectedRow(), 0));
+
+        idEditar = usuario.getId();
+        jTextFieldUsuario.setText(usuario.getUsuario());
+        jTextFieldLogin.setText(usuario.getLogin());
+        jTextFieldSenha.setText(usuario.getSenha());
+
+        //Combo box de GrupoPermissao
+        new GrupoPermissaoDAO().popularCombo(jComboBoxGrupoPermissao);
+        jComboBoxGrupoPermissao.setSelectedIndex(usuario.getGrupoPermissao().getId());
+
+        //Combo box situacao
+        jComboBoxSituacao.removeAllItems();
+        jComboBoxSituacao.setEnabled(true);
+        jComboBoxSituacao.addItem("Ativado");
+        jComboBoxSituacao.addItem("Desativado");
+        jComboBoxSituacao.setSelectedItem(usuario.getSituacao());
+
+        jLabelLegendaUsuario.setText("Edição de Usuario");
+        jTabbedPaneUsuario.setSelectedIndex(1);
+        jTabbedPaneUsuario.setTitleAt(1, "Edição");
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        jLabelLegendaUsuario.setText("Cadastro de Usuarios");
+        //Limpa os campos
+        jTextFieldUsuario.setText("");
+        jTextFieldLogin.setText("");
+        jTextFieldSenha.setText("");
+
+        //Combo box de GrupoPermissao
+        new GrupoPermissaoDAO().popularCombo(jComboBoxGrupoPermissao);
+
+        //Combo box situacao
+        jComboBoxSituacao.removeAllItems();
+        jComboBoxSituacao.setEnabled(false);
+        jComboBoxSituacao.addItem("Ativado");
+        jComboBoxSituacao.addItem("Desativado");
+        jComboBoxSituacao.setSelectedItem("Ativado");
+
+        //Muda de aba
+        jTabbedPaneUsuario.setSelectedIndex(1);
+        jTabbedPaneUsuario.setTitleAt(1, "Cadastro");
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,10 +435,11 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTable TabelaUsuario;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonDesativar;
+    private javax.swing.JButton jButtonEdicaoVoltar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox<String> jComboBoxGrupoPermissao;
     private javax.swing.JComboBox<String> jComboBoxSituacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -427,6 +447,7 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelLegendaUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

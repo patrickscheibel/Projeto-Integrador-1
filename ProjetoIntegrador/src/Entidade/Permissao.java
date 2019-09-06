@@ -6,6 +6,7 @@
 package Entidade;
 
 import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "permissao")
-public class Permissao  implements java.io.Serializable {
+public class Permissao implements Serializable {
     
      @Id
      @Column(name="id")

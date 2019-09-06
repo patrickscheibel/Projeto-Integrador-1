@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Apoio.ComboItem;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
@@ -53,7 +54,7 @@ public class GrupoPermissaoDAO extends DAO{
     
     public void ExcluirGrupoPermissao(Integer grupoGrupoPermissaoId, Usuario usuario){
         if(usuario != null){
-            GrupoPermissao grupoGrupoPermissao = new GrupoPermissaoDAO().ConsultarGrupoPermissao(grupoGrupoPermissaoId);         
+            GrupoPermissao grupoGrupoPermissao = new GrupoPermissaoDAO().ConsultarGrupoPermissaoComId(grupoGrupoPermissaoId);         
             Excluir(grupoGrupoPermissao, usuario);
         }
     }
@@ -144,7 +145,7 @@ public class GrupoPermissaoDAO extends DAO{
 
     }
     
-    public GrupoPermissao ConsultarGrupoPermissao(int id) {
+    public GrupoPermissao ConsultarGrupoPermissaoComId(int id) {
      GrupoPermissao grupoGrupoPermissao = new GrupoPermissao();
 
         try {
@@ -158,6 +159,47 @@ public class GrupoPermissaoDAO extends DAO{
             he.printStackTrace();
         }
         return grupoGrupoPermissao;
-    }    
+    }  
+    
+    public GrupoPermissao ConsultarGrupoPermissaoComDescricao(String descricao) {
+     GrupoPermissao grupoGrupoPermissao = new GrupoPermissao();
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from GrupoPermissao where descricao = '" + descricao+ "'");
+            grupoGrupoPermissao = GrupoPermissao.class.cast(q.uniqueResult());
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return grupoGrupoPermissao;
+    }
+    
+    public void popularCombo(JComboBox combo) {
+             
+        combo.removeAllItems();
+
+        ComboItem item = new ComboItem();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            
+            List<GrupoPermissao> resultado = ConsultarTodos();
+
+            for (GrupoPermissao grupoPermissao : resultado) {
+                item = new ComboItem();
+                item.setCodigo(grupoPermissao.getId());
+                item.setDescricao(grupoPermissao.getDescricao());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
     
 }

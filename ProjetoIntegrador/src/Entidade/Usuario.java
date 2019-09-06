@@ -6,11 +6,15 @@
 package Entidade;
 
 
+import com.sun.istack.internal.NotNull;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
  *
@@ -18,47 +22,53 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "usuario")
-public class Usuario  implements java.io.Serializable {
+public class Usuario  implements Serializable {
     
-     @Id
-     @Column(name= "id")
-     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-     private Integer id;
-     
-     @Column(name = "usuario", length = 100)
-     private String usuario;
-     
-     @Column(name= "login", length = 100)
-     private String login;
-     
-     @Column(name= "senha", length = 100)
-     private String senha;
-     
-     @Column(name= "situacao", length = 100)
-     private String situacao;
-     
-     @Column(name = "auditoria")
-     private boolean auditoria;
-     
-     @Column(name = "log")
-     private boolean log;
+    @Id
+    @Column(name= "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Integer id;
+
+    @Column(name = "usuario", length = 100)
+    private String usuario;
+
+    @Column(name= "login", length = 100)
+    private String login;
+
+    @Column(name= "senha", length = 100)
+    private String senha;
+
+    @Column(name= "situacao", length = 100)
+    private String situacao;
+
+    @Column(name = "auditoria")
+    private boolean auditoria;
+
+    @Column(name = "log")
+    private boolean log;
+
+    @NotNull
+    @OneToOne()
+    @JoinColumn(name = "grupo_permissao_id", nullable = false)
+    private GrupoPermissao grupoPermissao;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String usuario, String login, String senha, String situacao, boolean auditoria, boolean log) {
+    public Usuario(Integer id, String usuario, String login, String senha, String situacao, boolean auditoria, boolean log, GrupoPermissao grupoPermissao) {
         this.id = id;
-        this.usuario = 
+        this.usuario = usuario;
         this.login = login;
         this.senha = senha;
         this.situacao = situacao;
         this.auditoria = auditoria;
         this.log = log;
+        this.grupoPermissao = grupoPermissao;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", login=" + login + ", senha=" + senha + ", situacao=" + situacao + ", auditoria=" + auditoria + ", log=" + log + '}';
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", login=" + login + ", senha=" + senha + ", situacao=" + situacao + ", auditoria=" + auditoria + ", log=" + log + ", grupoPermissao=" + grupoPermissao.getDescricao() + '}';
     }
 
     public Integer getId() {
@@ -116,4 +126,11 @@ public class Usuario  implements java.io.Serializable {
         this.login = login;
     }
 
+    public GrupoPermissao getGrupoPermissao() {
+        return grupoPermissao;
+    }
+
+    public void setGrupoPermissao(GrupoPermissao grupoPermissao) {
+        this.grupoPermissao = grupoPermissao;
+    }
 }

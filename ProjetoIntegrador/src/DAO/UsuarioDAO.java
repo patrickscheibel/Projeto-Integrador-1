@@ -27,7 +27,7 @@ public class UsuarioDAO extends DAO{
     
     public void SalvarUsuario(Usuario usuario, JIframeUsuario jIframeUsuario, Usuario usuarioTela){
         JIframeUsuario jif = jIframeUsuario;
-       if(!usuario.getUsuario().isEmpty() && !usuario.getLogin().isEmpty() && !usuario.getSenha().isEmpty()){
+       if(!usuario.getUsuario().isEmpty() && !usuario.getLogin().isEmpty() && !usuario.getSenha().isEmpty() && usuario.getGrupoPermissao() != null){
             if(usuario.getId() == null){
                 if(Salvar(usuario, usuario) == true) {
                     jif.popularTabelaSalvar();
@@ -70,24 +70,21 @@ public class UsuarioDAO extends DAO{
           
     public List<Usuario> ConsultarTodos() {
 //    - método para consultar
-        List resultado = null;
+    List resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Usuario order by situacao ASC");
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
+            org.hibernate.Query q = sessao.createQuery("from Usuario order by situacao ASC");
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }           
       
-   
-    
-       //Popular por um id
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;
@@ -100,7 +97,6 @@ public class UsuarioDAO extends DAO{
         cabecalho[2] = "Login";
         cabecalho[3] = "Situacao";
         
-
         // cria matriz de acordo com nº de registros da tabela
         try {
             

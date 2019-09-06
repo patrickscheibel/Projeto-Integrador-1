@@ -2,6 +2,7 @@ package Entidade;
 // Generated 03/08/2019 20:15:02 by Hibernate Tools 4.3.1
 
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "material")
-public class Material  implements java.io.Serializable {
+public class Material  implements Serializable {
 
     @Id
     @Column(name="id")

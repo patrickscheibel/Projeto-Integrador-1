@@ -13,8 +13,8 @@ create table cor_material(
 );
 
 create table tipo_material(
-     id serial PRIMARY KEY,
-     descricao varchar(100) not null
+    id serial PRIMARY KEY,
+    descricao varchar(100) not null
 );
 					  
 create table material(
@@ -29,14 +29,34 @@ create table material(
     FOREIGN KEY (tipo_id) REFERENCES tipo_material(id)
 );
 
+create table permissao(
+    id serial primary key,
+    descricao varchar(100) not null
+);
+
+create table grupo_permissao(
+    id serial primary key,
+    descricao varchar(100) not null
+);
+
+create table permissao_grupo_permissao(
+    id serial primary key,
+    permissao_id integer not null,
+    grupo_permissao_id integer not null,
+    FOREIGN KEY (permissao_id) REFERENCES permissao(id),
+    FOREIGN KEY (grupo_permissao_id) REFERENCES grupo_permissao(id)
+);
+
 create table usuario(
-     id serial primary key not null,
-     usuario varchar(100) not null,
-     login varchar(100) not null,
-     senha varchar(100) not null,
-     situacao varchar(100),
-     auditoria boolean,
-     log boolean
+    id serial primary key not null,
+    usuario varchar(100) not null,
+    login varchar(100) not null,
+    senha varchar(100) not null,
+    situacao varchar(100),
+    auditoria boolean,
+    log boolean,
+    grupo_permissao_id integer not null,
+    FOREIGN KEY (grupo_permissao_id) REFERENCES grupo_permissao(id)
 );
 
 create table auditoria(
@@ -55,21 +75,3 @@ create table log(
     erro text not null,
     dados text
 );
-
-create table permissao(
-    id serial primary key,
-    descricao varchar(100) not null
-);
-
-create table grupo_permissao(
-    id serial primary key,
-    descricao varchar(100) not null
-);
-
--- create table premissao_grupo_permissao(
---     id serial primary key,
---     permissao_id integer not null,
---     grupo_permissao_id integer not null,
---     FOREIGN KEY (permissao_id) REFERENCES permissao(id),
---     FOREIGN KEY (grupo_permissao_id) REFERENCES grupo_permissao(id),
--- );
