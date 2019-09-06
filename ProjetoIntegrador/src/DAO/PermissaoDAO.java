@@ -77,7 +77,7 @@ public class PermissaoDAO extends DAO{
       
    
     
-       //Popular por um id
+    //Popular por um id
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;

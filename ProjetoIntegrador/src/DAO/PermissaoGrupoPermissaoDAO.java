@@ -48,7 +48,7 @@ public class PermissaoGrupoPermissaoDAO {
              Session sessao = HibernateUtil.getSessionFactory().openSession();
              sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from PermisaaoGrupoPermissao where id = " + id);
+             org.hibernate.Query q = sessao.createQuery("from PermissaoGrupoPermissao where id = " + id);
              permissao = PermissaoGrupoPermissao.class.cast(q.uniqueResult());
 
          } catch (HibernateException he) {

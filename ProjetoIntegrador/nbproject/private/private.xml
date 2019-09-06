@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/DAO/PermissaoDAO.java</file>
             <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/DAO/PermissaoGrupoPermissaoDAO.java</file>
-            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/DataBase/Criacao.sql</file>
-            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/Entidade/PermissaoGrupoPermissao.java</file>
+            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/DAO/DAO.java</file>
+            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/Tela/JIframeGrupoPermissao.java</file>
+            <file>file:/C:/Users/Scheibel/Desktop/projetoIntegrador/Projeto-Integrador-1/ProjetoIntegrador/src/Tela/DlgSelecionarPermissao.java</file>
         </group>
     </open-files>
 </project-private>

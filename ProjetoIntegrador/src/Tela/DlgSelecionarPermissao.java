@@ -32,7 +32,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
         usuario = usuarios;
         grupoPermissao = grupo;
         jInternalUsuario.setEnabled(true);
-        new PermissaoDAO().popularTabela(TabelaCorMaterial);
+        new PermissaoDAO().popularTabela(TabelaPermissoes);
         this.setVisible(true);
     }
 
@@ -49,7 +49,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
         jButtonSelecionar = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaCorMaterial = new javax.swing.JTable();
+        TabelaPermissoes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Selecionar Pessoa");
@@ -71,7 +71,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
             }
         });
 
-        TabelaCorMaterial.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaPermissoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -82,7 +82,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
                 "ID", "Descrição"
             }
         ));
-        jScrollPane1.setViewportView(TabelaCorMaterial);
+        jScrollPane1.setViewportView(TabelaPermissoes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,7 +126,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        Permissao permissao = new PermissaoDAO().ConsultarPermissao((int)TabelaCorMaterial.getValueAt(TabelaCorMaterial.getSelectedRow(), 0));
+        Permissao permissao = new PermissaoDAO().ConsultarPermissao((int)TabelaPermissoes.getValueAt(TabelaPermissoes.getSelectedRow(), 0));
         if(permissao != null){
             PermissaoGrupoPermissao permissaoGrupoPermissao = new PermissaoGrupoPermissao();
             permissaoGrupoPermissao.setPermissao(permissao);
@@ -141,7 +141,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaCorMaterial;
+    private javax.swing.JTable TabelaPermissoes;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel4;
