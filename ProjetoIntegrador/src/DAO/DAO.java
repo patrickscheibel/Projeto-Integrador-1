@@ -1,5 +1,6 @@
 package DAO;
 
+import Entidade.PermissaoGrupoPermissao;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import java.util.List;
@@ -78,6 +79,29 @@ public class DAO {
         } finally {
             sessao.close();
         }  
+    }
+    
+    public static boolean VerificarPermissao(String permissao, int grupoPermissaoId){
+       try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("From PermissaoGrupoPermissao");
+//            org.hibernate.Query q = sessao.createQuery("From PermissaoGrupoPermissao pgp, Permissao p, GrupoPermissao gp"
+//                    + " where gpp.permissao = p and pgp.grupoPermissao = gp"
+//                    + " and p.descridao = '" + permissao + "' and gp.id = " + grupoPermissaoId);
+            List<PermissaoGrupoPermissao> pgp = (List<PermissaoGrupoPermissao>) q.list();
+            for (PermissaoGrupoPermissao permissaoGrupoPermissao : pgp) {
+                if(permissaoGrupoPermissao.getPermissao().getDescricao().equals(permissao) 
+                        && permissaoGrupoPermissao.getGrupoPermissao().getId() == grupoPermissaoId){
+                return true;
+            }
+           }
+          
+         } catch (HibernateException he) {
+             he.printStackTrace();
+         }
+         return false;
     }
    
 }

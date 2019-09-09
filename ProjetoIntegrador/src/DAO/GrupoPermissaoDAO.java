@@ -10,7 +10,6 @@ import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
 import Entidade.GrupoPermissao;
-import Entidade.GrupoPermissao;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
@@ -201,5 +200,4 @@ public class GrupoPermissaoDAO extends DAO{
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
-    
 }

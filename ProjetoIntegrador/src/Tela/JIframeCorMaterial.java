@@ -34,6 +34,15 @@ public class JIframeCorMaterial extends javax.swing.JInternalFrame{
         jTabbedPaneCorMaterial.setTitleAt(1, "");
         idEditar = null;
     }
+    
+    public void DesativarAdicao(){
+        jButtonAdicionar.setEnabled(false);
+    }
+    
+    public void DesativarEdicao(){
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

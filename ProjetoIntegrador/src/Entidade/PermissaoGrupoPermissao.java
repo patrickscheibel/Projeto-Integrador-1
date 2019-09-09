@@ -47,6 +47,11 @@ public class PermissaoGrupoPermissao implements Serializable {
         this.grupoPermissao = grupoPermissao;
     }
 
+    @Override
+    public String toString() {
+        return "PermissaoGrupoPermissao{" + "id=" + id + ", permissao=" + permissao + ", grupoPermissao=" + grupoPermissao + '}';
+    }
+    
     public int getId() {
         return id;
     }

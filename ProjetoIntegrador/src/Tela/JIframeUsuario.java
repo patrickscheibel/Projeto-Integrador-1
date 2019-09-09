@@ -40,6 +40,15 @@ public class JIframeUsuario extends javax.swing.JInternalFrame {
         jTabbedPaneUsuario.setTitleAt(1, "");
         idEditar = null;
     }
+    
+    public void DesativarAdicao(){
+        jButtonAdicionar.setEnabled(false);
+    }
+    
+    public void DesativarEdicao(){
+        jButtonEditar.setEnabled(false);
+        jButtonDesativar.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

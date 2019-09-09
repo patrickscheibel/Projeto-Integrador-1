@@ -5,16 +5,10 @@
  */
 package DAO;
 
-import static DAO.DAO.Atualizar;
-import static DAO.DAO.Excluir;
-import static DAO.DAO.Salvar;
-import Entidade.Formula;
 import Entidade.GrupoPermissao;
 import Entidade.PermissaoGrupoPermissao;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
-import Tela.Apoio.DlgAviso;
-import Tela.JIframeFormula;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +20,7 @@ import org.hibernate.Session;
  *
  * @author Scheibel
  */
-public class PermissaoGrupoPermissaoDAO {
+public class PermissaoGrupoPermissaoDAO extends DAO{
     
     public void SalvarPermissaoGrupoPermissao(PermissaoGrupoPermissao permissao, Usuario usuario){       
         if(permissao.getPermissao() != null && permissao.getGrupoPermissao() != null){

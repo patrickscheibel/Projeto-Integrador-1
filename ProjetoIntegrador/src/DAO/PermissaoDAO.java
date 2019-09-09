@@ -60,23 +60,21 @@ public class PermissaoDAO extends DAO{
           
     public List<Permissao> ConsultarTodos() {
 //    - método para consultar
-        List resultado = null;
+    List resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Permissao");
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
+            org.hibernate.Query q = sessao.createQuery("from Permissao");
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }           
       
-   
-    
     //Popular por um id
     public void popularTabela(JTable tabela) {
         // dados da tabela

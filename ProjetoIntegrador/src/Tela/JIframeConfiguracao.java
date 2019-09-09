@@ -25,6 +25,11 @@ public class JIframeConfiguracao extends javax.swing.JInternalFrame {
         jCheckBoxAuditoria.setSelected(usuario.getAuditoria());
         jCheckBoxLog.setSelected(usuario.getLog());
     }
+    
+    public void DesativarEdicao(){
+        jCheckBoxAuditoria.setEnabled(false);
+        jCheckBoxLog.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

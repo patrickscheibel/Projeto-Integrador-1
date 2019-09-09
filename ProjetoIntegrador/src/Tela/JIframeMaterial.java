@@ -53,6 +53,15 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jTextFieldCor.setText(corMaterial.getDescricao());
         material.setCorMaterial(corMaterial);
     }
+    
+    public void DesativarAdicao(){
+        jButtonAdicionar.setEnabled(false);
+    }
+    
+    public void DesativarEdicao(){
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

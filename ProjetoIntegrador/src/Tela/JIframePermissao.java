@@ -94,7 +94,7 @@ public class JIframePermissao extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel1.setText("Permissão");
+        jLabel1.setText("Permissões");
 
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {

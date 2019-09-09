@@ -42,6 +42,16 @@ public class JIframeGrupoPermissao extends javax.swing.JInternalFrame {
     public void popularTabelaPermissao(){
         new PermissaoGrupoPermissaoDAO().popularTabela(jTablePermissoes, grupoPermissao);
     }
+    
+    public void DesativarAdicao(){
+        jButtonAdicionar.setEnabled(false);
+    }
+    
+    public void DesativarEdicao(){
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+        jButtonPermissao.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

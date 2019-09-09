@@ -5,13 +5,16 @@
  */
 package DAO;
 
+import Apoio.ComboItem;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Salvar;
+import Entidade.GrupoPermissao;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.JIframeUsuario;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -157,16 +160,57 @@ public class UsuarioDAO extends DAO{
     public Usuario ConsultarUsuario(int id) {
      Usuario usuario = new Usuario();
 
-         try {
-             Session sessao = HibernateUtil.getSessionFactory().openSession();
-             sessao.beginTransaction();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from Usuario where id = " + id);
-             usuario = Usuario.class.cast(q.uniqueResult());
+            org.hibernate.Query q = sessao.createQuery("from Usuario where id = " + id);
+            usuario = Usuario.class.cast(q.uniqueResult());
 
-         } catch (HibernateException e) {
-             e.printStackTrace();
-         }
-         return usuario;
-     }    
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        return usuario;
+    }   
+    
+    public Usuario ConsultarUsuarioComDescricao(String descricao) {
+     Usuario usuario = new Usuario();
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from Usuario where usuario = '" + descricao+ "'");
+            usuario = Usuario.class.cast(q.uniqueResult());
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return usuario;
+    }
+    
+    public void popularCombo(JComboBox combo) {
+             
+        combo.removeAllItems();
+
+        ComboItem item = new ComboItem();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            
+            List<Usuario> resultado = ConsultarTodos();
+
+            for (Usuario usuario : resultado) {
+                item = new ComboItem();
+                item.setCodigo(usuario.getId());
+                item.setDescricao(usuario.getUsuario());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
 }

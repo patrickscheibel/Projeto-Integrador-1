@@ -5,9 +5,10 @@
  */
 package Tela;
 
-import DAO.AuditoriaDAO;
 import DAO.UsuarioDAO;
 import Entidade.Usuario;
+import Tela.Apoio.Permissoes;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -20,10 +21,15 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
      */
     Usuario usuario = new Usuario();
     
-    public JFrameTelaPrincipal() {
+    public JFrameTelaPrincipal(Usuario usuarios) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        usuario = new UsuarioDAO().ConsultarUsuario(1);
+        usuario = usuarios;
+    }
+    
+    public void Ver(JInternalFrame jif){
+        jDesktopPanel.add(jif);
+        jif.setVisible(true);
     }
 
     /**
@@ -39,18 +45,15 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jButtonFechar = new javax.swing.JButton();
         jLabelEmpresa = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonConfiguracao = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuMaterial = new javax.swing.JMenuItem();
-        jMenuItemFormula = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
-        jMenuMaterial1 = new javax.swing.JMenuItem();
-        jMenuMaterial2 = new javax.swing.JMenuItem();
+        jMenuTipoMaterial = new javax.swing.JMenuItem();
+        jMenuCorMaterial = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -68,17 +71,17 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
         jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        jButton1.setText("Configuração");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConfiguracao.setText("Configuração");
+        jButtonConfiguracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonConfiguracaoActionPerformed(evt);
             }
         });
 
         jDesktopPanel.setLayer(jButtonFechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelEmpresa, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanel.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanel.setLayer(jButtonConfiguracao, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPanelLayout = new javax.swing.GroupLayout(jDesktopPanel);
         jDesktopPanel.setLayout(jDesktopPanelLayout);
@@ -94,7 +97,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
                 .addGap(125, 125, 125)
                 .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonConfiguracao))
                 .addGap(23, 23, 23))
         );
         jDesktopPanelLayout.setVerticalGroup(
@@ -105,7 +108,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonConfiguracao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
@@ -121,14 +124,6 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuMaterial);
 
-        jMenuItemFormula.setText("Fórmula");
-        jMenuItemFormula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemFormulaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItemFormula);
-
         jMenuUsuario.setText("Usuário");
         jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,44 +132,33 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuUsuario);
 
-        jMenuMaterial1.setText("Tipo de Material");
-        jMenuMaterial1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuTipoMaterial.setText("Tipo de Material");
+        jMenuTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMaterial1ActionPerformed(evt);
+                jMenuTipoMaterialActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuMaterial1);
+        jMenu4.add(jMenuTipoMaterial);
 
-        jMenuMaterial2.setText("Cor do Material");
-        jMenuMaterial2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCorMaterial.setText("Cor do Material");
+        jMenuCorMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMaterial2ActionPerformed(evt);
+                jMenuCorMaterialActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuMaterial2);
+        jMenu4.add(jMenuCorMaterial);
 
         jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Permissão");
 
-        jMenuItem2.setText("Permissões");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemGrupoPemissao.setText("Grupos de Permissões");
+        jMenuItemGrupoPemissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemGrupoPemissaoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Grupos de Permissões");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Configuração das permissões");
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(jMenuItemGrupoPemissao);
 
         jMenuBar1.add(jMenu1);
 
@@ -199,90 +183,72 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
     private void jMenuMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterialActionPerformed
-    JIframeMaterial jifMaterial = new JIframeMaterial(usuario);    
-    jDesktopPanel.add(jifMaterial);
-    jifMaterial.setVisible(true);
+    JIframeMaterial jifMaterial = new JIframeMaterial(usuario);     
+    new Permissoes().Material(this, jifMaterial, usuario);
     }//GEN-LAST:event_jMenuMaterialActionPerformed
-
-    private void jMenuItemFormulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulaActionPerformed
-    JIframeFormula jifFormula = new JIframeFormula(usuario);    
-    jDesktopPanel.add(jifFormula);
-    jifFormula.setVisible(true);
-    }//GEN-LAST:event_jMenuItemFormulaActionPerformed
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
     JIframeUsuario jifUsuario = new JIframeUsuario(usuario);    
-    jDesktopPanel.add(jifUsuario);
-    jifUsuario.setVisible(true);
+    new Permissoes().Usuario(this, jifUsuario, usuario);
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
-    jDesktopPanel.add(jifconfiguracao);
-    jifconfiguracao.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracaoActionPerformed
+    JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
+    new Permissoes().Configuracao(this, jifconfiguracao, usuario);
+    }//GEN-LAST:event_jButtonConfiguracaoActionPerformed
 
-    private void jMenuMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial1ActionPerformed
+    private void jMenuTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTipoMaterialActionPerformed
     JIframeTipoMaterial jifTipoMaterial = new JIframeTipoMaterial(usuario);    
-    jDesktopPanel.add(jifTipoMaterial);
-    jifTipoMaterial.setVisible(true);
-    }//GEN-LAST:event_jMenuMaterial1ActionPerformed
+    new Permissoes().TipoMaterial(this, jifTipoMaterial, usuario);
+    }//GEN-LAST:event_jMenuTipoMaterialActionPerformed
 
-    private void jMenuMaterial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterial2ActionPerformed
+    private void jMenuCorMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCorMaterialActionPerformed
     JIframeCorMaterial jifCorMaterial = new JIframeCorMaterial(usuario);    
-    jDesktopPanel.add(jifCorMaterial);
-    jifCorMaterial.setVisible(true);
-    }//GEN-LAST:event_jMenuMaterial2ActionPerformed
+    new Permissoes().CorMaterial(this, jifCorMaterial, usuario);
+    }//GEN-LAST:event_jMenuCorMaterialActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    JIframePermissao jifPermissao = new JIframePermissao(usuario);    
-    jDesktopPanel.add(jifPermissao);
-    jifPermissao.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemGrupoPemissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGrupoPemissaoActionPerformed
     JIframeGrupoPermissao jifGrupoPermissao = new JIframeGrupoPermissao(usuario);    
-    jDesktopPanel.add(jifGrupoPermissao);
-    jifGrupoPermissao.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    new Permissoes().GrupoPermissao(this, jifGrupoPermissao, usuario);
+    }//GEN-LAST:event_jMenuItemGrupoPemissaoActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameTelaPrincipal().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(JFrameTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new JFrameTelaPrincipal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonConfiguracao;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
@@ -290,13 +256,10 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItemFormula;
+    private javax.swing.JMenuItem jMenuCorMaterial;
+    private javax.swing.JMenuItem jMenuItemGrupoPemissao;
     private javax.swing.JMenuItem jMenuMaterial;
-    private javax.swing.JMenuItem jMenuMaterial1;
-    private javax.swing.JMenuItem jMenuMaterial2;
+    private javax.swing.JMenuItem jMenuTipoMaterial;
     private javax.swing.JMenuItem jMenuUsuario;
     // End of variables declaration//GEN-END:variables
 }
