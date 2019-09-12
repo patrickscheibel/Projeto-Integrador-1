@@ -12,14 +12,15 @@ import Entidade.Usuario;
  *
  * @author Scheibel
  */
-public class JIframeSelecionarUsuario extends javax.swing.JFrame {
+public class JframeSelecionarUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form JIframeSelecionarUsuario
      */
-    public JIframeSelecionarUsuario() {
+    public JframeSelecionarUsuario() {
         initComponents();
         new UsuarioDAO().popularCombo(jComboBoxUsuarios);
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -133,7 +134,7 @@ public class JIframeSelecionarUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JIframeSelecionarUsuario().setVisible(true);
+                new JframeSelecionarUsuario().setVisible(true);
             }
         });
     }

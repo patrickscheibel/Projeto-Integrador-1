@@ -42,7 +42,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPanel = new javax.swing.JDesktopPane();
-        jButtonFechar = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
         jLabelEmpresa = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
         jButtonConfiguracao = new javax.swing.JButton();
@@ -58,10 +58,10 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
 
-        jButtonFechar.setText("Fechar");
-        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFecharActionPerformed(evt);
+                jButtonSairActionPerformed(evt);
             }
         });
 
@@ -78,7 +78,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jDesktopPanel.setLayer(jButtonFechar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanel.setLayer(jButtonSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelEmpresa, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jLabelUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanel.setLayer(jButtonConfiguracao, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -96,7 +96,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
                 .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConfiguracao))
                 .addGap(23, 23, 23))
         );
@@ -104,7 +104,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
             jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonFechar)
+                .addComponent(jButtonSair)
                 .addGap(22, 22, 22)
                 .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,9 +178,11 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    JframeSelecionarUsuario jf = new JframeSelecionarUsuario();
     this.dispose();
-    }//GEN-LAST:event_jButtonFecharActionPerformed
+    jf.setVisible(true);
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jMenuMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterialActionPerformed
     JIframeMaterial jifMaterial = new JIframeMaterial(usuario);     
@@ -249,7 +251,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfiguracao;
-    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
     private javax.swing.JLabel jLabelUsuario;

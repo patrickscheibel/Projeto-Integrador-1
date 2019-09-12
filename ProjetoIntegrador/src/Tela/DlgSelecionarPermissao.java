@@ -32,7 +32,7 @@ public class DlgSelecionarPermissao extends javax.swing.JDialog {
         usuario = usuarios;
         grupoPermissao = grupo;
         jInternalUsuario.setEnabled(true);
-        new PermissaoDAO().popularTabela(TabelaPermissoes);
+        new PermissaoDAO().popularTabela(TabelaPermissoes, usuario);
         this.setVisible(true);
     }
 

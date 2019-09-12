@@ -23,14 +23,14 @@ public class JIframePermissao extends javax.swing.JInternalFrame {
     public JIframePermissao(Usuario usuarios) {
         initComponents();
         jTabbedPanePermissao.setEnabled(false);
-        new PermissaoDAO().popularTabela(TabelaPermissao);
         usuario = usuarios;
+        new PermissaoDAO().popularTabela(TabelaPermissao, usuario);    
     }
     
     public JIframePermissao(){}
     
     public void popularTabelaSalvar(){
-        new PermissaoDAO().popularTabela(TabelaPermissao);
+        new PermissaoDAO().popularTabela(TabelaPermissao, usuario);
         jTabbedPanePermissao.setSelectedIndex(0);
         jTabbedPanePermissao.setTitleAt(1, "");
         idEditar = null;
@@ -291,7 +291,7 @@ public class JIframePermissao extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         new PermissaoDAO().ExcluirPermissao((Integer) TabelaPermissao.getValueAt(TabelaPermissao.getSelectedRow(), 0), usuario);
-        new PermissaoDAO().popularTabela(TabelaPermissao);
+        new PermissaoDAO().popularTabela(TabelaPermissao, usuario);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
