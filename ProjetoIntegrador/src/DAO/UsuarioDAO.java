@@ -173,14 +173,14 @@ public class UsuarioDAO extends DAO{
         return usuario;
     }   
     
-    public Usuario ConsultarUsuarioComDescricao(String descricao) {
+    public Usuario UsuarioLogin(String login, String senha) {
      Usuario usuario = new Usuario();
-
+        if(login.isEmpty() && senha.isEmpty() || (login.isEmpty() || (senha.isEmpty()))){ return usuario; }
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("from Usuario where usuario = '" + descricao+ "'");
+            org.hibernate.Query q = sessao.createQuery("from Usuario where login = '" + login+ "' and senha = '" + senha + "'");
             usuario = Usuario.class.cast(q.uniqueResult());
 
         } catch (HibernateException he) {
