@@ -175,7 +175,7 @@ public class UsuarioDAO extends DAO{
     
     public Usuario UsuarioLogin(String login, String senha) {
      Usuario usuario = new Usuario();
-        if(login.isEmpty() && senha.isEmpty() || (login.isEmpty() || (senha.isEmpty()))){ return usuario; }
+        if(login.isEmpty() && senha.isEmpty()){ return usuario; }
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
