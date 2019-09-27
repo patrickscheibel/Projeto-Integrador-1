@@ -1,10 +1,3 @@
---Repensar
-create table formula(
-    id serial PRIMARY KEY,
-    nome varchar(100) not null,
-    descricao varchar(100) not null
-);
-
 create table cor_material(
     id serial PRIMARY KEY,
     descricao varchar(100) not null,
@@ -75,3 +68,48 @@ create table log(
     erro text not null,
     dados text
 );
+
+create table ambiente(
+     id serial primary key,
+	 descricao varchar(100), 
+	 carga_calor DECIMAL(10,2),
+	 projeto_id int not null,
+     FOREIGN KEY (projeto_id) REFERENCES projeto(id),
+);
+
+create table projeto(
+     id serial primary key,
+	 nome varchar not null,
+	 descricao varchar(100)    
+);
+
+create table face(
+     id serial primary key,
+	 descricao varchar(100),
+     abertura boolean	
+);
+
+create table camada(
+     id serial primary key,
+	 descricao varchar(100),
+     material_id int not null,
+     FOREIGN KEY (material_id) REFERENCES material(id),
+);
+
+create table face_camada(
+     id serial primary key,
+     face_id int not null,	
+     camada_id int not null,
+     resistencia_total Decimal(10,2) not null,
+     FOREIGN KEY (face_id) REFERENCES face(id),
+     FOREIGN KEY (camada_id) REFERENCES camada(id)
+);
+
+create table ambiente_face(
+     id serial primary key,
+     ambiente_id int not null,
+     face_id int not null,
+     FOREIGN KEY (ambiente_id) REFERENCES ambiente(id),
+     FOREIGN KEY (face_id) REFERENCES face(id)
+);
+
