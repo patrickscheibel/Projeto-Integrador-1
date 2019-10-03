@@ -77,6 +77,8 @@ create table ambiente(
      FOREIGN KEY (projeto_id) REFERENCES projeto(id),
 );
 
+
+
 create table projeto(
      id serial primary key,
 	 nome varchar not null,
@@ -85,13 +87,13 @@ create table projeto(
 
 create table face(
      id serial primary key,
-	 descricao varchar(100),
+     descricao varchar(100),
      abertura boolean	
 );
 
 create table camada(
      id serial primary key,
-	 descricao varchar(100),
+     descricao varchar(100),
      material_id int not null,
      FOREIGN KEY (material_id) REFERENCES material(id),
 );
