@@ -12,7 +12,6 @@ import Entidade.AmbienteFace;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIframeAmbienteFace;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -81,15 +80,15 @@ public class AmbienteFaceDAO extends DAO{
         List<AmbienteFace> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[1];
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "Id";
-        
-        
-
+        cabecalho[1] = "Descricao";
+        cabecalho[2] = "Janela";
+            
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][1];
+            dadosTabela = new Object[lista.size()][3];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar os Materiais: " + e);
@@ -103,10 +102,8 @@ public class AmbienteFaceDAO extends DAO{
             for (AmbienteFace ambienteFace : lista) {
                 
                 dadosTabela[lin][0] = ambienteFace.getId();
-                
-                
-                
-
+                dadosTabela[lin][1] = ambienteFace.getFace().getDescricao();  
+                dadosTabela[lin][2] = ambienteFace.getFace().getAbertura() == true ? "Sim" : "Não";  
                 lin++;
             }
         } catch (Exception e) {

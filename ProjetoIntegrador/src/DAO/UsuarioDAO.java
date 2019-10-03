@@ -173,7 +173,7 @@ public class UsuarioDAO extends DAO{
         return usuario;
     }   
     
-    public Usuario UsuarioLogin(String login, String senha) {
+    public Usuario LoginUsuario(String login, String senha) {
      Usuario usuario = new Usuario();
         if(login.isEmpty() && senha.isEmpty()){ return usuario; }
         try {

@@ -12,7 +12,7 @@ import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIframeFace;
+import Tela.JIFrameProjeto;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,18 +27,18 @@ import org.hibernate.Transaction;
  */
 public class FaceDAO extends DAO{
     
-    public void SalvarFace(Face face, JIframeFace jIframeFace, Usuario usuario){
-         JIframeFace jif = jIframeFace;
+    public void SalvarFace(Face face, JIFrameProjeto jIFrameProjeto, Usuario usuario){
+        JIFrameProjeto jif = jIFrameProjeto;
         if(!face.getDescricao().isEmpty()){
             if(face.getId() == null){
                 if(Salvar(face, usuario) == true) {
-                    jif.popularTabelaSalvar();
+                    jif.SalvarFace();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(face, usuario) == true){
-                    jif.popularTabelaSalvar();
+                    jif.SalvarFace();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 

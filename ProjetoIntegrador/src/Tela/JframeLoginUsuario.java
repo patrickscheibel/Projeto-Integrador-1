@@ -12,12 +12,12 @@ import Entidade.Usuario;
  *
  * @author Scheibel
  */
-public class JframeSelecionarUsuario extends javax.swing.JFrame {
+public class JframeLoginUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form JIframeSelecionarUsuario
      */
-    public JframeSelecionarUsuario() {
+    public JframeLoginUsuario() {
         initComponents();
         this.setLocationRelativeTo(this);
     }
@@ -100,7 +100,7 @@ public class JframeSelecionarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        Usuario usuario = new UsuarioDAO().UsuarioLogin(jTextFieldLogin.getText(), jPasswordFieldSenha.getText());
+        Usuario usuario = new UsuarioDAO().LoginUsuario(jTextFieldLogin.getText(), jPasswordFieldSenha.getText());
         //remover o if
         if(usuario != null){
             JFrameTelaPrincipal jf = new JFrameTelaPrincipal(usuario);
@@ -139,7 +139,7 @@ public class JframeSelecionarUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JframeSelecionarUsuario().setVisible(true);
+                new JframeLoginUsuario().setVisible(true);
             }
         });
     }

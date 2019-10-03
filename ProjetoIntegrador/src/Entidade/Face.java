@@ -38,10 +38,9 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, boolean abertura) {
+    public Face(Integer id, String descricao) {
        this.id = id;
        this.descricao = descricao;
-       this.abertura = abertura;
     }
 
     @Override

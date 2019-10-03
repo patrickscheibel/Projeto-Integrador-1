@@ -40,12 +40,10 @@ public class Ambiente  implements Serializable {
      
     public Ambiente() {}  
     
-    public Ambiente(Integer id, String descricao, double cargaCalor, Projeto projeto) {
+    public Ambiente(Integer id, String descricao, Projeto projeto) {
        this.id = id;
        this.descricao = descricao;
-       this.cargaCalor = cargaCalor;
-       this.projeto = projeto;
-       
+       this.projeto = projeto;    
     }
 
     @Override

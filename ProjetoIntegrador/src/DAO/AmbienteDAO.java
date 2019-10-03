@@ -12,7 +12,7 @@ import Entidade.Ambiente;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIframeAmbiente;
+import Tela.JIFrameProjeto;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -26,18 +26,18 @@ import org.hibernate.Session;
  */
 public class AmbienteDAO extends DAO{
       
-    public void SalvarAmbiente(Ambiente ambiente, JIframeAmbiente jIframeAmbiente, Usuario usuario){
-        JIframeAmbiente jif = jIframeAmbiente;
+    public void SalvarAmbiente(Ambiente ambiente, JIFrameProjeto jIframeProjeto, Usuario usuario){
+        JIFrameProjeto jif = jIframeProjeto;
         if(!ambiente.getDescricao().isEmpty() && ambiente.getProjeto()!= null){
             if(ambiente.getId() == null){
                 if(Salvar(ambiente, usuario) == true) {
-                    jif.popularTabelaSalvar();
+                    jif.AvancarFaces();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(ambiente, usuario) == true){
-                    jif.popularTabelaSalvar();
+                    jif.AvancarFaces();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 

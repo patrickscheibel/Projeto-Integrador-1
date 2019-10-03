@@ -179,7 +179,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-    JframeSelecionarUsuario jf = new JframeSelecionarUsuario();
+    JframeLoginUsuario jf = new JframeLoginUsuario();
     this.dispose();
     jf.setVisible(true);
     }//GEN-LAST:event_jButtonSairActionPerformed
