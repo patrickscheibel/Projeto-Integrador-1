@@ -12,14 +12,14 @@ import Entidade.Camada;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIframeCamada;
+import Tela.DlgCamada;
+import Tela.JIFrameProjeto;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -27,18 +27,20 @@ import org.hibernate.Transaction;
  */
 public class CamadaDAO extends DAO{
     
-    public void SalvarCamada(Camada camada, JIframeCamada jIframeCamada, Usuario usuario){
-         JIframeCamada jif = jIframeCamada;
+    public void SalvarCamada(Camada camada, DlgCamada dlgCamada, JIFrameProjeto jIFrameProjeto, Usuario usuario){
+        DlgCamada jif = dlgCamada;
         if(!camada.getDescricao().isEmpty()){
             if(camada.getId() == null){
                 if(Salvar(camada, usuario) == true) {
-                    jif.popularTabelaSalvar();
+                    jIFrameProjeto.AtualizarTabelaCamada();
+                    jif.dispose();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(camada, usuario) == true){
-                    jif.popularTabelaSalvar();
+                    jIFrameProjeto.AtualizarTabelaCamada();
+                    jif.dispose();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 

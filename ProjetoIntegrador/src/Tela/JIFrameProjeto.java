@@ -7,6 +7,7 @@ package Tela;
 
 import DAO.AmbienteDAO;
 import DAO.AmbienteFaceDAO;
+import DAO.CamadaDAO;
 import DAO.FaceDAO;
 import DAO.ProjetoDAO;
 import Entidade.Ambiente;
@@ -34,6 +35,8 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         new ProjetoDAO().popularTabela(TabelaProjeto);
     }
     
+    public JIFrameProjeto() {}
+    
     public void AvancarAmbiente(){
         jTabbedPaneProjeto.setSelectedIndex(2);
         jTabbedPaneProjeto.setTitleAt(2, "Ambiente");
@@ -49,6 +52,10 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         jTabbedPaneProjeto.setSelectedIndex(3);
         jTabbedPaneProjeto.setTitleAt(4, "");
         new AmbienteFaceDAO().popularTabela(jTableFace);
+    }
+    
+    public void AtualizarTabelaCamada(){
+        new CamadaDAO().popularTabela(jTableCamada);
     }
 
     /**
@@ -411,6 +418,11 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         jLabel8.setText("Camadas");
 
         jButtonAdicionarCamada.setText("Adicionar");
+        jButtonAdicionarCamada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarCamadaActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Remover");
 
@@ -530,6 +542,7 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButtonAdicionarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFaceActionPerformed
+        AtualizarTabelaCamada();
         jTabbedPaneProjeto.setSelectedIndex(4);
         jTabbedPaneProjeto.setTitleAt(4, "Cadastro de Face");
         jLabelFace.setText("Cadastro de Face");
@@ -543,6 +556,11 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         Face face = new Face(idFaceEditar, jTextAreaAmbienteDescricao.getText());
         new FaceDAO().SalvarFace(face, this, usuario); 
     }//GEN-LAST:event_jButtonFaceActionPerformed
+
+    private void jButtonAdicionarCamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCamadaActionPerformed
+       DlgCamada dlg = new DlgCamada(usuario, this);
+       dlg.setVisible(true);
+    }//GEN-LAST:event_jButtonAdicionarCamadaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

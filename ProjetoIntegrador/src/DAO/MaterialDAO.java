@@ -59,19 +59,34 @@ public class MaterialDAO extends DAO{
 //    - método para consultar
         List resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Material");
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
-      
+            org.hibernate.Query q = sessao.createQuery("from Material");
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }           
+    
+    public Material ConsultarMaterial() {
+        Material resultado = null;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from Material");
+            resultado = (Material) q.uniqueResult();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }
    
     
        //Popular por um id
