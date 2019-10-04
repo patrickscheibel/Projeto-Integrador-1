@@ -7,6 +7,7 @@ package Tela;
 
 import DAO.UsuarioDAO;
 import Entidade.Usuario;
+import Tela.Apoio.DlgAviso;
 
 /**
  *
@@ -106,6 +107,8 @@ public class JframeLoginUsuario extends javax.swing.JFrame {
             JFrameTelaPrincipal jf = new JFrameTelaPrincipal(usuario);
             this.dispose();
             jf.setVisible(true);
+        } else {
+            new DlgAviso("Usuário ou senha invalida");
         }
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
 

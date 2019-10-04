@@ -11,48 +11,71 @@ package Apoio;
  */
 public class Calculo {
     
+    /** 
+    * espessura - espessura do material
+    * condutividade - condutividade do material
+    */
     public double ResistenciaMaterial(double espessura, double condutividade){
         return espessura / condutividade;
     }
     
-    public double ResistenciaTotal(double rse, double rlr, double rtij, double rarg, double rges, double rsi){
-        return rse + rlr + rtij + rarg + rges + rsi;
-    }
-    
-    public double TransmitanciaTermica (double metros, double resistenciaTotal){
-        return metros / resistenciaTotal;
-    }
-    
-    public double DensidadeFluxoInverno (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna)
-    {
-        return transmitanciaTermica * (temperaturaInterna - temperaturaExterna);
+    /** 
+    * rse - Resistencia superficial externa
+    * rn - resistencias dos materiais
+    * rsi - Resistencia superficial interna
+    */
+    public double ResistenciaTotal(double rse, double[] rn, double rsi) {
+        double camadas = 0;
         
+        for (double valor : rn) {
+            camadas += valor;
+        }    
+        return rse + camadas + rsi;
+    }
+      
+    public double TransmitanciaTermica (double resistenciaTotal) {
+        return 1 / resistenciaTotal;
     }
     
-    public double DensidadeFluxoVerao (double transmitanciaTermica, double temperaturaSolarAr, double temperaturaInterna, double temperaturaExterna ){
-        
+    public double DensidadeFluxoInverno (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
+        return transmitanciaTermica * (temperaturaInterna - temperaturaExterna);       
+    }
+    
+    public double DensidadeFluxoVerao (double transmitanciaTermica, 
+                                       double temperaturaSolarAr,  
+                                       double temperaturaInterna, 
+                                       double temperaturaExterna) {       
         return transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna);
     }
     
-    public double TemperaturaSolarAr (double absorvidade, double radiacaoSolar, double resistenciaSuperficial){
-        
+    public double TemperaturaSolarAr (double absorvidade, double radiacaoSolar, double resistenciaSuperficial) {   
         return absorvidade * radiacaoSolar * resistenciaSuperficial;
     }
     
-    public double FluxoCalor (double densidadeFluxoCalor, double areaFechamento){
-        
+    public double FluxoCalor (double densidadeFluxoCalor, double areaFechamento) {       
         return densidadeFluxoCalor * areaFechamento;
     }
     
-    public double FluxoTotal (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna, double fatorSolar, double radiacaoSolarIncidente){
-        
+    // Caso seja usado vidro
+    public double FluxoTotal (double transmitanciaTermica, 
+                              double temperaturaInterna, 
+                              double temperaturaExterna, 
+                              double fatorSolar, 
+                              double radiacaoSolarIncidente) {     
         return transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente;
     }
     
-    public double CargaTermica (double fluxoCalor, double vetorValores){
+    public double CargaTermica (double[] fluxoCalor, double[] vetorValor) {
+        double fluxosCalor = 0;
+        double vetorValores = 0;
         
-        return fluxoCalor + vetorValores;
+        for (double valor : fluxoCalor) {
+            fluxosCalor += valor;
+        }
+        for (double valor : vetorValor) {
+            vetorValores += valor;
+        }
+        return fluxosCalor + vetorValores;
     }
-    
     
 }

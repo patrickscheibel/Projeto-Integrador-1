@@ -42,6 +42,7 @@ insert into permissao VALUES(default, 'editar_grupoPermissao');
 insert into permissao VALUES(default, 'ver_configuracao');
 insert into permissao VALUES(default, 'editar_configuracao');
 
+--Grupo de permissoes
 insert into permissao_grupo_permissao VALUES(default, 1, 1); 
 insert into permissao_grupo_permissao VALUES(default, 2, 1);
 insert into permissao_grupo_permissao VALUES(default, 3, 1); 

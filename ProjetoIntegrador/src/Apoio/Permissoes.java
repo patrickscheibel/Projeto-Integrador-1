@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tela.Apoio;
+package Apoio;
 
 import DAO.DAO;
 import Entidade.Usuario;
+import Tela.Apoio.DlgAviso;
 import Tela.JFrameTelaPrincipal;
 import Tela.JIframeConfiguracao;
 import Tela.JIframeCorMaterial;

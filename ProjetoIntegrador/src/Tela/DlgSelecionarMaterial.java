@@ -72,7 +72,7 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Descrição", "Radiação mínima", "Radiação maxima"
+                "null", "null", "null", "null"
             }
         ));
         jScrollPane1.setViewportView(TabelaMaterial);
@@ -92,9 +92,9 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
                         .addGap(219, 219, 219)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
