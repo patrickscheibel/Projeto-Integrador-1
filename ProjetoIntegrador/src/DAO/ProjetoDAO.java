@@ -12,7 +12,7 @@ import Entidade.Projeto;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIFrameProjeto;
+import Tela.JIFrameAmbiente;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,8 +25,8 @@ import org.hibernate.Session;
  */
 public class ProjetoDAO extends DAO{
     
-    public void SalvarProjeto(Projeto projeto, JIFrameProjeto jIframeProjeto, Usuario usuario){
-        JIFrameProjeto jif = jIframeProjeto;
+    public void SalvarProjeto(Projeto projeto, JIFrameAmbiente jIframeProjeto, Usuario usuario){
+        JIFrameAmbiente jif = jIframeProjeto;
         if(!projeto.getDescricao().isEmpty() && !projeto.getNome().isEmpty()){
             if(projeto.getId() == null){
                 if(Salvar(projeto, usuario) == true) {

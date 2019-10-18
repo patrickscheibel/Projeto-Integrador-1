@@ -12,7 +12,7 @@ import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.JIFrameProjeto;
+import Tela.JIFrameAmbiente;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,8 +27,8 @@ import org.hibernate.Transaction;
  */
 public class FaceDAO extends DAO{
     
-    public void SalvarFace(Face face, JIFrameProjeto jIFrameProjeto, Usuario usuario){
-        JIFrameProjeto jif = jIFrameProjeto;
+    public void SalvarFace(Face face, JIFrameAmbiente jIFrameProjeto, Usuario usuario){
+        JIFrameAmbiente jif = jIFrameProjeto;
         if(!face.getDescricao().isEmpty()){
             if(face.getId() == null){
                 if(Salvar(face, usuario) == true) {

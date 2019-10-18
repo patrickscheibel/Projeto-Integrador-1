@@ -10,13 +10,13 @@ package Apoio;
  * @author conti
  */
 public class Calculo {
-    
+  
     /** 
     * espessura - espessura do material
     * condutividade - condutividade do material
     */
-    public double ResistenciaMaterial(double espessura, double condutividade){
-        return espessura / condutividade;
+    public float ResistenciaMaterial(double espessura, double condutividade){
+        return (float) (espessura / condutividade);
     }
     
     /** 
@@ -24,55 +24,57 @@ public class Calculo {
     * rn - resistencias dos materiais
     * rsi - Resistencia superficial interna
     */
-    public double ResistenciaTotal(double rse, double[] rn, double rsi) {
-        double camadas = 0;
+    public float ResistenciaTotal(double rse, float[] rn, double rsi) {
+        float camadas = 0;
         
-        for (double valor : rn) {
+        for (float valor : rn) {
             camadas += valor;
         }    
-        return rse + camadas + rsi;
+        return (float) (rse + camadas + rsi);
     }
       
-    public double TransmitanciaTermica (double resistenciaTotal) {
+    public float TransmitanciaTermica (float resistenciaTotal) {
         return 1 / resistenciaTotal;
     }
     
-    public double DensidadeFluxoInverno (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
-        return transmitanciaTermica * (temperaturaInterna - temperaturaExterna);       
+    public float DensidadeFluxoInverno (float transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
+        return (float) (transmitanciaTermica * (temperaturaInterna - temperaturaExterna));       
     }
     
-    public double DensidadeFluxoVerao (double transmitanciaTermica, 
-                                       double temperaturaSolarAr,  
-                                       double temperaturaInterna, 
-                                       double temperaturaExterna) {       
-        return transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna);
+    public float TemperaturaSolarAr (double absorvidade, double radiacaoSolar, double resistenciaSuperficial) {   
+        return (float) (absorvidade * radiacaoSolar * resistenciaSuperficial);
     }
     
-    public double TemperaturaSolarAr (double absorvidade, double radiacaoSolar, double resistenciaSuperficial) {   
-        return absorvidade * radiacaoSolar * resistenciaSuperficial;
+    public float DensidadeFluxoVerao (float transmitanciaTermica, 
+                                      float temperaturaSolarAr,  
+                                      double temperaturaInterna, 
+                                      double temperaturaExterna) {       
+        return (float) (transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna));
     }
     
-    public double FluxoCalor (double densidadeFluxoCalor, double areaFechamento) {       
-        return densidadeFluxoCalor * areaFechamento;
+    /* A densidadeFluxoCalor, muda dependo do clima, DensidadeFluxoInverno ou DensidadeFluxoVerao */
+    public float FluxoCalor (float densidadeFluxoCalor, double areaFechamento) {       
+        return (float) (densidadeFluxoCalor * areaFechamento);
     }
     
     // Caso seja usado vidro
-    public double FluxoTotal (double transmitanciaTermica, 
-                              double temperaturaInterna, 
-                              double temperaturaExterna, 
-                              double fatorSolar, 
-                              double radiacaoSolarIncidente) {     
-        return transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente;
+    public float FluxoCalorVidro (float transmitanciaTermica, 
+                                  double temperaturaInterna, 
+                                  double temperaturaExterna, 
+                                  double fatorSolar, 
+                                  double radiacaoSolarIncidente) {     
+        return (float) (transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente);
     }
     
-    public double CargaTermica (double[] fluxoCalor, double[] vetorValor) {
-        double fluxosCalor = 0;
-        double vetorValores = 0;
+    //O vetorValor pode estar vazio
+    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
+        float fluxosCalor = 0;
+        float vetorValores = 0;
         
-        for (double valor : fluxoCalor) {
+        for (float valor : fluxoCalor) {
             fluxosCalor += valor;
         }
-        for (double valor : vetorValor) {
+        for (float valor : vetorValor) {
             vetorValores += valor;
         }
         return fluxosCalor + vetorValores;

@@ -13,7 +13,7 @@ import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.DlgCamada;
-import Tela.JIFrameProjeto;
+import Tela.JIFrameAmbiente;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +27,7 @@ import org.hibernate.Session;
  */
 public class CamadaDAO extends DAO{
     
-    public void SalvarCamada(Camada camada, DlgCamada dlgCamada, JIFrameProjeto jIFrameProjeto, Usuario usuario){
+    public void SalvarCamada(Camada camada, DlgCamada dlgCamada, JIFrameAmbiente jIFrameProjeto, Usuario usuario){
         DlgCamada jif = dlgCamada;
         if(!camada.getDescricao().isEmpty()){
             if(camada.getId() == null){

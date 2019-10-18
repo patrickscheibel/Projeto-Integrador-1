@@ -224,7 +224,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemGrupoPemissaoActionPerformed
 
     private void jMenuCorMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCorMaterial1ActionPerformed
-        JIFrameProjeto jif = new JIFrameProjeto(usuario);
+        JIFrameAmbiente jif = new JIFrameAmbiente(usuario);
         jDesktopPanel.add(jif);
         jif.setVisible(true);
     }//GEN-LAST:event_jMenuCorMaterial1ActionPerformed
