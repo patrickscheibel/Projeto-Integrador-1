@@ -24,6 +24,7 @@ public class DlgCamada extends javax.swing.JDialog {
      */
     public DlgCamada(Usuario usuarios, JIFrameAmbiente jIFrameProjeto) {
         initComponents();
+        setModal(true);
         usuario = usuarios;
         jif = jIFrameProjeto;
         jTextFieldMaterial.setEnabled(false);

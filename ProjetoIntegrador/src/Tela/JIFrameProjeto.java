@@ -5,17 +5,21 @@
  */
 package Tela;
 
+import Entidade.Usuario;
+
 /**
  *
  * @author patrick.scheibel
  */
 public class JIFrameProjeto extends javax.swing.JInternalFrame {
 
+    Usuario usuario = new Usuario();
     /**
      * Creates new form JIFrameAmbiente
      */
-    public JIFrameProjeto() {
+    public JIFrameProjeto(Usuario usuarios) {
         initComponents();
+        usuario = usuarios;
     }
 
     /**
@@ -46,7 +50,7 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
 
         jButtonVisualizar.setText("Visualizar");
 
-        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setText("Excluir(AF)");
 
         jTableProjeto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,6 +66,11 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTableProjeto);
 
         jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -119,25 +128,20 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        JIFrameAmbiente jif = new JIFrameAmbiente(usuario);   
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaProjeto;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAdicionar;
-    private javax.swing.JButton jButtonAdicionarProjeto;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonVisualizar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPaneProjeto;
     private javax.swing.JTable jTableProjeto;
     // End of variables declaration//GEN-END:variables
 }

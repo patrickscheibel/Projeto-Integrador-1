@@ -19,10 +19,11 @@ import Entidade.Usuario;
  *
  * @author Scheibel
  */
-public class JIFrameAmbiente extends javax.swing.JInternalFrame {
+public class JIFrameAmbiente extends javax.swing.JDialog {
 
     Usuario usuario = new Usuario();
-    Integer idProjetoEditar;
+    Projeto projetoEditar = new Projeto();
+    Ambiente ambienteEditar = new Ambiente();
     Integer idAmbienteEditar;
     Integer idFaceEditar;
     /**
@@ -30,19 +31,43 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
      */
     public JIFrameAmbiente(Usuario usuarios) {
         initComponents();
+        setModal(true);
+        jTabbedPaneProjeto.setEnabled(false);
+        jLabelProjeto.setText("Cadastro de Ambiente");
+        this.setVisible(true);
         usuario = usuarios;
+    }
+    
+    public JIFrameAmbiente(Usuario usuarios, Projeto projeto) {
+        initComponents();
+        usuario = usuarios;
+        projetoEditar = projeto;
+        setModal(true);
+        jTabbedPaneProjeto.setEnabled(false);
+        jLabelProjeto.setText("Edição de Ambiente");
+        jTextFieldNomeProjeto.setText(projeto.getNome());
+        jTextAreaDescricaoProjeto.setText(projeto.getDescricao());
+        this.setVisible(true);       
     }
     
     public JIFrameAmbiente() {}
     
-    public void AvancarAmbiente(){
+    public void AvancarListaAmbiente(Projeto projeto){
+        jTabbedPaneProjeto.setSelectedIndex(1);
+        jTabbedPaneProjeto.setTitleAt(1, "Lista de Ambientes");
+        new AmbienteDAO().popularTabela(jTableAmbiente, projeto.getId() != null ? projeto : new ProjetoDAO().ConsultarUltimo());
+    }
+    
+    public void EditarAmbiente(Ambiente ambiente){
+        jTextAreaDescricaoAmbiente.setText(ambiente.getDescricao());
         jTabbedPaneProjeto.setSelectedIndex(2);
-        jTabbedPaneProjeto.setTitleAt(2, "Ambiente");
+        jTabbedPaneProjeto.setTitleAt(2, "Dados do Ambiente");
+        ambienteEditar = ambiente;
     }
     
     public void AvancarFaces(){
         jTabbedPaneProjeto.setSelectedIndex(3);
-        jTabbedPaneProjeto.setTitleAt(3, "Faces");
+        jTabbedPaneProjeto.setTitleAt(3, "Faces do Ambiente");
         new AmbienteFaceDAO().popularTabela(jTableFace);
     }
     
@@ -75,23 +100,22 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
         jTextAreaDescricaoProjeto = new javax.swing.JTextArea();
         jButtonVoltarCadastro = new javax.swing.JButton();
         jButtonAvancarAmbiente = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTableAmbiente = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jButtonVoltarDadosProjeto = new javax.swing.JButton();
+        jButtonAdicionarAmbiente = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        jButtonEditarAmbiente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextAreaAmbienteDescricao = new javax.swing.JTextArea();
-        jButtonVoltarAmbiente = new javax.swing.JButton();
+        jTextAreaDescricaoAmbiente = new javax.swing.JTextArea();
+        jButtonVoltarListaAmbiente = new javax.swing.JButton();
         jButtonAvancarFace = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableFace = new javax.swing.JTable();
@@ -118,7 +142,7 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
         jLabelProjeto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Nome: ");
+        jLabel2.setText("Nome: *");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Descrição: ");
@@ -141,13 +165,16 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel11.setText("Campos com (*) são obrigatórios");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,7 +189,7 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
                         .addComponent(jButtonVoltarCadastro)
                         .addGap(119, 119, 119)
                         .addComponent(jButtonAvancarAmbiente)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +208,9 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltarCadastro)
                     .addComponent(jButtonAvancarAmbiente))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel11)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("Dados do Projeto", jPanel2);
@@ -191,24 +220,39 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
 
         jTableAmbiente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         jScrollPane7.setViewportView(jTableAmbiente);
 
-        jButton1.setText("Voltar");
+        jButtonVoltarDadosProjeto.setText("Voltar");
+        jButtonVoltarDadosProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarDadosProjetoActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("Adicionar");
+        jButtonAdicionarAmbiente.setText("Adicionar");
+        jButtonAdicionarAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarAmbienteActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Remover");
 
-        jButton11.setText("Editar");
+        jButtonEditarAmbiente.setText("Editar");
+        jButtonEditarAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarAmbienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -216,57 +260,57 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addComponent(jButton1)
+                .addComponent(jButtonVoltarDadosProjeto)
                 .addGap(44, 44, 44)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton9)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton10)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton11))
+                        .addComponent(jButtonAdicionarAmbiente)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButtonEditarAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton10))
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(45, 45, 45)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(45, Short.MAX_VALUE)))
+                    .addContainerGap(76, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton9)
+                    .addComponent(jButtonVoltarDadosProjeto)
+                    .addComponent(jButtonAdicionarAmbiente)
                     .addComponent(jButton10)
-                    .addComponent(jButton11))
+                    .addComponent(jButtonEditarAmbiente))
                 .addGap(46, 46, 46))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(105, 105, 105)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(106, Short.MAX_VALUE)))
+                    .addContainerGap(149, Short.MAX_VALUE)))
         );
 
-        jTabbedPaneProjeto.addTab("Lista de Ambientes", jPanel6);
+        jTabbedPaneProjeto.addTab("", jPanel6);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Ambiente");
 
         jLabel5.setText("Descrição:");
 
-        jTextAreaAmbienteDescricao.setColumns(20);
-        jTextAreaAmbienteDescricao.setRows(5);
-        jScrollPane3.setViewportView(jTextAreaAmbienteDescricao);
+        jTextAreaDescricaoAmbiente.setColumns(20);
+        jTextAreaDescricaoAmbiente.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaDescricaoAmbiente);
 
-        jButtonVoltarAmbiente.setText("Voltar");
-        jButtonVoltarAmbiente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVoltarListaAmbiente.setText("Voltar");
+        jButtonVoltarListaAmbiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarAmbienteActionPerformed(evt);
+                jButtonVoltarListaAmbienteActionPerformed(evt);
             }
         });
 
@@ -277,53 +321,46 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Nome:");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jButtonVoltarAmbiente)
-                .addGap(104, 104, 104)
-                .addComponent(jButtonAvancarFace)
-                .addGap(196, 196, 196))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(128, 128, 128)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtonVoltarListaAmbiente)
+                                .addGap(102, 102, 102)
+                                .addComponent(jButtonAvancarFace))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(157, 157, 157))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonVoltarAmbiente)
-                            .addComponent(jButtonAvancarFace)))
-                    .addComponent(jLabel5))
-                .addGap(96, 96, 96))
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVoltarListaAmbiente)
+                    .addComponent(jButtonAvancarFace))
+                .addGap(112, 112, 112))
         );
 
-        jTabbedPaneProjeto.addTab("Cadastro de Ambiente", jPanel3);
+        jTabbedPaneProjeto.addTab("", jPanel3);
 
         jTableFace.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -366,36 +403,36 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButtonAdicionarFace)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton5)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton6))
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(42, 42, 42)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
+                        .addComponent(jButtonAdicionarFace)
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton5)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton6)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(70, 70, 70)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionarFace)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
-                .addContainerGap(93, Short.MAX_VALUE))
+                    .addComponent(jButton7)
+                    .addComponent(jButton6))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("Faces do Ambiente", jPanel4);
@@ -475,7 +512,7 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,7 +527,7 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltarFace)
                     .addComponent(jButtonAdicionarCamada)
@@ -499,17 +536,21 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20))
         );
 
-        jTabbedPaneProjeto.addTab("Cadastro de Face", jPanel5);
+        jTabbedPaneProjeto.addTab("Dados do Face", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneProjeto)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -520,7 +561,7 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonVoltarFaceActionPerformed
 
     private void jButtonFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFaceActionPerformed
-        Face face = new Face(idFaceEditar, jTextAreaAmbienteDescricao.getText());
+        Face face = new Face(idFaceEditar, jTextAreaDescricaoAmbiente.getText());
         new FaceDAO().SalvarFace(face, this, usuario);
     }//GEN-LAST:event_jButtonFaceActionPerformed
 
@@ -541,44 +582,59 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonAdicionarFaceActionPerformed
 
     private void jButtonAvancarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarFaceActionPerformed
-        Ambiente ambiente = new Ambiente(idAmbienteEditar, jTextAreaAmbienteDescricao.getText(), new ProjetoDAO().ConsultarUltimo());
-        new AmbienteDAO().SalvarAmbiente(ambiente, this, usuario);
+        Ambiente ambiente = new Ambiente(idAmbienteEditar, jTextAreaDescricaoAmbiente.getText(), projetoEditar != null ? projetoEditar : new ProjetoDAO().ConsultarUltimo());
+        new AmbienteDAO().SalvarAmbiente(ambienteEditar != null ? ambienteEditar : ambiente, this, usuario);
     }//GEN-LAST:event_jButtonAvancarFaceActionPerformed
 
-    private void jButtonVoltarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarAmbienteActionPerformed
-        jTabbedPaneProjeto.setSelectedIndex(2);
+    private void jButtonVoltarListaAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarListaAmbienteActionPerformed
+        jTabbedPaneProjeto.setSelectedIndex(1);
         jTabbedPaneProjeto.setTitleAt(2, "");
-    }//GEN-LAST:event_jButtonVoltarAmbienteActionPerformed
+        new AmbienteDAO().popularTabela(jTableAmbiente, projetoEditar.getId() != null ? projetoEditar : new ProjetoDAO().ConsultarUltimo());
+    }//GEN-LAST:event_jButtonVoltarListaAmbienteActionPerformed
 
     private void jButtonAvancarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarAmbienteActionPerformed
-        Projeto projeto = new Projeto(idProjetoEditar, jTextFieldNomeProjeto.getText(), jTextAreaDescricaoProjeto.getText());
-        new ProjetoDAO().SalvarProjeto(projeto, this, usuario);
+        Projeto projeto = new Projeto(projetoEditar.getId(), jTextFieldNomeProjeto.getText(), jTextAreaDescricaoProjeto.getText());
+        new ProjetoDAO().SalvarProjeto(projeto, this, usuario);    
     }//GEN-LAST:event_jButtonAvancarAmbienteActionPerformed
 
     private void jButtonVoltarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarCadastroActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonVoltarCadastroActionPerformed
+
+    private void jButtonVoltarDadosProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarDadosProjetoActionPerformed
         jTabbedPaneProjeto.setSelectedIndex(0);
         jTabbedPaneProjeto.setTitleAt(1, "");
-    }//GEN-LAST:event_jButtonVoltarCadastroActionPerformed
+    }//GEN-LAST:event_jButtonVoltarDadosProjetoActionPerformed
+
+    private void jButtonAdicionarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarAmbienteActionPerformed
+        jTabbedPaneProjeto.setSelectedIndex(2);
+        jTabbedPaneProjeto.setTitleAt(2, "Dados do Ambiente");
+    }//GEN-LAST:event_jButtonAdicionarAmbienteActionPerformed
+
+    private void jButtonEditarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarAmbienteActionPerformed
+        Ambiente ambiente = new AmbienteDAO().ConsultarAmbiente((int)jTableAmbiente.getValueAt(jTableAmbiente.getSelectedRow(), 0));
+        new AmbienteDAO().VerificarAmbiente(ambiente, this);
+    }//GEN-LAST:event_jButtonEditarAmbienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonAdicionarAmbiente;
     private javax.swing.JButton jButtonAdicionarCamada;
     private javax.swing.JButton jButtonAdicionarFace;
     private javax.swing.JButton jButtonAvancarAmbiente;
     private javax.swing.JButton jButtonAvancarFace;
+    private javax.swing.JButton jButtonEditarAmbiente;
     private javax.swing.JButton jButtonFace;
-    private javax.swing.JButton jButtonVoltarAmbiente;
     private javax.swing.JButton jButtonVoltarCadastro;
+    private javax.swing.JButton jButtonVoltarDadosProjeto;
     private javax.swing.JButton jButtonVoltarFace;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonVoltarListaAmbiente;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -604,10 +660,9 @@ public class JIFrameAmbiente extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTableAmbiente;
     private javax.swing.JTable jTableCamada;
     private javax.swing.JTable jTableFace;
-    private javax.swing.JTextArea jTextAreaAmbienteDescricao;
+    private javax.swing.JTextArea jTextAreaDescricaoAmbiente;
     private javax.swing.JTextArea jTextAreaDescricaoFace;
     private javax.swing.JTextArea jTextAreaDescricaoProjeto;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldNomeProjeto;
     // End of variables declaration//GEN-END:variables
 }

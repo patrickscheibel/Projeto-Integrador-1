@@ -72,7 +72,7 @@ create table log(
 create table projeto(
     id serial primary key,
     nome varchar not null,
-    descricao varchar(100)    
+    descricao varchar(100)
 );
 
 create table ambiente(

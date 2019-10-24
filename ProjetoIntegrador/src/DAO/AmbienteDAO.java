@@ -9,6 +9,7 @@ import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
 import Entidade.Ambiente;
+import Entidade.Projeto;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
@@ -30,7 +31,7 @@ public class AmbienteDAO extends DAO{
         JIFrameAmbiente jif = jIframeProjeto;
         if(!ambiente.getDescricao().isEmpty() && ambiente.getProjeto()!= null){
             if(ambiente.getId() == null){
-                if(Salvar(ambiente, usuario) == true) {
+                if(Salvar(ambiente, usuario) == true) {                  
                     jif.AvancarFaces();
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
@@ -55,43 +56,41 @@ public class AmbienteDAO extends DAO{
         }
     }
           
-    public List<Ambiente> ConsultarTodos() {
-//    - método para consultar
-        List resultado = null;
+    public List<Ambiente> ConsultarListaPorId(int id) {
+    List resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Ambiente");
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
+            org.hibernate.Query q = sessao.createQuery("from Ambiente ambiente where ambiente.projeto.id = " + id);
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }           
       
    
     
        //Popular por um id
-    public void popularTabela(JTable tabela) {
+    public void popularTabela(JTable tabela, Projeto projeto) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Ambiente> lista = ConsultarTodos();
+        List<Ambiente> lista = ConsultarListaPorId(projeto.getId());
+        System.out.println(projeto.getId());
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[5];
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "Id";
-        cabecalho[2] = "Descrição";
-        cabecalho[3] = "Carga Calor";
-        cabecalho[4] = "Projeto";
-        
-
+        cabecalho[1] = "Descrição";
+        cabecalho[2] = "Carga Calor";
+       
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][5];
+            dadosTabela = new Object[lista.size()][3];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar os Materiais: " + e);
@@ -107,10 +106,7 @@ public class AmbienteDAO extends DAO{
                 dadosTabela[lin][0] = ambiente.getId();
                 dadosTabela[lin][1] = ambiente.getDescricao(); 
                 dadosTabela[lin][2] = ambiente.getCargaCalor();
-                dadosTabela[lin][3] = ambiente.getProjeto().getDescricao();
-                
-                
-
+                             
                 lin++;
             }
         } catch (Exception e) {
@@ -160,6 +156,14 @@ public class AmbienteDAO extends DAO{
              he.printStackTrace();
          }
          return ambiente;
+    }
+    
+    public void VerificarAmbiente(Ambiente ambiente, JIFrameAmbiente jif) {
+        if(ambiente != null){
+            jif.EditarAmbiente(ambiente);
+        } else {
+            
+        }
     }
 
 }

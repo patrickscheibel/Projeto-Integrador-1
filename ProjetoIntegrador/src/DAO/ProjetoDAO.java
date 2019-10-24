@@ -27,16 +27,16 @@ public class ProjetoDAO extends DAO{
     
     public void SalvarProjeto(Projeto projeto, JIFrameAmbiente jIframeProjeto, Usuario usuario){
         JIFrameAmbiente jif = jIframeProjeto;
-        if(!projeto.getDescricao().isEmpty() && !projeto.getNome().isEmpty()){
+        if(!projeto.getNome().isEmpty()){
             if(projeto.getId() == null){
                 if(Salvar(projeto, usuario) == true) {
-                    jif.AvancarAmbiente();
+                    jif.AvancarListaAmbiente(projeto);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(projeto, usuario) == true){
-                    jif.AvancarAmbiente();
+                    jif.AvancarListaAmbiente(projeto);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
@@ -80,7 +80,7 @@ public class ProjetoDAO extends DAO{
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("from Projeto");
+            org.hibernate.Query q = sessao.createQuery("select max(projeto) from Projeto projeto");
             resultado = (Projeto) q.uniqueResult();
 
         } catch (HibernateException he) {

@@ -52,7 +52,7 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenuUsuario = new javax.swing.JMenuItem();
         jMenuTipoMaterial = new javax.swing.JMenuItem();
         jMenuCorMaterial = new javax.swing.JMenuItem();
-        jMenuCorMaterial1 = new javax.swing.JMenuItem();
+        jMenuProjeto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
 
@@ -149,13 +149,13 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuCorMaterial);
 
-        jMenuCorMaterial1.setText("Projeto");
-        jMenuCorMaterial1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuProjeto.setText("Projeto");
+        jMenuProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCorMaterial1ActionPerformed(evt);
+                jMenuProjetoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuCorMaterial1);
+        jMenu4.add(jMenuProjeto);
 
         jMenuBar1.add(jMenu4);
 
@@ -223,11 +223,11 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         new Permissoes().GrupoPermissao(this, jifGrupoPermissao, usuario);
     }//GEN-LAST:event_jMenuItemGrupoPemissaoActionPerformed
 
-    private void jMenuCorMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCorMaterial1ActionPerformed
-        JIFrameAmbiente jif = new JIFrameAmbiente(usuario);
-        jDesktopPanel.add(jif);
-        jif.setVisible(true);
-    }//GEN-LAST:event_jMenuCorMaterial1ActionPerformed
+    private void jMenuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetoActionPerformed
+        //Adicionar no controle permissoes
+        JIFrameProjeto jif = new JIFrameProjeto(usuario);
+        Ver(jif);
+    }//GEN-LAST:event_jMenuProjetoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,9 +274,9 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCorMaterial;
-    private javax.swing.JMenuItem jMenuCorMaterial1;
     private javax.swing.JMenuItem jMenuItemGrupoPemissao;
     private javax.swing.JMenuItem jMenuMaterial;
+    private javax.swing.JMenuItem jMenuProjeto;
     private javax.swing.JMenuItem jMenuTipoMaterial;
     private javax.swing.JMenuItem jMenuUsuario;
     // End of variables declaration//GEN-END:variables
