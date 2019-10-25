@@ -8,6 +8,7 @@ package DAO;
 import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
+import Entidade.Ambiente;
 import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
@@ -57,7 +58,7 @@ public class FaceDAO extends DAO{
         }
     }
           
-    public List<Face> ConsultarTodos() {
+    public List<Face> ConsultarPorAmbiente(int idAmbiente) {
 //    - método para consultar
         List resultado = null;
 
@@ -65,7 +66,7 @@ public class FaceDAO extends DAO{
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Face");
+                org.hibernate.Query q = sessao.createQuery("from Face face where face.ambiente.id = " + idAmbiente);
                 resultado = q.list();
 
             } catch (HibernateException he) {
@@ -77,10 +78,10 @@ public class FaceDAO extends DAO{
    
     
        //Popular por um id
-    public void popularTabela(JTable tabela) {
+    public void popularTabela(JTable tabela, Ambiente ambiente) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Face> lista = ConsultarTodos();
+        List<Face> lista = ConsultarPorAmbiente(ambiente.getId());
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[2];

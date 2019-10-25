@@ -52,9 +52,7 @@ Contributor(s):
   <table-filter match-name="grupo_permissao"/>
   <table-filter match-name="permissao_grupo_permissao"/>
   <table-filter match-name="Entidade.Ambiente"/>
-  <table-filter match-name="Entidade.AmbienteFace"/>
   <table-filter match-name="Entidade.Camada"/>
   <table-filter match-name="Entidade.Face"/>
-  <table-filter match-name="Entidade.FaceCamada"/>
   <table-filter match-name="Entidade.Projeto"/>
 </hibernate-reverse-engineering>

@@ -22,47 +22,36 @@ import javax.persistence.Table;
 @Table(name = "camada")
 public class Camada  implements Serializable {
 
-     @Id
-     @Column(name="id")
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer id;
-     
-     @Column(name = "descricao", length = 100)
-     private String descricao;
-     
-         
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+              
     @ManyToOne()
     @JoinColumn(name = "material_id", nullable = false)
     private Material material;
-     
-     
-    public Camada() {}  
     
-    public Camada(Integer id, String descricao, Material material) {
-       this.id = id;
-       this.descricao = descricao;
-       this.material = material;
-       
-    }
+    @ManyToOne()
+    @JoinColumn(name = "face_id", nullable = false)
+    private Face face;
+    
+    @Column(name = "resistencia_total")
+    private double resistenciaTotal;
 
-    @Override
-    public String toString() {
-        return "Camada{" + "id=" + id + ", descricao=" + descricao + ", material=" + material + '}';
+    public Camada(Integer id, Material material, Face face) {
+        this.id = id;
+        this.material = material;
+        this.face = face;
     }
-    
+        
+    public Camada() {}  
+     
     public Integer getId() {
         return this.id;
     }
     
     public void setId(Integer id) {
         this.id = id;
-    }
-    public String getDescricao() {
-        return this.descricao;
-    }
-    
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public Material getMaterial() {
@@ -73,12 +62,19 @@ public class Camada  implements Serializable {
         this.material = material;
     }
 
-   
-    
+    public Face getFace() {
+        return face;
+    }
 
-    
-    
-    
-    
+    public void setFace(Face face) {
+        this.face = face;
+    }
 
+    public double getResistenciaTotal() {
+        return resistenciaTotal;
+    }
+
+    public void setResistenciaTotal(double resistenciaTotal) {
+        this.resistenciaTotal = resistenciaTotal;
+    }
 }

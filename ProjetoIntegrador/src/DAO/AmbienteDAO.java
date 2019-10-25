@@ -32,13 +32,15 @@ public class AmbienteDAO extends DAO{
         if(!ambiente.getDescricao().isEmpty() && ambiente.getProjeto()!= null){
             if(ambiente.getId() == null){
                 if(Salvar(ambiente, usuario) == true) {                  
-                    jif.AvancarFaces();
+                    jif.AvancarListaFace(ambiente);
+                    jif.AtualizarTabelaFace(ambiente);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(ambiente, usuario) == true){
-                    jif.AvancarFaces();
+                    jif.AvancarListaFace(ambiente);
+                    jif.AtualizarTabelaFace(ambiente);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 

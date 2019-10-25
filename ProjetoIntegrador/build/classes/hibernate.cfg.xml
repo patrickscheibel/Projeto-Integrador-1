@@ -56,10 +56,8 @@ Contributor(s):
     <mapping class="Entidade.GrupoPermissao"/>
     <mapping class="Entidade.PermissaoGrupoPermissao"/>
     <mapping class="Entidade.Ambiente"/>
-    <mapping class="Entidade.AmbienteFace"/>
     <mapping class="Entidade.Camada"/>
     <mapping class="Entidade.Face"/>
-    <mapping class="Entidade.FaceCamada"/>
     <mapping class="Entidade.Projeto"/>
   </session-factory>
 </hibernate-configuration>

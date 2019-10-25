@@ -86,30 +86,17 @@ create table ambiente(
 create table face(
     id serial primary key,
     descricao varchar(100),
-    abertura boolean	
+    abertura boolean,
+    carga_calor DECIMAL(10,2),
+    ambiente_id int not null,
+    FOREIGN KEY (ambiente_id) REFERENCES ambiente(id)
 );
 
 create table camada(
     id serial primary key,
-    descricao varchar(100),
+    resistencia_total DECIMAL(10,2),
+    face_id int not null,
     material_id int not null,
+    FOREIGN KEY (face_id) REFERENCES face(id),
     FOREIGN KEY (material_id) REFERENCES material(id)
 );
-
-create table face_camada(
-    id serial primary key,
-    face_id int not null,	
-    camada_id int not null,
-    resistencia_total Decimal(10,2) not null,
-    FOREIGN KEY (face_id) REFERENCES face(id),
-    FOREIGN KEY (camada_id) REFERENCES camada(id)
-);
-
-create table ambiente_face(
-    id serial primary key,
-    ambiente_id int not null,
-    face_id int not null,
-    FOREIGN KEY (ambiente_id) REFERENCES ambiente(id),
-    FOREIGN KEY (face_id) REFERENCES face(id)
-);
-

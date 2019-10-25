@@ -9,10 +9,12 @@ import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
 import Entidade.Camada;
+import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.DlgCamada;
+import Tela.DlgSelecionarMaterial;
 import Tela.JIFrameAmbiente;
 import java.util.List;
 import javax.swing.JTable;
@@ -27,29 +29,24 @@ import org.hibernate.Session;
  */
 public class CamadaDAO extends DAO{
     
-    public void SalvarCamada(Camada camada, DlgCamada dlgCamada, JIFrameAmbiente jIFrameProjeto, Usuario usuario){
-        DlgCamada jif = dlgCamada;
-        if(!camada.getDescricao().isEmpty()){
-            if(camada.getId() == null){
-                if(Salvar(camada, usuario) == true) {
-                    jIFrameProjeto.AtualizarTabelaCamada();
-                    jif.dispose();
-                } else {
-                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
-                } 
+    public void SalvarCamada(Camada camada, DlgSelecionarMaterial dlg, JIFrameAmbiente jif, Usuario usuario){
+        if(camada.getId() == null){
+            if(Salvar(camada, usuario) == true) {
+                jif.AtualizarTabelaCamada(camada.getFace());
+                jif.setEnabled(true);
+                dlg.dispose();            
             } else {
-                if(Atualizar(camada, usuario) == true){
-                    jIFrameProjeto.AtualizarTabelaCamada();
-                    jif.dispose();
-                } else {
-                    new DlgAviso("Descrição deve ter no maximo 100 caracteres");
-                } 
-                
-            }
+                new DlgAviso("Descrição deve ter no maximo 100 caracteres");
+            } 
         } else {
-            new DlgAviso("Descrição Incorreta ou invalida");
-        }
-
+            if(Atualizar(camada, usuario) == true){
+                jif.AtualizarTabelaCamada(camada.getFace());
+                jif.setEnabled(true);
+                dlg.dispose();
+            } else {
+                new DlgAviso("Descrição deve ter no maximo 100 caracteres");
+            } 
+        } 
     }
     
     public void ExcluirCamada(Integer camadaId, Usuario usuario){
@@ -79,7 +76,7 @@ public class CamadaDAO extends DAO{
    
     
        //Popular por um id
-    public void popularTabela(JTable tabela) {
+    public void popularTabela(JTable tabela, Face face) {
         // dados da tabela
         Object[][] dadosTabela = null;
         List<Camada> lista = ConsultarTodos();
