@@ -79,5 +79,26 @@ public class Calculo {
         }
         return fluxosCalor + vetorValores;
     }
-    
+		
+	public float ResistenciaTotalTelhado(double rae, float[] rn, double rai) {
+        float camadas = 0;
+        
+        for (float valor : rn) {
+            camadas += valor;
+        }    
+        return (float) (rae + camadas + rai);
+    }
+          
+    public float TransmitanciaTermicaTelhado (float resistenciaTotalTelhado) {
+        return 1 / resistenciaTotalTelhado;
+    }
+
+	public float ArCondicionado(float[] somatoriaQ, double valorEspecifico) {
+        float camadas = 0;
+        
+        for (float valor : somatoriaQ) {
+            camadas += valor;
+        }    
+        return (float) (camadas * valorEspecifico);
+    }    
 }
