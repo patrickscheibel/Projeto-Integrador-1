@@ -13,7 +13,6 @@ import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
-import Tela.DlgCamada;
 import Tela.DlgSelecionarMaterial;
 import Tela.JIFrameAmbiente;
 import java.util.List;
@@ -104,7 +103,6 @@ public class CamadaDAO extends DAO{
             for (Camada camada : lista) {
                 
                 dadosTabela[lin][0] = camada.getId();
-                dadosTabela[lin][1] = camada.getDescricao();
                
 
                 lin++;

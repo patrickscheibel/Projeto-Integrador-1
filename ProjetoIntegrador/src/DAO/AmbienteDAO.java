@@ -160,6 +160,23 @@ public class AmbienteDAO extends DAO{
          return ambiente;
     }
     
+    public Ambiente ConsultarUltimo() {
+        
+        Ambiente resultado = null;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("select max(ambiente) from Ambiente ambiente");
+            resultado = (Ambiente) q.uniqueResult();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }
+    
     public void VerificarAmbiente(Ambiente ambiente, JIFrameAmbiente jif) {
         if(ambiente != null){
             jif.EditarAmbiente(ambiente);

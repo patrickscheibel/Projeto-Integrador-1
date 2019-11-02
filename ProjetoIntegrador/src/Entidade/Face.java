@@ -47,10 +47,9 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, boolean abertura, Ambiente ambiente) {
+    public Face(Integer id, String descricao, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
-        this.abertura = abertura;
         this.ambiente = ambiente;
     }
 
