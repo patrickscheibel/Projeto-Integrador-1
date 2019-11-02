@@ -8,7 +8,7 @@ package Apoio;
 import DAO.DAO;
 import Entidade.Usuario;
 import Tela.Apoio.DlgAviso;
-import Tela.JFrameTelaPrincipal;
+import Tela.JIFrameTelaPrincipal;
 import Tela.JIframeConfiguracao;
 import Tela.JIframeCorMaterial;
 import Tela.JIframeGrupoPermissao;
@@ -22,7 +22,7 @@ import Tela.JIframeUsuario;
  */
 public class Permissoes extends DAO{
     
-    public void Material(JFrameTelaPrincipal telaPrincipal, JIframeMaterial jif, Usuario usuario){
+    public void Material(JIFrameTelaPrincipal telaPrincipal, JIframeMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_material", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {
@@ -36,7 +36,7 @@ public class Permissoes extends DAO{
         }
     }
     
-    public void Usuario(JFrameTelaPrincipal telaPrincipal, JIframeUsuario jif, Usuario usuario){
+    public void Usuario(JIFrameTelaPrincipal telaPrincipal, JIframeUsuario jif, Usuario usuario){
         if(VerificarPermissao("ver_usuario", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {
@@ -50,7 +50,7 @@ public class Permissoes extends DAO{
         }
     }
     
-    public void TipoMaterial(JFrameTelaPrincipal telaPrincipal, JIframeTipoMaterial jif, Usuario usuario){
+    public void TipoMaterial(JIFrameTelaPrincipal telaPrincipal, JIframeTipoMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_tipoMaterial", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {
@@ -64,7 +64,7 @@ public class Permissoes extends DAO{
         }
     }
     
-    public void CorMaterial(JFrameTelaPrincipal telaPrincipal, JIframeCorMaterial jif, Usuario usuario){
+    public void CorMaterial(JIFrameTelaPrincipal telaPrincipal, JIframeCorMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_corMaterial", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {
@@ -78,7 +78,7 @@ public class Permissoes extends DAO{
         }
     }
     
-    public void GrupoPermissao(JFrameTelaPrincipal telaPrincipal, JIframeGrupoPermissao jif, Usuario usuario){
+    public void GrupoPermissao(JIFrameTelaPrincipal telaPrincipal, JIframeGrupoPermissao jif, Usuario usuario){
         if(VerificarPermissao("ver_grupoPermissao", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {
@@ -92,7 +92,7 @@ public class Permissoes extends DAO{
         }
     }
     
-    public void Configuracao(JFrameTelaPrincipal telaPrincipal, JIframeConfiguracao jif, Usuario usuario){
+    public void Configuracao(JIFrameTelaPrincipal telaPrincipal, JIframeConfiguracao jif, Usuario usuario){
         if(VerificarPermissao("ver_configuracao", usuario.getGrupoPermissao().getId()) == true){       
             telaPrincipal.Ver(jif);
         } else {

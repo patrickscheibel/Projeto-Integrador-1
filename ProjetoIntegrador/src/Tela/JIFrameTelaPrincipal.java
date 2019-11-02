@@ -14,14 +14,17 @@ import javax.swing.JInternalFrame;
  *
  * @author patrick.scheibel
  */
-public class JFrameTelaPrincipal extends javax.swing.JFrame {
+public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameTelaPrincipal
      */
     Usuario usuario = new Usuario();
     
-    public JFrameTelaPrincipal(Usuario usuarios) {
+    
+    
+    
+    public JIFrameTelaPrincipal(Usuario usuarios) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         usuario = usuarios;
@@ -55,6 +58,8 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         jMenuProjeto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -171,6 +176,23 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Email");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Enviar anexo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,6 +251,23 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
         Ver(jif);
     }//GEN-LAST:event_jMenuProjetoActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+          
+        JIFrameEmailAnexo email = new JIFrameEmailAnexo();
+ 
+
+        email.setVisible(true);
+        
+        
+        
+        
+            
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,9 +310,11 @@ public class JFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmpresa;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCorMaterial;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemGrupoPemissao;
     private javax.swing.JMenuItem jMenuMaterial;
     private javax.swing.JMenuItem jMenuProjeto;
