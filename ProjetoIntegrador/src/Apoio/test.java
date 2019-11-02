@@ -9,6 +9,7 @@ import DAO.AmbienteDAO;
 import DAO.ProjetoDAO;
 import DAO.UsuarioDAO;
 import Tela.JIFrameAmbiente;
+import Tela.JIFrameEmailAnexo;
 
 /**
  *
@@ -28,5 +29,5 @@ public class test {
         j.setVisible(true);
 //        System.out.println(new AmbienteDAO().ConsultarListaPorId(1));
     }
- 
+    
 }

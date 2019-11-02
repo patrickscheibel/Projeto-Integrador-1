@@ -4,51 +4,25 @@
  * and open the template in the editor.
  */
 package Tela;
-import Entidade.Usuario;
+
+import Apoio.Email;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.Address;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JInternalFrame;
 
 /**
  *
  * @author conti
  */
-public class JIFrameEmailAnexo extends javax.swing.JFrame {
+public class JIFrameEmailAnexo extends javax.swing.JInternalFrame {
 
-    
     File[] Anexo;
-    
-    
-    
+   
     /**
      * Creates new form EmailAnexo1
      */
     public JIFrameEmailAnexo() {
-        initComponents();
-        
-        
+        initComponents();    
     }
-
-    
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,44 +33,35 @@ public class JIFrameEmailAnexo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JIFrameEmail = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        Remetente = new javax.swing.JTextField();
-        Destinatario = new javax.swing.JTextField();
+        BotaoEnviar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Mensagem = new javax.swing.JTextArea();
+        BotaoExcluir = new javax.swing.JButton();
+        EnderecoAnexo = new javax.swing.JTextField();
+        BotaoAnexo = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         Assunto = new javax.swing.JTextField();
-        EnderecoAnexo = new javax.swing.JTextField();
-        NomeRemetente = new javax.swing.JTextField();
-        BotaoEnviar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Destinatario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Senha = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        Remetente = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        NomeRemetente = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ServidorSMTP = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Porta = new javax.swing.JTextField();
-        BotaoExcluir = new javax.swing.JButton();
-        BotaoAnexo = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        Senha = new javax.swing.JPasswordField();
+        BotaoCancelar = new javax.swing.JButton();
 
-        JIFrameEmail.setBackground(new java.awt.Color(204, 204, 204));
-        JIFrameEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 4, true));
-        JIFrameEmail.setPreferredSize(new java.awt.Dimension(786, 543));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("De...........");
-
-        Remetente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Remetente.setText("seu_email@gmail.com");
-
-        Destinatario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Destinatario.setText("email_destino@dominio.com.br");
-        Destinatario.addActionListener(new java.awt.event.ActionListener() {
+        BotaoEnviar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoEnviar.setForeground(new java.awt.Color(0, 153, 0));
+        BotaoEnviar.setText("Enviar");
+        BotaoEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DestinatarioActionPerformed(evt);
+                BotaoEnviarActionPerformed(evt);
             }
         });
 
@@ -108,28 +73,64 @@ public class JIFrameEmailAnexo extends javax.swing.JFrame {
         Mensagem.setWrapStyleWord(true);
         jScrollPane1.setViewportView(Mensagem);
 
+        BotaoExcluir.setText("Excluir");
+        BotaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoExcluirActionPerformed(evt);
+            }
+        });
+
+        EnderecoAnexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        BotaoAnexo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BotaoAnexo.setText("Anexo");
+        BotaoAnexo.setToolTipText("");
+        BotaoAnexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoAnexoActionPerformed(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Assunto");
 
         Assunto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Assunto.setText("Digite aqui seua assunto");
-
-        EnderecoAnexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        NomeRemetente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        NomeRemetente.setText("Seu Primeiro Nome");
-
-        BotaoEnviar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoEnviar.setForeground(new java.awt.Color(0, 153, 0));
-        BotaoEnviar.setText("Enviar");
-        BotaoEnviar.addActionListener(new java.awt.event.ActionListener() {
+        Assunto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoEnviarActionPerformed(evt);
+                AssuntoActionPerformed(evt);
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Para.......");
+
+        Destinatario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Destinatario.setText("email_destino@dominio.com.br");
+        Destinatario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DestinatarioActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel4.setText("Senha");
+
+        Senha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Senha.setText("suasenha");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("De...........");
+
+        Remetente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Remetente.setText("seu_email@gmail.com");
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Nome");
+
+        NomeRemetente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        NomeRemetente.setText("Seu Primeiro Nome");
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(688, 66));
@@ -155,175 +156,129 @@ public class JIFrameEmailAnexo extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ServidorSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Porta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Porta, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ServidorSMTP, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ServidorSMTP)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(Porta))
                 .addContainerGap())
         );
 
-        BotaoExcluir.setText("Excluir");
-        BotaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoCancelar.setForeground(new java.awt.Color(0, 153, 0));
+        BotaoCancelar.setText("Cancelar");
+        BotaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoExcluirActionPerformed(evt);
+                BotaoCancelarActionPerformed(evt);
             }
         });
 
-        BotaoAnexo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        BotaoAnexo.setText("Anexo");
-        BotaoAnexo.setToolTipText("");
-        BotaoAnexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoAnexoActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Para.......");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setText("Senha");
-
-        Senha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Senha.setText("suasenha");
-
-        javax.swing.GroupLayout JIFrameEmailLayout = new javax.swing.GroupLayout(JIFrameEmail);
-        JIFrameEmail.setLayout(JIFrameEmailLayout);
-        JIFrameEmailLayout.setHorizontalGroup(
-            JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                        .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JIFrameEmailLayout.createSequentialGroup()
-                                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(BotaoExcluir))
-                                    .addGroup(JIFrameEmailLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(Remetente)
                                         .addGap(32, 32, 32)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(NomeRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(621, 621, 621))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JIFrameEmailLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(BotaoEnviar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(621, 621, 621))
-                    .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                        .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(JIFrameEmailLayout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(BotaoExcluir)
+                                            .addComponent(NomeRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(Assunto, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Assunto, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(BotaoAnexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(EnderecoAnexo, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(Destinatario)))
+                                .addGap(245, 245, 245)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JIFrameEmailLayout.createSequentialGroup()
-                        .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JIFrameEmailLayout.createSequentialGroup()
-                                .addComponent(BotaoAnexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(EnderecoAnexo, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JIFrameEmailLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Destinatario)))
-                        .addGap(866, 866, 866))))
-        );
-        JIFrameEmailLayout.setVerticalGroup(
-            JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Remetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(NomeRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(Destinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(Assunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoAnexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EnderecoAnexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoExcluir))
-                .addGroup(JIFrameEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JIFrameEmailLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(BotaoEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JIFrameEmailLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotaoEnviar)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JIFrameEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(BotaoCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JIFrameEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(Remetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(NomeRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Destinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(Assunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotaoAnexo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EnderecoAnexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinatarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DestinatarioActionPerformed
-
-    private void BotaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEnviarActionPerformed
-        EmailAnexo();
-    }//GEN-LAST:event_BotaoEnviarActionPerformed
-
-    private void BotaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirActionPerformed
-        EnderecoAnexo.setText("");
-        Anexo = null;
-    }//GEN-LAST:event_BotaoExcluirActionPerformed
-
     private void BotaoAnexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAnexoActionPerformed
-
         JFileChooser file = new JFileChooser();
         file.setMultiSelectionEnabled(true);
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -344,21 +299,39 @@ public class JIFrameEmailAnexo extends javax.swing.JFrame {
 
             }
         }
-        
-        
-
     }//GEN-LAST:event_BotaoAnexoActionPerformed
+
+    private void BotaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirActionPerformed
+        EnderecoAnexo.setText("");
+        Anexo = null;
+    }//GEN-LAST:event_BotaoExcluirActionPerformed
+
+    private void BotaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEnviarActionPerformed
+        new Email().EmailAnexo(title, title, title, title, title, title, title, title, Anexo);
+    }//GEN-LAST:event_BotaoEnviarActionPerformed
+
+    private void AssuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssuntoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AssuntoActionPerformed
+
+    private void DestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinatarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DestinatarioActionPerformed
+
+    private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Assunto;
     private javax.swing.JButton BotaoAnexo;
+    private javax.swing.JButton BotaoCancelar;
     private javax.swing.JButton BotaoEnviar;
     private javax.swing.JButton BotaoExcluir;
     private javax.swing.JTextField Destinatario;
     private javax.swing.JTextField EnderecoAnexo;
-    private javax.swing.JPanel JIFrameEmail;
     private javax.swing.JTextArea Mensagem;
     private javax.swing.JTextField NomeRemetente;
     private javax.swing.JTextField Porta;
@@ -375,129 +348,5 @@ public class JIFrameEmailAnexo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-    
-    public void EmailAnexo() {
-        try {
-
-            //usuario e senha do seu gmail
-            final String usuario = Remetente.getText();
-            final String senha = Senha.getText();
-
-            //config. do gmail
-            Properties mailProps = new Properties();
-            mailProps.put("mail.transport.protocol", "smtp");
-            mailProps.put("mail.smtp.starttls.enable", "true");
-            mailProps.put("mail.smtp.host", ServidorSMTP.getText());
-            mailProps.put("mail.smtp.auth", "true");
-            mailProps.put("mail.smtp.user", usuario);
-            mailProps.put("mail.debug", "true");
-            mailProps.put("mail.smtp.port", Porta.getText());
-            mailProps.put("mail.smtp.socketFactory.port", Porta.getText());
-            mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            mailProps.put("mail.smtp.socketFactory.fallback", "false");
-
-            //eh necessario autenticar
-            Session mailSession = Session.getInstance(mailProps, new Authenticator() {
-
-                public PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(usuario, senha);
-                }
-            });
-            mailSession.setDebug(false);
-
-            //config. da mensagem
-            Message mailMessage = new MimeMessage(mailSession);
-
-            //remetente
-            mailMessage.setFrom(new InternetAddress(Remetente.getText(), NomeRemetente.getText()));
-
-            //destinatario
-            mailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(Destinatario.getText()));
-
-            //mensagem que vai no corpo do email
-            MimeBodyPart mbpMensagem = new MimeBodyPart();
-            mbpMensagem.setText(Mensagem.getText());
-
-//			partes do email
-            Multipart mp = new MimeMultipart();
-            mp.addBodyPart(mbpMensagem);
-            
-            String Endereco_Anexo = "";
-            if (Anexo != null) { // se tiver alguma coisa anexada ela inicializar o comando abaixo
-                for (File element : Anexo) {
-
-                    Endereco_Anexo = element.getPath();
-                    String imagem = Endereco_Anexo;
-                    File Arquivo = new File(imagem);
-                    //setando o anexo
-                    MimeBodyPart mbpAnexo = new MimeBodyPart();
-                    mbpAnexo.setDataHandler(new DataHandler(new FileDataSource(Arquivo)));
-                    mbpAnexo.setFileName(Arquivo.getName());
-                    mp.addBodyPart(mbpAnexo);
-                }
-            }
-
-            //assunto do email
-            mailMessage.setSubject(Assunto.getText());
-
-            //seleciona o conteudo 
-            mailMessage.setContent(mp);
-
-            //envia o email
-            Transport.send(mailMessage);
-            JOptionPane.showMessageDialog(null, "Email Enviado com Sucesso");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Houve um erro no Envio !\n"+e);
-        }
-    }
-
-
-// public void EmailSimples() throws UnsupportedEncodingException {
-//
-//        Properties props = new Properties();
-//        /** Parâmetros de conexão com servidor Gmail */
-//        props.put("mail.smtp.host", ServidorSMTP.getText());
-//        props.put("mail.smtp.socketFactory.port", Porta.getText());
-//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.port", Porta.getText());
-//
-//        Session session = Session.getDefaultInstance(props,
-//                new javax.mail.Authenticator() {
-//
-//                    protected PasswordAuthentication getPasswordAuthentication() {
-//                        return new PasswordAuthentication(Remetente.getText(), Senha.getText());
-//                    }
-//                });
-//
-//        /** Ativa Debug para sessão */
-//        session.setDebug(true);
-//
-//        try {
-//
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(Remetente.getText(), NomeRemetente.getText())); //Remetente
-//
-//            Address[] toUser = InternetAddress //Destinatário(s)
-//                    .parse(Destinatario.getText());
-//
-//            message.setRecipients(Message.RecipientType.TO, toUser);
-//            message.setSubject(Assunto.getText());//Assunto
-//            message.setText(Mensagem.getText());
-//            /**Método para enviar a mensagem criada*/
-//            Transport.send(message);
-//
-//            System.out.println("Feito!!!");
-//            JOptionPane.showMessageDialog(null, "Email Enviado com Sucesso");
-//
-//        } catch (MessagingException e) {
-//            JOptionPane.showMessageDialog(null, "Houve um erro no Envio !");
-//            throw new RuntimeException(e);
-//
-//        }
-//    }
-
-
 }
 

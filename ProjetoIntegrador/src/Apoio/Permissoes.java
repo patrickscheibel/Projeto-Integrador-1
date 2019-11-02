@@ -24,7 +24,7 @@ public class Permissoes extends DAO{
     
     public void Material(JIFrameTelaPrincipal telaPrincipal, JIframeMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_material", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }
@@ -38,7 +38,7 @@ public class Permissoes extends DAO{
     
     public void Usuario(JIFrameTelaPrincipal telaPrincipal, JIframeUsuario jif, Usuario usuario){
         if(VerificarPermissao("ver_usuario", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }
@@ -52,7 +52,7 @@ public class Permissoes extends DAO{
     
     public void TipoMaterial(JIFrameTelaPrincipal telaPrincipal, JIframeTipoMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_tipoMaterial", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }
@@ -66,7 +66,7 @@ public class Permissoes extends DAO{
     
     public void CorMaterial(JIFrameTelaPrincipal telaPrincipal, JIframeCorMaterial jif, Usuario usuario){
         if(VerificarPermissao("ver_corMaterial", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }
@@ -80,7 +80,7 @@ public class Permissoes extends DAO{
     
     public void GrupoPermissao(JIFrameTelaPrincipal telaPrincipal, JIframeGrupoPermissao jif, Usuario usuario){
         if(VerificarPermissao("ver_grupoPermissao", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }
@@ -94,7 +94,7 @@ public class Permissoes extends DAO{
     
     public void Configuracao(JIFrameTelaPrincipal telaPrincipal, JIframeConfiguracao jif, Usuario usuario){
         if(VerificarPermissao("ver_configuracao", usuario.getGrupoPermissao().getId()) == true){       
-            telaPrincipal.Ver(jif);
+            telaPrincipal.VerJInternalFrame(jif);
         } else {
             new DlgAviso("Permissão Negada");
         }

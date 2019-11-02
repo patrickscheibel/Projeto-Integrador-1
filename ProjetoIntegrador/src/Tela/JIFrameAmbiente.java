@@ -30,8 +30,8 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     public JIFrameAmbiente(Usuario usuarios) {
         initComponents();
         setModal(true);
-//        jTabbedPaneProjeto.setEnabled(false);
-        jLabelProjeto.setText("Cadastro de Ambiente");
+        jTabbedPaneProjeto.setEnabled(false);
+        jLabelProjeto.setText("Dados do Projeto");
         this.setVisible(true);
         usuario = usuarios;
     }

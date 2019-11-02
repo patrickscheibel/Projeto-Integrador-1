@@ -30,7 +30,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         usuario = usuarios;
     }
     
-    public void Ver(JInternalFrame jif){
+    public void VerJInternalFrame(JInternalFrame jif){
         jDesktopPanel.add(jif);
         jif.setVisible(true);
     }
@@ -59,7 +59,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuEnviarEmail = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -183,13 +183,13 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Enviar anexo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuEnviarEmail.setText("Escrever email");
+        jMenuEnviarEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuEnviarEmailActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(jMenuEnviarEmail);
 
         jMenuBar1.add(jMenu2);
 
@@ -248,24 +248,17 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
     private void jMenuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetoActionPerformed
         //Adicionar no controle permissoes
         JIFrameProjeto jif = new JIFrameProjeto(usuario);
-        Ver(jif);
+        VerJInternalFrame(jif);
     }//GEN-LAST:event_jMenuProjetoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-          
-        JIFrameEmailAnexo email = new JIFrameEmailAnexo();
- 
-
-        email.setVisible(true);
-        
-        
-        
-        
-            
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenuEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnviarEmailActionPerformed
+        //Adicionar no controle permissoes
+        JIFrameEmailAnexo jifEmail = new JIFrameEmailAnexo();
+        VerJInternalFrame(jifEmail);   
+    }//GEN-LAST:event_jMenuEnviarEmailActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
@@ -314,7 +307,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCorMaterial;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuEnviarEmail;
     private javax.swing.JMenuItem jMenuItemGrupoPemissao;
     private javax.swing.JMenuItem jMenuMaterial;
     private javax.swing.JMenuItem jMenuProjeto;

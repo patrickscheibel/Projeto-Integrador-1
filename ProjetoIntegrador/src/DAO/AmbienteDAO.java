@@ -31,6 +31,8 @@ public class AmbienteDAO extends DAO{
         JIFrameAmbiente jif = jIframeProjeto;
         if(!ambiente.getDescricao().isEmpty() && ambiente.getProjeto()!= null){
             if(ambiente.getId() == null){
+                    System.out.println("A: " + ambiente);
+                    System.out.println("U: " + usuario);
                 if(Salvar(ambiente, usuario) == true) {                  
                     jif.AvancarListaFace(ambiente);
                     jif.AtualizarTabelaFace(ambiente);
