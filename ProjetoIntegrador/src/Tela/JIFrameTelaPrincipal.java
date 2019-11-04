@@ -253,8 +253,10 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnviarEmailActionPerformed
         //Adicionar no controle permissoes
-        JIFrameEmailAnexo jifEmail = new JIFrameEmailAnexo();
-        VerJInternalFrame(jifEmail);   
+        JIFrameEmail jif = new JIFrameEmail();
+//        VerJInternalFrame(jifEmail);   
+        jif.setVisible(true);
+        jDesktopPanel.add(jif);
     }//GEN-LAST:event_jMenuEnviarEmailActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed

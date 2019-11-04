@@ -5,6 +5,7 @@
  */
 package Apoio;
 
+import Tela.JIFrameEmail;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -20,6 +21,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -156,5 +158,27 @@ public class Email {
 //
 //        }
 //    }
+        
+    public void Anexo(JIFrameEmail jif, String enderecoAnexo){
+        JFileChooser file = new JFileChooser();
+        file.setMultiSelectionEnabled(true);
+        file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int i = file.showOpenDialog(null);
+        if (i == 1) {
+            jif.AdicionarAnexo("", null);
+        } else {
+            File[] Anexo = file.getSelectedFiles();
+
+            String SomaAnexo1 = "";
+            String SomaAnexo2 = "";
+            for (File enderec : Anexo) {
+                SomaAnexo1 = enderec.getPath();
+                SomaAnexo2 = SomaAnexo2 + SomaAnexo1 + ";";
+//                EnderecoAnexo.setText(SomaAnexo2); 
+                jif.AdicionarAnexo(SomaAnexo2, Anexo);
+            }
+            
+        }
+    }
     
 }

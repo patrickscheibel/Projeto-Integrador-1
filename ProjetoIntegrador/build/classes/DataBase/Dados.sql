@@ -60,3 +60,13 @@ insert into permissao_grupo_permissao VALUES(default, 14, 1);
 insert into permissao_grupo_permissao VALUES(default, 15, 1);
 insert into permissao_grupo_permissao VALUES(default, 16, 1);
 insert into permissao_grupo_permissao VALUES(default, 17, 1);
+
+--Cadastro de Materiais
+--Tipo:
+insert into tipo_material values(default, 'Madeira');
+
+--Cor:
+insert into cor_material values(default, 'Escura',0,0);
+
+--Material:
+insert into material values(default, 1, 'Madeira Tatajuba', 1,0,0,10);

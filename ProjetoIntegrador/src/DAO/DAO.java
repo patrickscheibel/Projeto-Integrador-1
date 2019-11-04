@@ -31,7 +31,9 @@ public class DAO {
                 t.commit();    
                 new AuditoriaDAO().SalvarAuditoria("Insert", object.toString(), usuario);
                 return true;
-            }         
+            } else {
+                System.out.println("I am batman");
+            }        
         } catch (HibernateException e) {
             e.printStackTrace();
             new LogDAO().SalvarLog("Insert", e.getCause().toString(), object.toString(), usuario);

@@ -33,13 +33,13 @@ public class FaceDAO extends DAO{
         if(!face.getDescricao().isEmpty()){
             if(face.getId() == null){
                 if(Salvar(face, usuario) == true) {
-                    jif.SalvarFace();
+                    jif.SalvarFace(face);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
             } else {
                 if(Atualizar(face, usuario) == true){
-                    jif.SalvarFace();
+                    jif.SalvarFace(face);
                 } else {
                     new DlgAviso("Descrição deve ter no maximo 100 caracteres");
                 } 
@@ -58,30 +58,27 @@ public class FaceDAO extends DAO{
         }
     }
           
-    public List<Face> ConsultarPorAmbiente(int idAmbiente) {
-//    - método para consultar
-        List resultado = null;
+    public List<Face> ConsultarPorAmbiente(Ambiente ambiente) {
+    List<Face> resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Face face where face.ambiente.id = " + idAmbiente);
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
+            org.hibernate.Query q = sessao.createQuery("from Face face where face.ambiente.id = " + ambiente.getId());
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }           
       
-   
-    
        //Popular por um id
     public void popularTabela(JTable tabela, Ambiente ambiente) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Face> lista = ConsultarPorAmbiente(ambiente.getId());
+        List<Face> lista = ConsultarPorAmbiente(ambiente);
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[2];

@@ -68,7 +68,7 @@ public class Usuario  implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", login=" + login + ", senha=" + senha + ", situacao=" + situacao + ", auditoria=" + auditoria + ", log=" + log + ", grupoPermissao=" + grupoPermissao.getDescricao() + '}';
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", login=" + login + ", senha=" + senha + ", situacao=" + situacao + ", auditoria=" + auditoria + ", log=" + log + ", grupoPermissao=" + grupoPermissao + '}';
     }
 
     public Integer getId() {
