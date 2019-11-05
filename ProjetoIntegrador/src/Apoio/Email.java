@@ -36,8 +36,6 @@ public class Email {
                                String mensagem,
                                String assunto,
                                String destinatario, 
-                               String servidorSMTP, 
-                               String porta,
                                File[] anexo) {
         try {
 
@@ -49,12 +47,12 @@ public class Email {
             Properties mailProps = new Properties();
             mailProps.put("mail.transport.protocol", "smtp");
             mailProps.put("mail.smtp.starttls.enable", "true");
-            mailProps.put("mail.smtp.host", servidorSMTP);
+            mailProps.put("mail.smtp.host", "smtp.gmail.com");
             mailProps.put("mail.smtp.auth", "true");
             mailProps.put("mail.smtp.user", usuario);
             mailProps.put("mail.debug", "true");
-            mailProps.put("mail.smtp.port", porta);
-            mailProps.put("mail.smtp.socketFactory.port", porta);
+            mailProps.put("mail.smtp.port", "465");
+            mailProps.put("mail.smtp.socketFactory.port", "465");
             mailProps.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
             mailProps.put("mail.smtp.socketFactory.fallback", "false");
 

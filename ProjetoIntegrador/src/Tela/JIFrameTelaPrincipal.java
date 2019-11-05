@@ -16,14 +16,11 @@ import javax.swing.JInternalFrame;
  */
 public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
+    Usuario usuario = new Usuario();
     /**
      * Creates new form JFrameTelaPrincipal
      */
-    Usuario usuario = new Usuario();
-    
-    
-    
-    
+       
     public JIFrameTelaPrincipal(Usuario usuarios) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -254,9 +251,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
     private void jMenuEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnviarEmailActionPerformed
         //Adicionar no controle permissoes
         JIFrameEmail jif = new JIFrameEmail();
-//        VerJInternalFrame(jifEmail);   
-        jif.setVisible(true);
-        jDesktopPanel.add(jif);
+        VerJInternalFrame(jif);   
     }//GEN-LAST:event_jMenuEnviarEmailActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed

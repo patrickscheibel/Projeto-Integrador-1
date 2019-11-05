@@ -9,8 +9,6 @@ import DAO.AmbienteDAO;
 import DAO.ProjetoDAO;
 import DAO.UsuarioDAO;
 import Tela.JIFrameAmbiente;
-import Tela.EmailAnexo;
-import Tela.EmailAnexo;
 
 /**
  *
