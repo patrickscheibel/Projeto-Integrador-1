@@ -32,7 +32,6 @@ public class CamadaDAO extends DAO{
         if(camada.getId() == null){
             if(Salvar(camada, usuario) == true) {
                 jif.AtualizarTabelaCamada(camada.getFace());
-                jif.setEnabled(true);
                 dlg.dispose();            
             } else {
                 new DlgAviso("Descrição deve ter no maximo 100 caracteres");
@@ -40,7 +39,6 @@ public class CamadaDAO extends DAO{
         } else {
             if(Atualizar(camada, usuario) == true){
                 jif.AtualizarTabelaCamada(camada.getFace());
-                jif.setEnabled(true);
                 dlg.dispose();
             } else {
                 new DlgAviso("Descrição deve ter no maximo 100 caracteres");
@@ -55,7 +53,7 @@ public class CamadaDAO extends DAO{
         }
     }
           
-    public List<Camada> ConsultarTodos() {
+    public List<Camada> ConsultarPorFace(Face face) {
 //    - método para consultar
         List resultado = null;
 
@@ -63,7 +61,7 @@ public class CamadaDAO extends DAO{
                 Session sessao = HibernateUtil.getSessionFactory().openSession();
                 sessao.beginTransaction();
                 
-                org.hibernate.Query q = sessao.createQuery("from Camada");
+                org.hibernate.Query q = sessao.createQuery("from Camada camada where camada.face.id =  " + face.getId());
                 resultado = q.list();
 
             } catch (HibernateException he) {
@@ -78,12 +76,12 @@ public class CamadaDAO extends DAO{
     public void popularTabela(JTable tabela, Face face) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Camada> lista = ConsultarTodos();
+        List<Camada> lista = ConsultarPorFace(face);
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[2];
         cabecalho[0] = "Id";
-        cabecalho[1] = "Descrição";
+        cabecalho[1] = "Material";
         
 
         // cria matriz de acordo com nº de registros da tabela
@@ -103,7 +101,7 @@ public class CamadaDAO extends DAO{
             for (Camada camada : lista) {
                 
                 dadosTabela[lin][0] = camada.getId();
-               
+                dadosTabela[lin][1] = camada.getMaterial().getDescricao();
 
                 lin++;
             }

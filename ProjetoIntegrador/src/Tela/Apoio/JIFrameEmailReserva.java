@@ -281,15 +281,15 @@ public class JIFrameEmailReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BotaoExcluirActionPerformed
 
     private void BotaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEnviarActionPerformed
-        new Email().EmailAnexo(Remetente.getText(), 
-                               Senha.getText(),
-                               NomeRemetente.getText(), 
-                               Mensagem.getText(),
-                               Assunto.getText(),
-                               Destinatario.getText(),
-                               ServidorSMTP.getText(),
-                               Porta.getText(),
-                               Anexo);
+//        new Email().EmailAnexo(Remetente.getText(), 
+//                               Senha.getText(),
+//                               NomeRemetente.getText(), 
+//                               Mensagem.getText(),
+//                               Assunto.getText(),
+//                               Destinatario.getText(),
+//                               ServidorSMTP.getText(),
+//                               Porta.getText(),
+//                               Anexo);
     }//GEN-LAST:event_BotaoEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

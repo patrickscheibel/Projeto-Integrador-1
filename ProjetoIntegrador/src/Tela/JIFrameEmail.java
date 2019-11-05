@@ -144,6 +144,7 @@ public class JIFrameEmail extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Enviar Email");
 
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Remover: Remetente, Nome, Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

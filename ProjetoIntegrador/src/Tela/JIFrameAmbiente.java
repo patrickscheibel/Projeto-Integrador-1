@@ -22,6 +22,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     Usuario usuario = new Usuario();
     Projeto projetoAtual = new Projeto();
+    Ambiente ambienteAtual = new Ambiente();
     Face faceEditar = new Face();
     Integer ambienteEditarId = null;
     /**
@@ -29,7 +30,8 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
      */
     public JIFrameAmbiente(Usuario usuarios) {
         initComponents();
-        setModal(true);          
+        setModal(true);
+        setLocationRelativeTo(this);
         usuario = usuarios; 
         jTabbedPaneProjeto.setEnabled(false);
         jLabelProjeto.setText("Dados do Projeto");
@@ -41,7 +43,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         usuario = usuarios;
         projetoAtual = projeto;
         setModal(true);
-//        jTabbedPaneProjeto.setEnabled(false);
+        setLocationRelativeTo(this);
         jLabelProjeto.setText("Edição de Ambiente");
         jTextFieldNomeProjeto.setText(projeto.getNome());
         jTextAreaDescricaoProjeto.setText(projeto.getDescricao());
@@ -73,7 +75,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     public void SalvarFace(Face face){
         faceEditar = face;
         setTabelaCamada(true);
-        new FaceDAO().popularTabela(jTableFace, face.getAmbiente());
+        new CamadaDAO().popularTabela(jTableCamada, face);
     }
     
     public void AtualizarTabelaCamada(Face face){
@@ -546,10 +548,10 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanelFaceLayout.createSequentialGroup()
-                            .addGap(34, 34, 34)
+                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
                         .addGap(213, 213, 213)
@@ -582,7 +584,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonVoltarFace)
                     .addComponent(jButtonFace))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -609,6 +611,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVoltarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarFaceActionPerformed
+        AtualizarTabelaFace(ambienteAtual);
         jTabbedPaneProjeto.setSelectedIndex(3);
     }//GEN-LAST:event_jButtonVoltarFaceActionPerformed
 
@@ -635,6 +638,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     private void jButtonAvancarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarFaceActionPerformed
         Ambiente ambiente = new Ambiente(ambienteEditarId, jTextAreaDescricaoAmbiente.getText(), projetoAtual != null ? projetoAtual : new ProjetoDAO().ConsultarUltimo());
+        ambienteAtual = ambiente;
         new AmbienteDAO().SalvarAmbiente(ambiente, this, usuario); 
     }//GEN-LAST:event_jButtonAvancarFaceActionPerformed
 
@@ -665,6 +669,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     private void jButtonEditarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarAmbienteActionPerformed
         Ambiente ambiente = new AmbienteDAO().ConsultarAmbiente((int)jTableAmbiente.getValueAt(jTableAmbiente.getSelectedRow(), 0));
+        ambienteAtual = ambiente;
         new AmbienteDAO().VerificarAmbiente(ambiente, this);
     }//GEN-LAST:event_jButtonEditarAmbienteActionPerformed
 

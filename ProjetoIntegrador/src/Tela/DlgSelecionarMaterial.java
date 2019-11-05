@@ -34,7 +34,6 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
         face = faces;
         jInternalFrame.setEnabled(true);
         new MaterialDAO().popularTabela(TabelaMaterial);
-        this.setVisible(true);
     }
 
     /**

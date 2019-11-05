@@ -577,10 +577,10 @@
                               <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                               <Component id="jLabelDadosFace" min="-2" pref="279" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="jSeparator1" min="-2" pref="493" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jSeparator1" min="-2" pref="493" max="-2" attributes="0"/>
                                   <Component id="jSeparator2" min="-2" pref="493" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -622,7 +622,7 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonVoltarFace" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonFace" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
