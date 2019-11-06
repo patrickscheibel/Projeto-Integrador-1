@@ -46,9 +46,8 @@ public class CamadaDAO extends DAO{
         } 
     }
     
-    public void ExcluirCamada(Integer camadaId, Usuario usuario){
-        if(usuario != null){
-            Camada camada = new CamadaDAO().ConsultarCamada(camadaId);         
+    public void ExcluirCamada(Camada camada, Usuario usuario){
+        if(camada != null && usuario != null){         
             Excluir(camada, usuario);
         }
     }

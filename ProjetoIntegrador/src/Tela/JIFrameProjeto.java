@@ -60,6 +60,11 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         jButtonVisualizar.setText("Visualizar");
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jTableProjeto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,9 +163,14 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         Projeto projeto = new ProjetoDAO().ConsultarProjeto((int)jTableProjeto.getValueAt(jTableProjeto.getSelectedRow(), 0));
         if(projeto != null){
-          new JIFrameAmbiente(usuario, projeto);   
+            new JIFrameAmbiente(usuario, projeto);   
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        Projeto projeto = new ProjetoDAO().ConsultarProjeto((int)jTableProjeto.getValueAt(jTableProjeto.getSelectedRow(), 0));
+        new ProjetoDAO().ExcluirProjeto(projeto, usuario);
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,7 +25,6 @@ public class Projeto  implements Serializable {
      @Column(name="nome", length = 100)
      private String nome;
      
-     @NotNull()
      @Column(name="descricao", length = 100)
      private String descricao;
 

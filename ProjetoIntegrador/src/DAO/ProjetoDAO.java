@@ -48,15 +48,13 @@ public class ProjetoDAO extends DAO{
 
     }
     
-    public void ExcluirProjeto(Integer projetoId, Usuario usuario){
-        if(usuario != null){
-            Projeto projeto = new ProjetoDAO().ConsultarProjeto(projetoId);         
+    public void ExcluirProjeto(Projeto projeto, Usuario usuario){
+        if(projeto != null && usuario != null){
             Excluir(projeto, usuario);
         }
     }
           
     public List<Projeto> ConsultarTodos() {
-//    - método para consultar
         List resultado = null;
 
         try {

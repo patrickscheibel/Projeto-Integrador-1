@@ -51,9 +51,8 @@ public class AmbienteDAO extends DAO{
         }
     }
     
-    public void ExcluirAmbiente(Integer ambienteId, Usuario usuario){
-       if(usuario != null){
-            Ambiente ambiente = new AmbienteDAO().ConsultarAmbiente(ambienteId);         
+    public void ExcluirAmbiente(Ambiente ambiente, Usuario usuario){
+        if(ambiente != null && usuario != null){        
             Excluir(ambiente, usuario);
         }
     }

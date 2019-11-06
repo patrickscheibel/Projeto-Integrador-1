@@ -97,8 +97,8 @@ public class DAO {
                 if(permissaoGrupoPermissao.getPermissao().getDescricao().equals(permissao) 
                         && permissaoGrupoPermissao.getGrupoPermissao().getId() == grupoPermissaoId){
                 return true;
+                }
             }
-           }
           
          } catch (HibernateException he) {
              he.printStackTrace();

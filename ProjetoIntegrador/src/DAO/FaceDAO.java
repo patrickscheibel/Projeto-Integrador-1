@@ -51,11 +51,10 @@ public class FaceDAO extends DAO{
 
     }
     
-    public void ExcluirFace(Integer faceId, Usuario usuario){
-        if(usuario != null){
-            Face face = new FaceDAO().ConsultarFace(faceId);         
+    public void ExcluirFace(Face face, Usuario usuario){
+        if(face != null && usuario != null){         
             Excluir(face, usuario);
-        }
+        } 
     }
           
     public List<Face> ConsultarPorAmbiente(Ambiente ambiente) {

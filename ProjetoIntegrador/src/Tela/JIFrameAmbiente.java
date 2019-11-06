@@ -10,6 +10,7 @@ import DAO.CamadaDAO;
 import DAO.FaceDAO;
 import DAO.ProjetoDAO;
 import Entidade.Ambiente;
+import Entidade.Camada;
 import Entidade.Face;
 import Entidade.Projeto;
 import Entidade.Usuario;
@@ -261,6 +262,11 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         });
 
         jButton10.setText("Remover");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButtonEditarAmbiente.setText("Editar");
         jButtonEditarAmbiente.addActionListener(new java.awt.event.ActionListener() {
@@ -626,7 +632,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAdicionarCamadaActionPerformed
 
     private void jButtonFinalizarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarFaceActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButtonFinalizarFaceActionPerformed
 
     private void jButtonAdicionarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFaceActionPerformed
@@ -684,7 +690,8 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonEditarFaceActionPerformed
 
     private void jButtonRemoverFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverFaceActionPerformed
-        // TODO add your handling code here:
+        Face face = new FaceDAO().ConsultarFace((int)jTableFace.getValueAt(jTableFace.getSelectedRow(), 0));
+        new FaceDAO().ExcluirFace(face, usuario);
     }//GEN-LAST:event_jButtonRemoverFaceActionPerformed
 
     private void jButtonConfirmarDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDescricaoActionPerformed
@@ -693,8 +700,14 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonConfirmarDescricaoActionPerformed
 
     private void jButtonRemoverCamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCamadaActionPerformed
-        // TODO add your handling code here:
+        Camada camada = new CamadaDAO().ConsultarCamada((int)jTableCamada.getValueAt(jTableCamada.getSelectedRow(), 0));
+        new CamadaDAO().ExcluirCamada(camada, usuario);
     }//GEN-LAST:event_jButtonRemoverCamadaActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        Ambiente ambiente = new AmbienteDAO().ConsultarAmbiente((int)jTableAmbiente.getValueAt(jTableAmbiente.getSelectedRow(), 0));
+        new AmbienteDAO().ExcluirAmbiente(ambiente, usuario);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
