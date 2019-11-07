@@ -42,6 +42,14 @@ insert into permissao VALUES(default, 'editar_grupoPermissao');
 insert into permissao VALUES(default, 'ver_configuracao');
 insert into permissao VALUES(default, 'editar_configuracao');
 
+--Permissoes de Projeto
+insert into permissao VALUES(default, 'ver_projeto');
+insert into permissao VALUES(default, 'adicionar_projeto');
+insert into permissao VALUES(default, 'editar_projeto');
+
+--Permissoes de Configuracao de auditoria e log
+insert into permissao VALUES(default, 'ver_email');
+
 --Grupo de permissoes
 insert into permissao_grupo_permissao VALUES(default, 1, 1); 
 insert into permissao_grupo_permissao VALUES(default, 2, 1);
@@ -60,6 +68,11 @@ insert into permissao_grupo_permissao VALUES(default, 14, 1);
 insert into permissao_grupo_permissao VALUES(default, 15, 1);
 insert into permissao_grupo_permissao VALUES(default, 16, 1);
 insert into permissao_grupo_permissao VALUES(default, 17, 1);
+insert into permissao_grupo_permissao VALUES(default, 18, 1);
+insert into permissao_grupo_permissao VALUES(default, 19, 1);
+insert into permissao_grupo_permissao VALUES(default, 20, 1);
+insert into permissao_grupo_permissao VALUES(default, 21, 1);
+
 
 --Cadastro de Materiais
 --Tipo:

@@ -15,6 +15,7 @@ import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.DlgSelecionarMaterial;
 import Tela.JIFrameAmbiente;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -53,29 +54,26 @@ public class CamadaDAO extends DAO{
     }
           
     public List<Camada> ConsultarPorFace(Face face) {
-//    - método para consultar
         List resultado = null;
 
-            try {
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                sessao.beginTransaction();
-                
-                org.hibernate.Query q = sessao.createQuery("from Camada camada where camada.face.id =  " + face.getId());
-                resultado = q.list();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-            } catch (HibernateException he) {
-                he.printStackTrace();
-            }
-            return resultado;
-        }           
-      
-   
-    
+            org.hibernate.Query q = sessao.createQuery("from Camada camada where camada.face.id =  " + face.getId());
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }
+        
        //Popular por um id
     public void popularTabela(JTable tabela, Face face) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Camada> lista = ConsultarPorFace(face);
+        List<Camada> lista = (face == null ? new ArrayList<Camada>() : ConsultarPorFace(face));
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[2];

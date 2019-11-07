@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -30,7 +29,7 @@ public class FaceDAO extends DAO{
     
     public void SalvarFace(Face face, JIFrameAmbiente jIFrameProjeto, Usuario usuario){
         JIFrameAmbiente jif = jIFrameProjeto;
-        if(!face.getDescricao().isEmpty()){
+        if(!face.getDescricao().isEmpty() && face.getResistenciaInterna() > 0 && face.getResistenciaExterna() > 0){
             if(face.getId() == null){
                 if(Salvar(face, usuario) == true) {
                     jif.SalvarFace(face);

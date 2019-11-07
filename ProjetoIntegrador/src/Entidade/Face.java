@@ -32,13 +32,30 @@ public class Face  implements Serializable {
 
     @NotNull()
     @Column(name="descricao", length = 100)
-    private String descricao;
-     
+    private String descricao;    
+    
+    @NotNull()
+    @Column(name = "resistencia_interna")
+    private double resistenciaInterna;
+    
+    @NotNull()
+    @Column(name = "resistencia_externa")
+    private double resistenciaExterna;
+    
+    @Column(name = "transmitancia_termica")
+    private double transmitanciaTermica;
+    
+    @Column(name = "temperatura_solar")
+    private double temperaturaSolar;
+    
     @Column(name = "abertura")
     private boolean abertura;
     
-    @Column(name = "carga_calor")
-    private double cargaCalor;
+    @Column(name = "densidade_fluxo_calor")
+    private double densidadeFluxoCalor;
+    
+    @Column(name = "fluxo_calor")
+    private double fluxoCalor;
     
     @ManyToOne()
     @JoinColumn(name = "ambiente_id", nullable = false)
@@ -47,18 +64,29 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double transmitanciaTermica, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
+        this.resistenciaInterna = resistenciaInterna;
+        this.resistenciaExterna = resistenciaExterna;
+        this.transmitanciaTermica = transmitanciaTermica;
+        this.ambiente = ambiente;
+    }
+   
+    public Face(Face face, String descricao, double resistenciaInterna, double resistenciaExterna, Ambiente ambiente) {
+        this.id = face.getId();
+        this.descricao = descricao;
+        this.resistenciaInterna = resistenciaInterna;
+        this.resistenciaExterna = resistenciaExterna;
         this.ambiente = ambiente;
     }
 
     @Override
     public String toString() {
-        return "Face{" + "id=" + id + ", descricao=" + descricao + ", abertura=" + abertura + '}';
+        return "Face{" + "id=" + id + ", descricao=" + descricao + ", resistenciaInterna=" + resistenciaInterna + ", resistenciaExterna=" + resistenciaExterna + ", transmitanciaTermica=" + transmitanciaTermica + ", ambiente=" + ambiente + '}';
     }
-    
-   public Integer getId() {
+
+    public Integer getId() {
         return this.id;
     }
     
@@ -74,22 +102,6 @@ public class Face  implements Serializable {
         this.descricao = descricao;
     }
 
-    public boolean getAbertura() {
-        return this.abertura;
-    }
-
-    public void setAbertura(boolean abertura) {
-        this.abertura = abertura;
-    }
-
-    public double getCargaCalor() {
-        return cargaCalor;
-    }
-
-    public void setCargaCalor(double cargaCalor) {
-        this.cargaCalor = cargaCalor;
-    }
-
     public Ambiente getAmbiente() {
         return ambiente;
     }
@@ -98,4 +110,62 @@ public class Face  implements Serializable {
         this.ambiente = ambiente;
     }
 
+    public double getResistenciaInterna() {
+        return resistenciaInterna;
+    }
+
+    public void setResistenciaInterna(double resistenciaInterna) {
+        this.resistenciaInterna = resistenciaInterna;
+    }
+
+    public double getResistenciaExterna() {
+        return resistenciaExterna;
+    }
+
+    public void setResistenciaExterna(double resistenciaExterna) {
+        this.resistenciaExterna = resistenciaExterna;
+    }
+
+    public double getTransmitanciaTermica() {
+        return transmitanciaTermica;
+    }
+
+    public void setTransmitanciaTermica(double transmitanciaTermica) {
+        this.transmitanciaTermica = transmitanciaTermica;
+    }
+
+    public double getFluxoCalor() {
+        return fluxoCalor;
+    }
+
+    public void setFluxoCalor(double fluxoCalor) {
+        this.fluxoCalor = fluxoCalor;
+    }
+
+    public double getTemperaturaSolar() {
+        return temperaturaSolar;
+    }
+
+    public void setTemperaturaSolar(double temperaturaSolar) {
+        this.temperaturaSolar = temperaturaSolar;
+    }
+
+    public double getDensidadeFluxoCalor() {
+        return densidadeFluxoCalor;
+    }
+
+    public void setDensidadeFluxoCalor(double densidadeFluxoCalor) {
+        this.densidadeFluxoCalor = densidadeFluxoCalor;
+    }
+
+    public boolean isAbertura() {
+        return abertura;
+    }
+
+    public void setAbertura(boolean abertura) {
+        this.abertura = abertura;
+    }
+    
+    
+    
 }

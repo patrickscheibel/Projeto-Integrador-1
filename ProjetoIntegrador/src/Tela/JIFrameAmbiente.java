@@ -5,6 +5,7 @@
  */
 package Tela;
 
+import Apoio.Calculo;
 import DAO.AmbienteDAO;
 import DAO.CamadaDAO;
 import DAO.FaceDAO;
@@ -14,6 +15,7 @@ import Entidade.Camada;
 import Entidade.Face;
 import Entidade.Projeto;
 import Entidade.Usuario;
+import java.util.List;
 
 /**
  *
@@ -24,7 +26,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     Usuario usuario = new Usuario();
     Projeto projetoAtual = new Projeto();
     Ambiente ambienteAtual = new Ambiente();
-    Face faceEditar = new Face();
+    Face faceAtual = new Face();
     Integer ambienteEditarId = null;
     /**
      * Creates new form JIFrameProjeto
@@ -33,14 +35,15 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         initComponents();
         setModal(true);
         setLocationRelativeTo(this);
-        usuario = usuarios; 
+        usuario = usuarios;
         jTabbedPaneProjeto.setEnabled(false);
         jLabelProjeto.setText("Dados do Projeto");
-        this.setVisible(true);            
+        this.setVisible(true);    
     }
     
     public JIFrameAmbiente(Usuario usuarios, Projeto projeto) {
         initComponents();
+        jTabbedPaneProjeto.setEnabled(false);
         usuario = usuarios;
         projetoAtual = projeto;
         setModal(true);
@@ -57,7 +60,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         projetoAtual = projeto;
         jTabbedPaneProjeto.setSelectedIndex(1);
         jTabbedPaneProjeto.setTitleAt(1, "Lista de Ambientes");
-        new AmbienteDAO().popularTabela(jTableAmbiente, projeto.getId() != null ? projeto : new ProjetoDAO().ConsultarUltimo());
+        AtualizarTabelAmbiente(projeto.getId() != null ? projeto : new ProjetoDAO().ConsultarUltimo());
     }
     
     public void EditarAmbiente(Ambiente ambiente){
@@ -74,20 +77,28 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }
     
     public void SalvarFace(Face face){
-        faceEditar = face;
+        faceAtual = face;
         setTabelaCamada(true);
         new CamadaDAO().popularTabela(jTableCamada, face);
+    }
+        
+    public void AtualizarTabelAmbiente(Projeto projeto){
+        projetoAtual = null;
+        new AmbienteDAO().popularTabela(jTableAmbiente, projeto);
+        jTextAreaDescricaoProjeto.setText("");
+    }
+    
+    public void AtualizarTabelaFace(Ambiente ambiente){
+        faceAtual = null;
+        new FaceDAO().popularTabela(jTableFace, ambiente);
+        jTextAreaDescricaoAmbiente.setText("");
     }
     
     public void AtualizarTabelaCamada(Face face){
         new CamadaDAO().popularTabela(jTableCamada, face);
     }
     
-    public void AtualizarTabelaFace(Ambiente ambiente){
-        new FaceDAO().popularTabela(jTableFace, ambiente);
-    }
-    
-    public void setTabelaCamada(boolean status){
+    public void setTabelaCamada(boolean status){       
         jTableCamada.setEnabled(status);
         jButtonAdicionarCamada.setEnabled(status);
         jButtonRemoverCamada.setEnabled(status);
@@ -103,6 +114,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPaneProjeto = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabelProjeto = new javax.swing.JLabel();
@@ -122,6 +134,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         jButtonAdicionarAmbiente = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButtonEditarAmbiente = new javax.swing.JButton();
+        jButtonEncerar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -145,13 +158,19 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jButtonConfirmarDescricao = new javax.swing.JButton();
         jButtonVoltarFace = new javax.swing.JButton();
-        jButtonFace = new javax.swing.JButton();
+        jButtonSalvarFace = new javax.swing.JButton();
         jLabelCamada = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableCamada = new javax.swing.JTable();
         jButtonAdicionarCamada = new javax.swing.JButton();
         jButtonRemoverCamada = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextFieldResistenciaInterna = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldResistenciaExterna = new javax.swing.JFormattedTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jRadioButtonJanela = new javax.swing.JRadioButton();
 
         setTitle("Ambiente");
 
@@ -226,7 +245,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addComponent(jButtonAvancarAmbiente))
                 .addGap(40, 40, 40)
                 .addComponent(jLabel11)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("Dados do Projeto", jPanel2);
@@ -275,23 +294,34 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             }
         });
 
+        jButtonEncerar.setText("Encerrar");
+        jButtonEncerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEncerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jButtonVoltarDadosProjeto)
-                .addGap(44, 44, 44)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jButtonVoltarDadosProjeto)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonAdicionarAmbiente)
-                        .addGap(42, 42, 42)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonEditarAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton10))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEncerar)))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(45, 45, 45)
@@ -303,18 +333,21 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(383, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVoltarDadosProjeto)
                     .addComponent(jButtonAdicionarAmbiente)
+                    .addComponent(jButtonEditarAmbiente)
+                    .addComponent(jButtonVoltarDadosProjeto)
                     .addComponent(jButton10)
-                    .addComponent(jButtonEditarAmbiente))
-                .addGap(46, 46, 46))
+                    .addComponent(jButtonEncerar))
+                .addGap(97, 97, 97))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(105, 105, 105)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(162, Short.MAX_VALUE)))
+                    .addContainerGap(193, Short.MAX_VALUE)))
         );
 
         jTabbedPaneProjeto.addTab("", jPanel6);
@@ -348,11 +381,11 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(jButtonVoltarListaAmbiente)
@@ -361,7 +394,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(215, 215, 215)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +405,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltarListaAmbiente)
                     .addComponent(jButtonAvancarFace))
@@ -461,7 +494,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addComponent(jButtonEditarFace)
                     .addComponent(jButtonFinalizarFace)
                     .addComponent(jButtonRemoverFace))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("", jPanelListaFace);
@@ -489,10 +522,10 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             }
         });
 
-        jButtonFace.setText("Salvar");
-        jButtonFace.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarFace.setText("Salvar");
+        jButtonSalvarFace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFaceActionPerformed(evt);
+                jButtonSalvarFaceActionPerformed(evt);
             }
         });
 
@@ -526,74 +559,123 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Resistencia Interna:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Resistencia Externa:");
+
+        jFormattedTextFieldResistenciaInterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+
+        jFormattedTextFieldResistenciaExterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Janela:");
+
         javax.swing.GroupLayout jPanelFaceLayout = new javax.swing.GroupLayout(jPanelFace);
         jPanelFace.setLayout(jPanelFaceLayout);
         jPanelFaceLayout.setHorizontalGroup(
             jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFaceLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jButtonAdicionarCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonRemoverCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
-            .addGroup(jPanelFaceLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jButtonVoltarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonFace, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
-            .addGroup(jPanelFaceLayout.createSequentialGroup()
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButtonConfirmarDescricao))
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                                            .addComponent(jFormattedTextFieldResistenciaExterna))
+                                        .addGap(18, 18, Short.MAX_VALUE)
+                                        .addComponent(jButtonConfirmarDescricao))
+                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButtonJanela)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(108, 108, 108))
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jButtonAdicionarCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                                .addComponent(jButtonRemoverCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(84, 84, 84))
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jButtonVoltarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonSalvarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         jPanelFaceLayout.setVerticalGroup(
             jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFaceLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jButtonConfirmarDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdicionarCamada)
-                    .addComponent(jButtonRemoverCamada))
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jRadioButtonJanela, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonVoltarFace)
-                    .addComponent(jButtonFace))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonAdicionarCamada)
+                            .addComponent(jButtonRemoverCamada))
+                        .addGap(10, 10, 10)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVoltarFace)
+                            .addComponent(jButtonSalvarFace))
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonConfirmarDescricao)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPaneProjeto.addTab("", jPanelFace);
@@ -609,7 +691,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -618,25 +700,38 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     private void jButtonVoltarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarFaceActionPerformed
         AtualizarTabelaFace(ambienteAtual);
+        jTextAreaDescricaoFace.setText("");
         jTabbedPaneProjeto.setSelectedIndex(3);
     }//GEN-LAST:event_jButtonVoltarFaceActionPerformed
 
-    private void jButtonFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFaceActionPerformed
+    private void jButtonSalvarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFaceActionPerformed
+        AtualizarTabelaFace(ambienteAtual);
+        double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText());
+        double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText());
+        List<Camada> camada = new CamadaDAO().ConsultarPorFace(faceAtual);
+                
+        Face face = new Face(faceAtual.getId(), jTextAreaDescricaoFace.getText(), 
+                             ambienteEditarId != null ? new AmbienteDAO().ConsultarAmbiente(ambienteEditarId) : new AmbienteDAO().ConsultarUltimo(),
+                             resistenciaExterna, new Calculo().ResistenciaTotal(resistenciaInterna, camada, resistenciaExterna) , resistenciaInterna);
+        new FaceDAO().SalvarFace(face, this, usuario);
+        
         jTabbedPaneProjeto.setSelectedIndex(3);
         jTabbedPaneProjeto.setTitleAt(4, "");
-    }//GEN-LAST:event_jButtonFaceActionPerformed
+        jTextAreaDescricaoFace.setText("");
+    }//GEN-LAST:event_jButtonSalvarFaceActionPerformed
 
     private void jButtonAdicionarCamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCamadaActionPerformed
-        DlgSelecionarMaterial dlg = new DlgSelecionarMaterial(this, usuario, faceEditar);
+        DlgSelecionarMaterial dlg = new DlgSelecionarMaterial(this, usuario, faceAtual);
         dlg.setVisible(true);
     }//GEN-LAST:event_jButtonAdicionarCamadaActionPerformed
 
     private void jButtonFinalizarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarFaceActionPerformed
-        this.dispose();
+        AvancarListaAmbiente(projetoAtual);
     }//GEN-LAST:event_jButtonFinalizarFaceActionPerformed
 
     private void jButtonAdicionarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFaceActionPerformed
         setTabelaCamada(false);
+        new CamadaDAO().popularTabela(jTableCamada, null);
         jTabbedPaneProjeto.setSelectedIndex(4);
         jTabbedPaneProjeto.setTitleAt(4, "Cadastro da Face");
         jLabelDadosFace.setText("Cadastro da Face");
@@ -681,36 +776,47 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     private void jButtonEditarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarFaceActionPerformed
         setTabelaCamada(false);
+        new CamadaDAO().popularTabela(jTableCamada, null);
         jTabbedPaneProjeto.setSelectedIndex(4);
         jTabbedPaneProjeto.setTitleAt(4, "Edição da Face");
         jLabelDadosFace.setText("Edição da Face");
         Face face = new FaceDAO().ConsultarFace((int)jTableFace.getValueAt(jTableFace.getSelectedRow(), 0));
         jTextAreaDescricaoFace.setText(face.getDescricao());
-        faceEditar = face;
+        faceAtual = face;
     }//GEN-LAST:event_jButtonEditarFaceActionPerformed
 
     private void jButtonRemoverFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverFaceActionPerformed
         Face face = new FaceDAO().ConsultarFace((int)jTableFace.getValueAt(jTableFace.getSelectedRow(), 0));
         new FaceDAO().ExcluirFace(face, usuario);
+        AtualizarTabelaFace(face.getAmbiente());
     }//GEN-LAST:event_jButtonRemoverFaceActionPerformed
 
     private void jButtonConfirmarDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDescricaoActionPerformed
-        Face face = new Face(faceEditar.getId(),jTextAreaDescricaoFace.getText(), ambienteEditarId != null ? new AmbienteDAO().ConsultarAmbiente(ambienteEditarId) : new AmbienteDAO().ConsultarUltimo());
+        Face face = new Face(faceAtual, jTextAreaDescricaoFace.getText(), 
+                             ambienteEditarId != null ? new AmbienteDAO().ConsultarAmbiente(ambienteEditarId) : new AmbienteDAO().ConsultarUltimo(),
+                             Double.valueOf(jFormattedTextFieldResistenciaExterna.getText()), Double.valueOf(jFormattedTextFieldResistenciaInterna.getText()));
         new FaceDAO().SalvarFace(face, this, usuario);      
     }//GEN-LAST:event_jButtonConfirmarDescricaoActionPerformed
 
     private void jButtonRemoverCamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverCamadaActionPerformed
         Camada camada = new CamadaDAO().ConsultarCamada((int)jTableCamada.getValueAt(jTableCamada.getSelectedRow(), 0));
         new CamadaDAO().ExcluirCamada(camada, usuario);
+        AtualizarTabelaCamada(camada.getFace());
     }//GEN-LAST:event_jButtonRemoverCamadaActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         Ambiente ambiente = new AmbienteDAO().ConsultarAmbiente((int)jTableAmbiente.getValueAt(jTableAmbiente.getSelectedRow(), 0));
         new AmbienteDAO().ExcluirAmbiente(ambiente, usuario);
+        AtualizarTabelAmbiente(ambiente.getProjeto());
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButtonEncerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonEncerarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButtonAdicionarAmbiente;
     private javax.swing.JButton jButtonAdicionarCamada;
@@ -720,14 +826,19 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private javax.swing.JButton jButtonConfirmarDescricao;
     private javax.swing.JButton jButtonEditarAmbiente;
     private javax.swing.JButton jButtonEditarFace;
-    private javax.swing.JButton jButtonFace;
+    private javax.swing.JButton jButtonEncerar;
     private javax.swing.JButton jButtonFinalizarFace;
     private javax.swing.JButton jButtonRemoverCamada;
     private javax.swing.JButton jButtonRemoverFace;
+    private javax.swing.JButton jButtonSalvarFace;
     private javax.swing.JButton jButtonVoltarCadastro;
     private javax.swing.JButton jButtonVoltarDadosProjeto;
     private javax.swing.JButton jButtonVoltarFace;
     private javax.swing.JButton jButtonVoltarListaAmbiente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldResistenciaExterna;
+    private javax.swing.JFormattedTextField jFormattedTextFieldResistenciaInterna;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -735,6 +846,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCamada;
     private javax.swing.JLabel jLabelDadosFace;
@@ -744,6 +856,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelFace;
     private javax.swing.JPanel jPanelListaFace;
+    private javax.swing.JRadioButton jRadioButtonJanela;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

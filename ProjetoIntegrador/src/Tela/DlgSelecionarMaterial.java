@@ -5,6 +5,7 @@
  */
 package Tela;
 
+import Apoio.Calculo;
 import DAO.CamadaDAO;
 import DAO.MaterialDAO;
 import Entidade.Camada;
@@ -19,7 +20,7 @@ import Entidade.Usuario;
  */
 public class DlgSelecionarMaterial extends javax.swing.JDialog {
 
-    JIFrameAmbiente jInternalFrame = new JIFrameAmbiente();
+    JIFrameAmbiente jIFrameAmbiente = new JIFrameAmbiente();
     Usuario usuario = new Usuario();
     Face face;
     /**
@@ -29,10 +30,10 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
         initComponents();       
         setLocationRelativeTo(this);
         setModal(true);
-        jInternalFrame = jif;
+        jIFrameAmbiente = jif;
         usuario = usuarios;
         face = faces;
-        jInternalFrame.setEnabled(true);
+        jIFrameAmbiente.setEnabled(true);
         new MaterialDAO().popularTabela(TabelaMaterial);
     }
 
@@ -122,13 +123,14 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         this.dispose();    
-        jInternalFrame.setEnabled(true);
+        jIFrameAmbiente.setEnabled(true);
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         Material material = new MaterialDAO().ConsultarMaterial((int)TabelaMaterial.getValueAt(TabelaMaterial.getSelectedRow(), 0));            
-        Camada camada = new Camada(null, material, face);
-        new CamadaDAO().SalvarCamada(camada, this, jInternalFrame, usuario);
+        Camada camada = new Camada(null, material, face, 
+                                   new Calculo().ResistenciaMaterial(material.getCondutividade(), material.getEspessura()));
+        new CamadaDAO().SalvarCamada(camada, this, jIFrameAmbiente, usuario);
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
 
 

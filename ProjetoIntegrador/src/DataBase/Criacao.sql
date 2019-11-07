@@ -15,8 +15,8 @@ create table material(
     tipo_id integer not null,
     cor_id integer not null,
     descricao varchar(100) not null,        
-    emissividade decimal(10,2) not null,
-    conducao_termica decimal(10,2) not null,
+    condutividade decimal(10,2) not null,
+    espessura decimal(10,2) not null,
     preco decimal(10,2),
     FOREIGN KEY (cor_id) REFERENCES cor_material(id),
     FOREIGN KEY (tipo_id) REFERENCES tipo_material(id)
@@ -86,15 +86,20 @@ create table ambiente(
 create table face(
     id serial primary key,
     descricao varchar(100),
-    abertura boolean,
-    carga_calor DECIMAL(10,2),
+    resistencia_interna DECIMAL(10,2) not null,
+    resistencia_externa DECIMAL(10,2) not null,
+    transmitancia_termica DECIMAL(10,2),
+    temperatura_solar DECIMAL(10,2),
+    abertura boolean not null,
+    densidade_fluxo_calor DECIMAL(10,2),
+    fluxo_calor DECIMAL(10,2),    
     ambiente_id int not null,
     FOREIGN KEY (ambiente_id) REFERENCES ambiente(id)
 );
 
 create table camada(
     id serial primary key,
-    resistencia_total DECIMAL(10,2),
+    resistencia DECIMAL(10,2) not null,
     face_id int not null,
     material_id int not null,
     FOREIGN KEY (face_id) REFERENCES face(id),

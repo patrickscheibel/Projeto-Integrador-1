@@ -5,6 +5,9 @@
  */
 package Apoio;
 
+import Entidade.Camada;
+import java.util.List;
+
 /**
  *
  * @author conti
@@ -24,13 +27,13 @@ public class Calculo {
     * rn - resistencias dos materiais
     * rsi - Resistencia superficial interna
     */
-    public float ResistenciaTotal(double rse, float[] rn, double rsi) {
-        float camadas = 0;
+    public float ResistenciaTotal(double rse, List<Camada> camadas, double rsi) {
+        float resistencia = 0;
         
-        for (float valor : rn) {
-            camadas += valor;
+        for (Camada camada : camadas) {
+            resistencia += camada.getResistencia();
         }    
-        return (float) (rse + camadas + rsi);
+        return (float) (rse + resistencia + rsi);
     }
       
     public float TransmitanciaTermica (float resistenciaTotal) {

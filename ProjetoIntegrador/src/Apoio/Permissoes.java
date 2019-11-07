@@ -8,6 +8,8 @@ package Apoio;
 import DAO.DAO;
 import Entidade.Usuario;
 import Tela.Apoio.DlgAviso;
+import Tela.JIFrameEmail;
+import Tela.JIFrameProjeto;
 import Tela.JIFrameTelaPrincipal;
 import Tela.JIframeConfiguracao;
 import Tela.JIframeCorMaterial;
@@ -100,6 +102,28 @@ public class Permissoes extends DAO{
         }
         if(VerificarPermissao("editar_configuracao", usuario.getGrupoPermissao().getId()) != true) {
             jif.DesativarEdicao();
+        }
+    }
+
+    public void Projeto(JIFrameTelaPrincipal telaPrincipal, JIFrameProjeto jif, Usuario usuario) {
+        if(VerificarPermissao("ver_projeto", usuario.getGrupoPermissao().getId()) == true){       
+            telaPrincipal.VerJInternalFrame(jif);
+        } else {
+            new DlgAviso("Permissão Negada");
+        }
+        if(VerificarPermissao("adicionar_projeto", usuario.getGrupoPermissao().getId()) != true) {
+            jif.DesativarAdicao();
+        }
+        if(VerificarPermissao("editar_projeto", usuario.getGrupoPermissao().getId()) != true) {
+            jif.DesativarEdicao();
+        }
+    }
+
+    public void Email(JIFrameTelaPrincipal telaPrincipal, JIFrameEmail jif, Usuario usuario) {
+           if(VerificarPermissao("ver_email", usuario.getGrupoPermissao().getId()) == true){       
+            telaPrincipal.VerJInternalFrame(jif);
+        } else {
+            new DlgAviso("Permissão Negada");
         }
     }
     

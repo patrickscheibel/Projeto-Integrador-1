@@ -5,6 +5,7 @@
  */
 package Entidade;
 
+import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,14 +36,18 @@ public class Camada  implements Serializable {
     @JoinColumn(name = "face_id", nullable = false)
     private Face face;
     
-    @Column(name = "resistencia_total")
-    private double resistenciaTotal;
+    @NotNull()
+    @Column(name = "resistencia")
+    private double resistencia;
 
-    public Camada(Integer id, Material material, Face face) {
+    public Camada(Integer id, Material material, Face face, double resistencia) {
         this.id = id;
         this.material = material;
         this.face = face;
+        this.resistencia = resistencia;
     }
+
+    
         
     public Camada() {}  
      
@@ -70,11 +75,11 @@ public class Camada  implements Serializable {
         this.face = face;
     }
 
-    public double getResistenciaTotal() {
-        return resistenciaTotal;
+    public double getResistencia() {
+        return resistencia;
     }
 
-    public void setResistenciaTotal(double resistenciaTotal) {
-        this.resistenciaTotal = resistenciaTotal;
+    public void setResistencia(double resistenciaTotal) {
+        this.resistencia = resistenciaTotal;
     }
 }

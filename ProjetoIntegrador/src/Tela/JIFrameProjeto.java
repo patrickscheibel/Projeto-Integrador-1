@@ -21,9 +21,21 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
      */
     public JIFrameProjeto(Usuario usuarios) {
         initComponents();
+        jTabbedPaneProjeto.setEnabled(false);
         new ProjetoDAO().popularTabela(jTableProjeto);
         usuario = usuarios;
     }
+    
+    public void DesativarEdicao(){
+        jButtonAdicionar.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }
+    
+    public void DesativarAdicao(){
+        jButtonAdicionar.setEnabled(false);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +46,7 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPaneProjeto = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jButtonEditar = new javax.swing.JButton();
@@ -136,17 +148,17 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Tabela", jPanel8);
+        jTabbedPaneProjeto.addTab("Tabela", jPanel8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPaneProjeto)
         );
 
         pack();
@@ -182,7 +194,7 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPaneProjeto;
     private javax.swing.JTable jTableProjeto;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,16 +47,17 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         jLabelUsuario = new javax.swing.JLabel();
         jButtonConfiguracao = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuMaterial = new javax.swing.JMenuItem();
-        jMenuUsuario = new javax.swing.JMenuItem();
+        jMenuMaterial = new javax.swing.JMenu();
+        jMenuMateriais = new javax.swing.JMenuItem();
         jMenuTipoMaterial = new javax.swing.JMenuItem();
         jMenuCorMaterial = new javax.swing.JMenuItem();
-        jMenuProjeto = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuProjeto = new javax.swing.JMenu();
+        jMenuProjetos = new javax.swing.JMenuItem();
+        jMenuEmail = new javax.swing.JMenu();
         jMenuEnviarEmail = new javax.swing.JMenuItem();
+        jMenuPermissao = new javax.swing.JMenu();
+        jMenuItemGrupoPemissao = new javax.swing.JMenuItem();
+        jMenuUsuario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -112,28 +113,20 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jDesktopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonConfiguracao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                 .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
 
-        jMenu4.setText("Cadastrar");
-
         jMenuMaterial.setText("Material");
-        jMenuMaterial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuMaterialActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuMaterial);
 
-        jMenuUsuario.setText("Usuário");
-        jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuMateriais.setText("Material");
+        jMenuMateriais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuUsuarioActionPerformed(evt);
+                jMenuMateriaisActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuUsuario);
+        jMenuMaterial.add(jMenuMateriais);
 
         jMenuTipoMaterial.setText("Tipo de Material");
         jMenuTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +134,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
                 jMenuTipoMaterialActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuTipoMaterial);
+        jMenuMaterial.add(jMenuTipoMaterial);
 
         jMenuCorMaterial.setText("Cor do Material");
         jMenuCorMaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +142,9 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
                 jMenuCorMaterialActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuCorMaterial);
+        jMenuMaterial.add(jMenuCorMaterial);
+
+        jMenuBar1.add(jMenuMaterial);
 
         jMenuProjeto.setText("Projeto");
         jMenuProjeto.addActionListener(new java.awt.event.ActionListener() {
@@ -157,26 +152,21 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
                 jMenuProjetoActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuProjeto);
 
-        jMenuBar1.add(jMenu4);
-
-        jMenu1.setText("Permissão");
-
-        jMenuItemGrupoPemissao.setText("Grupos de Permissões");
-        jMenuItemGrupoPemissao.addActionListener(new java.awt.event.ActionListener() {
+        jMenuProjetos.setText("Projeto");
+        jMenuProjetos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemGrupoPemissaoActionPerformed(evt);
+                jMenuProjetosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItemGrupoPemissao);
+        jMenuProjeto.add(jMenuProjetos);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuProjeto);
 
-        jMenu2.setText("Email");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuEmail.setText("Email");
+        jMenuEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                jMenuEmailActionPerformed(evt);
             }
         });
 
@@ -186,9 +176,29 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
                 jMenuEnviarEmailActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuEnviarEmail);
+        jMenuEmail.add(jMenuEnviarEmail);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuEmail);
+
+        jMenuPermissao.setText("Permissão");
+
+        jMenuItemGrupoPemissao.setText("Grupos de Permissões");
+        jMenuItemGrupoPemissao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGrupoPemissaoActionPerformed(evt);
+            }
+        });
+        jMenuPermissao.add(jMenuItemGrupoPemissao);
+
+        jMenuUsuario.setText("Usuário");
+        jMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuUsuarioActionPerformed(evt);
+            }
+        });
+        jMenuPermissao.add(jMenuUsuario);
+
+        jMenuBar1.add(jMenuPermissao);
 
         setJMenuBar(jMenuBar1);
 
@@ -200,7 +210,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPanel)
+            .addComponent(jDesktopPanel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -212,10 +222,10 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         jf.setVisible(true);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jMenuMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMaterialActionPerformed
+    private void jMenuMateriaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaisActionPerformed
         JIframeMaterial jifMaterial = new JIframeMaterial(usuario);     
         new Permissoes().Material(this, jifMaterial, usuario);
-    }//GEN-LAST:event_jMenuMaterialActionPerformed
+    }//GEN-LAST:event_jMenuMateriaisActionPerformed
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
         JIframeUsuario jifUsuario = new JIframeUsuario(usuario);    
@@ -242,21 +252,23 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
         new Permissoes().GrupoPermissao(this, jifGrupoPermissao, usuario);
     }//GEN-LAST:event_jMenuItemGrupoPemissaoActionPerformed
 
-    private void jMenuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetoActionPerformed
-        //Adicionar no controle permissoes
-        JIFrameProjeto jif = new JIFrameProjeto(usuario);
-        VerJInternalFrame(jif);
-    }//GEN-LAST:event_jMenuProjetoActionPerformed
+    private void jMenuProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetosActionPerformed
+        JIFrameProjeto jifProjeto = new JIFrameProjeto(usuario);
+        new Permissoes().Projeto(this, jifProjeto, usuario);
+    }//GEN-LAST:event_jMenuProjetosActionPerformed
 
     private void jMenuEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnviarEmailActionPerformed
-        //Adicionar no controle permissoes
-        JIFrameEmail jif = new JIFrameEmail();
-        VerJInternalFrame(jif);   
+        JIFrameEmail jifEmail = new JIFrameEmail();
+        new Permissoes().Email(this, jifEmail, usuario);
     }//GEN-LAST:event_jMenuEnviarEmailActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void jMenuEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmailActionPerformed
 
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jMenuEmailActionPerformed
+
+    private void jMenuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetoActionPerformed
+   
+    }//GEN-LAST:event_jMenuProjetoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,15 +311,16 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPanel;
     private javax.swing.JLabel jLabelEmpresa;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCorMaterial;
+    private javax.swing.JMenu jMenuEmail;
     private javax.swing.JMenuItem jMenuEnviarEmail;
     private javax.swing.JMenuItem jMenuItemGrupoPemissao;
-    private javax.swing.JMenuItem jMenuMaterial;
-    private javax.swing.JMenuItem jMenuProjeto;
+    private javax.swing.JMenuItem jMenuMateriais;
+    private javax.swing.JMenu jMenuMaterial;
+    private javax.swing.JMenu jMenuPermissao;
+    private javax.swing.JMenu jMenuProjeto;
+    private javax.swing.JMenuItem jMenuProjetos;
     private javax.swing.JMenuItem jMenuTipoMaterial;
     private javax.swing.JMenuItem jMenuUsuario;
     // End of variables declaration//GEN-END:variables

@@ -36,11 +36,11 @@ public class Material  implements Serializable {
     @JoinColumn(name = "cor_id", nullable = false)
     private CorMaterial corMaterial;
 
-    @Column(name = "emissividade", precision = 10)
-    private double emissividade;
+    @Column(name = "condutividade", precision = 10)
+    private double condutividade;
 
-    @Column(name = "conducao_termica", precision = 10)
-    private double conducaoTermica;
+    @Column(name = "espessura", precision = 10)
+    private double espessura;
     
     @Column(name = "preco", precision = 10)
     private double preco;
@@ -48,21 +48,21 @@ public class Material  implements Serializable {
     public Material() {
     }
 
-    public Material(Integer id, TipoMaterial tipoMaterial, String descricao, CorMaterial corMaterial, double emissividade, double conducaoTermica, double preco) {
+    public Material(Integer id, TipoMaterial tipoMaterial, String descricao, CorMaterial corMaterial, double condutividade, double espessura, double preco) {
         this.id = id;
         this.tipoMaterial = tipoMaterial;
         this.descricao = descricao;
         this.corMaterial = corMaterial;
-        this.emissividade = emissividade;
-        this.conducaoTermica = conducaoTermica;
+        this.condutividade = condutividade;
+        this.espessura = espessura;
         this.preco = preco;
     }
 
     @Override
     public String toString() {
-        return "Material{" + "id=" + id + ", tipoMaterial=" + tipoMaterial + ", descricao=" + descricao + ", corMaterial=" + corMaterial + ", emissividade=" + emissividade + ", conducaoTermica=" + conducaoTermica + ", preco=" + preco + '}';
+        return "Material{" + "id=" + id + ", tipoMaterial=" + tipoMaterial + ", descricao=" + descricao + ", corMaterial=" + corMaterial + ", condutividade=" + condutividade + ", espessura=" + espessura + ", preco=" + preco + '}';
     }
-       
+   
     public Integer getId() {
         return this.id;
     }
@@ -94,22 +94,22 @@ public class Material  implements Serializable {
         this.corMaterial = corMaterial;
     }
 
-    public double getEmissividade() {
-        return emissividade;
+    public double getCondutividade() {
+        return condutividade;
     }
 
-    public void setEmissividade(double emissividade) {
-        this.emissividade = emissividade;
+    public void setCondutividade(double condutividade) {
+        this.condutividade = condutividade;
     }
 
-    public double getConducaoTermica() {
-        return conducaoTermica;
+    public double getEspessura() {
+        return espessura;
     }
 
-    public void setConducaoTermica(double conducaoTermica) {
-        this.conducaoTermica = conducaoTermica;
+    public void setEspessura(double espessura) {
+        this.espessura = espessura;
     }
-
+    
     public double getPreco() {
         return preco;
     }

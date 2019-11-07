@@ -5,14 +5,11 @@
  */
 package Tela;
 
-import DAO.CorMaterialDAO;
 import Entidade.Material;
 import DAO.MaterialDAO;
-import DAO.TipoMaterialDAO;
 import Entidade.CorMaterial;
 import Entidade.TipoMaterial;
 import Entidade.Usuario;
-import java.math.BigDecimal;
 
 /**
  *
@@ -94,8 +91,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextEmissividade = new javax.swing.JFormattedTextField();
-        jFormattedTextConducaoTermica = new javax.swing.JFormattedTextField();
+        jFormattedTextCondutividade = new javax.swing.JFormattedTextField();
+        jFormattedTextEspessura = new javax.swing.JFormattedTextField();
         jTextFieldTipo = new javax.swing.JTextField();
         jButtonBuscarTipo = new javax.swing.JButton();
         jTextFieldCor = new javax.swing.JTextField();
@@ -154,7 +151,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -218,13 +215,13 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
 
         jLabel8.setText("Cor: *");
 
-        jLabel9.setText("Emissividade:");
+        jLabel9.setText("Condutividade:");
 
-        jLabel10.setText("Conducao Termica:");
+        jLabel10.setText("Espessura:");
 
-        jFormattedTextEmissividade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
+        jFormattedTextCondutividade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
-        jFormattedTextConducaoTermica.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
+        jFormattedTextEspessura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
 
         jButtonBuscarTipo.setText("Buscar");
         jButtonBuscarTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +247,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                         .addGap(116, 116, 116))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -265,11 +262,11 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                                     .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextEmissividade)
+                                    .addComponent(jFormattedTextCondutividade)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jFormattedTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jFormattedTextConducaoTermica)))
+                                    .addComponent(jFormattedTextEspessura)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -324,11 +321,11 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jFormattedTextEmissividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextCondutividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jFormattedTextConducaoTermica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextEspessura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,8 +368,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jTextFieldTipo.setText("");
         jTextFieldDescricao.setText("");
         jTextFieldCor.setText("");
-        jFormattedTextEmissividade.setText("");
-        jFormattedTextConducaoTermica.setText("");
+        jFormattedTextCondutividade.setText("");
+        jFormattedTextEspessura.setText("");
         jFormattedTextFieldPreco.setText("");
         //Muda de aba
         jTabbedPaneMaterial.setSelectedIndex(1);
@@ -388,8 +385,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
           
         material.setId(idEditar);       
         material.setDescricao(jTextFieldDescricao.getText());        
-        material.setEmissividade(!jFormattedTextEmissividade.getText().isEmpty() ? Double.valueOf(jFormattedTextEmissividade.getText()) : 0);
-        material.setConducaoTermica(!jFormattedTextConducaoTermica.getText().isEmpty() ? Double.valueOf(jFormattedTextConducaoTermica.getText()) : 0);
+        material.setCondutividade(!jFormattedTextCondutividade.getText().isEmpty() ? Double.valueOf(jFormattedTextCondutividade.getText()) : 0);
+        material.setEspessura(!jFormattedTextEspessura.getText().isEmpty() ? Double.valueOf(jFormattedTextEspessura.getText()) : 0);
         material.setPreco(!jFormattedTextFieldPreco.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldPreco.getText()) : 0);
         
         new MaterialDAO().SalvarMaterial(material, this, usuario);
@@ -404,8 +401,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
         jTextFieldTipo.setText(material.getTipoMaterial().getDescricao());
         jTextFieldDescricao.setText(material.getDescricao());
         jTextFieldCor.setText(material.getCorMaterial().getDescricao());
-        jFormattedTextEmissividade.setText("" + material.getEmissividade());
-        jFormattedTextConducaoTermica.setText("" + material.getConducaoTermica());
+        jFormattedTextCondutividade.setText("" + material.getCondutividade());
+        jFormattedTextEspessura.setText("" + material.getEspessura());
         jFormattedTextFieldPreco.setText("" + material.getPreco());
         
         jLabelLegendaMaterial.setText("Edição de Material");
@@ -476,8 +473,8 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JFormattedTextField jFormattedTextConducaoTermica;
-    private javax.swing.JFormattedTextField jFormattedTextEmissividade;
+    private javax.swing.JFormattedTextField jFormattedTextCondutividade;
+    private javax.swing.JFormattedTextField jFormattedTextEspessura;
     private javax.swing.JFormattedTextField jFormattedTextFieldPreco;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
