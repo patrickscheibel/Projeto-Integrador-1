@@ -53,10 +53,10 @@ public class DlgSelecionarMaterial extends javax.swing.JDialog {
         TabelaMaterial = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Selecionar Pessoa");
+        setTitle("Selecionar Material");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Seleção da Material");
+        jLabel4.setText("Seleção de Material");
 
         jButtonSelecionar.setText("Selecionar");
         jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {

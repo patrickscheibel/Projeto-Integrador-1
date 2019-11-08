@@ -28,10 +28,10 @@ public class Ambiente  implements Serializable {
      private Integer id;
      
      @Column(name = "descricao", length = 100)
-     private String descricao;
+     private String descricao;    
      
-     @Column(name = "carga_calor", precision = 10)
-     private double cargaCalor;
+     @Column(name = "transmitancia_termica")
+     private double transmitanciaTermica;
      
     @ManyToOne()
     @JoinColumn(name = "projeto_id", nullable = false)
@@ -39,18 +39,19 @@ public class Ambiente  implements Serializable {
      
      
     public Ambiente() {}  
-    
-    public Ambiente(Integer id, String descricao, Projeto projeto) {
-       this.id = id;
-       this.descricao = descricao;
-       this.projeto = projeto;    
+
+    public Ambiente(Integer id, String descricao, double transmitanciaTermica, Projeto projeto) {
+        this.id = id;
+        this.descricao = descricao;
+        this.transmitanciaTermica = transmitanciaTermica;
+        this.projeto = projeto;
     }
 
     @Override
     public String toString() {
-        return "Ambiente{" + "id=" + id + ", descricao=" + descricao + ", cargaCalor=" + cargaCalor + ", projeto=" + projeto + '}';
+        return "Ambiente{" + "id=" + id + ", descricao=" + descricao + ", transmitanciaTermica=" + transmitanciaTermica + ", projeto=" + projeto + '}';
     }
-    
+      
     public Integer getId() {
         return this.id;
     }
@@ -66,14 +67,6 @@ public class Ambiente  implements Serializable {
         this.descricao = descricao;
     }
 
-    public double getCargaCalor() {
-        return cargaCalor;
-    }
-
-    public void setCargaCalor(double cargaCalor) {
-        this.cargaCalor = cargaCalor;
-    }
-
     public Projeto getProjeto() {
         return projeto;
     }
@@ -81,4 +74,13 @@ public class Ambiente  implements Serializable {
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
     } 
+
+    public double getTransmitanciaTermica() {
+        return transmitanciaTermica;
+    }
+
+    public void setTransmitanciaTermica(double transmitanciaTermica) {
+        this.transmitanciaTermica = transmitanciaTermica;
+    }
+       
 }

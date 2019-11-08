@@ -86,7 +86,7 @@ public class AmbienteDAO extends DAO{
         Object[] cabecalho = new Object[3];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
-        cabecalho[2] = "Carga Calor";
+        cabecalho[2] = "Transmitancia Termica";
        
         // cria matriz de acordo com nº de registros da tabela
         try {
@@ -106,7 +106,7 @@ public class AmbienteDAO extends DAO{
                 
                 dadosTabela[lin][0] = ambiente.getId();
                 dadosTabela[lin][1] = ambiente.getDescricao(); 
-                dadosTabela[lin][2] = ambiente.getCargaCalor();
+                dadosTabela[lin][2] = ambiente.getTransmitanciaTermica();
                              
                 lin++;
             }

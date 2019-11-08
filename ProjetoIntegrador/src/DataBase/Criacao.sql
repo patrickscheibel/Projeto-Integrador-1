@@ -78,7 +78,7 @@ create table projeto(
 create table ambiente(
     id serial primary key,
     descricao varchar(100), 
-    carga_calor DECIMAL(10,2),
+    transmitancia_termica DECIMAL(10,2),
     projeto_id int not null,
     FOREIGN KEY (projeto_id) REFERENCES projeto(id)
 );
@@ -88,6 +88,7 @@ create table face(
     descricao varchar(100),
     resistencia_interna DECIMAL(10,2) not null,
     resistencia_externa DECIMAL(10,2) not null,
+    resistencia_total DECIMAL(10,2) not null,
     transmitancia_termica DECIMAL(10,2),
     temperatura_solar DECIMAL(10,2),
     abertura boolean not null,

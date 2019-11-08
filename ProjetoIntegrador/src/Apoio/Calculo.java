@@ -6,6 +6,7 @@
 package Apoio;
 
 import Entidade.Camada;
+import Entidade.Face;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class Calculo {
         
         for (Camada camada : camadas) {
             resistencia += camada.getResistencia();
+            System.out.println("C: " + camada.getResistencia());
         }    
         return (float) (rse + resistencia + rsi);
     }
@@ -40,7 +42,7 @@ public class Calculo {
         return 1 / resistenciaTotal;
     }
     
-    public float DensidadeFluxoInverno (float transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
+    public float DensidadeFluxoComSol (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
         return (float) (transmitanciaTermica * (temperaturaInterna - temperaturaExterna));       
     }
     
@@ -48,15 +50,15 @@ public class Calculo {
         return (float) (absorvidade * radiacaoSolar * resistenciaSuperficial);
     }
     
-    public float DensidadeFluxoVerao (float transmitanciaTermica, 
-                                      float temperaturaSolarAr,  
+    public float DensidadeFluxoSemSol (double transmitanciaTermica, 
+                                      double temperaturaSolarAr,  
                                       double temperaturaInterna, 
                                       double temperaturaExterna) {       
         return (float) (transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna));
     }
     
     /* A densidadeFluxoCalor, muda dependo do clima, DensidadeFluxoInverno ou DensidadeFluxoVerao */
-    public float FluxoCalor (float densidadeFluxoCalor, double areaFechamento) {       
+    public float FluxoCalor (double densidadeFluxoCalor, double areaFechamento) {       
         return (float) (densidadeFluxoCalor * areaFechamento);
     }
     
@@ -69,21 +71,21 @@ public class Calculo {
         return (float) (transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente);
     }
     
-    //O vetorValor pode estar vazio
-    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
-        float fluxosCalor = 0;
-        float vetorValores = 0;
-        
-        for (float valor : fluxoCalor) {
-            fluxosCalor += valor;
-        }
-        for (float valor : vetorValor) {
-            vetorValores += valor;
-        }
-        return fluxosCalor + vetorValores;
-    }
+//    //O vetorValor pode estar vazio
+//    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
+//        float fluxosCalor = 0;
+//        float vetorValores = 0;
+//        
+//        for (float valor : fluxoCalor) {
+//            fluxosCalor += valor;
+//        }
+//        for (float valor : vetorValor) {
+//            vetorValores += valor;
+//        }
+//        return fluxosCalor + vetorValores;
+//    }
 		
-	public float ResistenciaTotalTelhado(double rae, float[] rn, double rai) {
+    public float ResistenciaTotalTelhado(double rae, float[] rn, double rai) {
         float camadas = 0;
         
         for (float valor : rn) {
@@ -96,11 +98,11 @@ public class Calculo {
         return 1 / resistenciaTotalTelhado;
     }
 
-	public float ArCondicionado(float[] somatoriaQ, double valorEspecifico) {
+    public float ArCondicionado(List<Face> somatoriaQ, double valorEspecifico) {
         float camadas = 0;
         
-        for (float valor : somatoriaQ) {
-            camadas += valor;
+        for (Face face : somatoriaQ) {
+            camadas += face.getFluxoCalor();
         }    
         return (float) (camadas * valorEspecifico);
     }    

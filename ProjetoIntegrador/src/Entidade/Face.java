@@ -42,6 +42,9 @@ public class Face  implements Serializable {
     @Column(name = "resistencia_externa")
     private double resistenciaExterna;
     
+    @Column(name = "resistencia_total")
+    private double resistenciaTotal;
+    
     @Column(name = "transmitancia_termica")
     private double transmitanciaTermica;
     
@@ -64,20 +67,26 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double transmitanciaTermica, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double resistenciaTotal, double transmitanciaTermica, double temperaturaSolar, boolean abertura, double densidadeFluxoCalor, double fluxoCalor, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
         this.resistenciaExterna = resistenciaExterna;
+        this.resistenciaTotal = resistenciaTotal;
         this.transmitanciaTermica = transmitanciaTermica;
+        this.temperaturaSolar = temperaturaSolar;
+        this.abertura = abertura;
+        this.densidadeFluxoCalor = densidadeFluxoCalor;
+        this.fluxoCalor = fluxoCalor;
         this.ambiente = ambiente;
     }
-   
-    public Face(Face face, String descricao, double resistenciaInterna, double resistenciaExterna, Ambiente ambiente) {
-        this.id = face.getId();
+
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, boolean abertura, Ambiente ambiente) {
+        this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
         this.resistenciaExterna = resistenciaExterna;
+        this.abertura = abertura;
         this.ambiente = ambiente;
     }
 
@@ -165,7 +174,13 @@ public class Face  implements Serializable {
     public void setAbertura(boolean abertura) {
         this.abertura = abertura;
     }
-    
-    
-    
+
+    public double getResistenciaTotal() {
+        return resistenciaTotal;
+    }
+
+    public void setResistenciaTotal(double resistenciaTotal) {
+        this.resistenciaTotal = resistenciaTotal;
+    }
+   
 }
