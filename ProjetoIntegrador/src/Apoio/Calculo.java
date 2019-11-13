@@ -33,7 +33,6 @@ public class Calculo {
         
         for (Camada camada : camadas) {
             resistencia += camada.getResistencia();
-            System.out.println("C: " + camada.getResistencia());
         }    
         return (float) (rse + resistencia + rsi);
     }
@@ -51,9 +50,9 @@ public class Calculo {
     }
     
     public float DensidadeFluxoSemSol (double transmitanciaTermica, 
-                                      double temperaturaSolarAr,  
-                                      double temperaturaInterna, 
-                                      double temperaturaExterna) {       
+                                       double temperaturaSolarAr,  
+                                       double temperaturaInterna, 
+                                       double temperaturaExterna) {       
         return (float) (transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna));
     }
     

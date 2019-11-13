@@ -81,4 +81,4 @@ insert into tipo_material values(default, 'Madeira');
 insert into cor_material values(default, 'Escura',0,0);
 
 --Material:
-insert into material values(default, 1, 'Madeira Tatajuba', 1,5,7,10);
+insert into material values(default, 1, 1, 'Madeira Tatajuba',5,7,10);

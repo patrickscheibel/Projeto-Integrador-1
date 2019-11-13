@@ -167,7 +167,7 @@ public class Face  implements Serializable {
         this.densidadeFluxoCalor = densidadeFluxoCalor;
     }
 
-    public boolean isAbertura() {
+    public boolean getAbertura() {
         return abertura;
     }
 

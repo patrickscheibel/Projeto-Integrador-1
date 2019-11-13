@@ -16,29 +16,29 @@ import java.util.List;
  */
 public class TesteCalculo {
        
-      public void Testar() {
-        double resistenciaExterna = 5;
-        double resistenciaInterna = 8;
-        
-        List<Camada> camada = new CamadaDAO().ConsultarPorFace(new FaceDAO().ConsultarFace(?));
-            System.out.println("Camadas: " + camada);
-        double resistenciaTotal = new Calculo().ResistenciaTotal(resistenciaInterna, camada, resistenciaExterna); 
-            System.out.println("resistenciaTotal: " + resistenciaTotal);
-        double transmitanciaTermica = new Calculo().TransmitanciaTermica((float) resistenciaTotal);
-            System.out.println("transmitanciaTermica: " + transmitanciaTermica);
-        double temperaturaSolar = new Calculo().TemperaturaSolarAr(0.20, 511, 0.04);
-            System.out.println("temperaturaSolar: " + temperaturaSolar);
-        boolean abertura = false;
-        double densidadeFluxoCalor = 0;
-        if(abertura){
-            densidadeFluxoCalor = new Calculo().DensidadeFluxoComSol(transmitanciaTermica, 5, 9);     
-        } else {
-            densidadeFluxoCalor = new Calculo().DensidadeFluxoSemSol(transmitanciaTermica, temperaturaSolar, 5, 9);
-        }
-            System.out.println("densidadeFluxoCalor: " + densidadeFluxoCalor);
-        double fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, 5.15);
-//            System.out.println("fluxoCalor: " + fluxoCalor);
-      }
+//      public void Testar() {
+//        double resistenciaExterna = 5;
+//        double resistenciaInterna = 8;
+//        
+//        List<Camada> camada = new CamadaDAO().ConsultarPorFace(new FaceDAO().ConsultarFace(?));
+//            System.out.println("Camadas: " + camada);
+//        double resistenciaTotal = new Calculo().ResistenciaTotal(resistenciaInterna, camada, resistenciaExterna); 
+//            System.out.println("resistenciaTotal: " + resistenciaTotal);
+//        double transmitanciaTermica = new Calculo().TransmitanciaTermica((float) resistenciaTotal);
+//            System.out.println("transmitanciaTermica: " + transmitanciaTermica);
+//        double temperaturaSolar = new Calculo().TemperaturaSolarAr(0.20, 511, 0.04);
+//            System.out.println("temperaturaSolar: " + temperaturaSolar);
+//        boolean abertura = false;
+//        double densidadeFluxoCalor = 0;
+//        if(abertura){
+//            densidadeFluxoCalor = new Calculo().DensidadeFluxoComSol(transmitanciaTermica, 5, 9);     
+//        } else {
+//            densidadeFluxoCalor = new Calculo().DensidadeFluxoSemSol(transmitanciaTermica, temperaturaSolar, 5, 9);
+//        }
+//            System.out.println("densidadeFluxoCalor: " + densidadeFluxoCalor);
+//        double fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, 5.15);
+////            System.out.println("fluxoCalor: " + fluxoCalor);
+//      }
 //    public void Inverno() {
 //        System.out.println("Inverno \n");
 //        
