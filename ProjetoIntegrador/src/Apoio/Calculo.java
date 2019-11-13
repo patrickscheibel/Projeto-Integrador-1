@@ -62,7 +62,7 @@ public class Calculo {
     }
     
     // Caso seja usado vidro
-    public float FluxoCalorVidro (float transmitanciaTermica, 
+    public float FluxoCalorVidro (double transmitanciaTermica, 
                                   double temperaturaInterna, 
                                   double temperaturaExterna, 
                                   double fatorSolar, 
@@ -70,19 +70,19 @@ public class Calculo {
         return (float) (transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente);
     }
     
-//    //O vetorValor pode estar vazio
-//    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
-//        float fluxosCalor = 0;
-//        float vetorValores = 0;
-//        
-//        for (float valor : fluxoCalor) {
-//            fluxosCalor += valor;
-//        }
-//        for (float valor : vetorValor) {
-//            vetorValores += valor;
-//        }
-//        return fluxosCalor + vetorValores;
-//    }
+    /* O vetorValor pode estar vazio */
+    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
+        float fluxosCalor = 0;
+        float vetorValores = 0;
+        
+        for (float valor : fluxoCalor) {
+            fluxosCalor += valor;
+        }
+        for (float valor : vetorValor) {
+            vetorValores += valor;
+        }
+        return fluxosCalor + vetorValores;
+    }
 		
     public float ResistenciaTotalTelhado(double rae, float[] rn, double rai) {
         float camadas = 0;
@@ -101,7 +101,7 @@ public class Calculo {
         float camadas = 0;
         
         for (Face face : somatoriaQ) {
-            camadas += face.getFluxoCalor();
+            camadas += (face.getFluxoCalor() + face.getFluxoCalorVidro());
         }    
         return (float) (camadas * valorEspecifico);
     }    

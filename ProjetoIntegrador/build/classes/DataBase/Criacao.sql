@@ -88,12 +88,15 @@ create table face(
     descricao varchar(100),
     resistencia_interna DECIMAL(10,2) not null,
     resistencia_externa DECIMAL(10,2) not null,
-    resistencia_total DECIMAL(10,2) not null,
+    resistencia_total DECIMAL(10,2),
     transmitancia_termica DECIMAL(10,2),
     temperatura_solar DECIMAL(10,2),
-    abertura boolean not null,
+    metro_quadrado DECIMAL(10,2),
     densidade_fluxo_calor DECIMAL(10,2),
+    fator_solar DECIMAL(10,2),
+    radiacao_solar_incidente DECIMAL(10,2),
     fluxo_calor DECIMAL(10,2),    
+    fluxo_calor_vidro DECIMAL(10,2),    
     ambiente_id int not null,
     FOREIGN KEY (ambiente_id) REFERENCES ambiente(id)
 );

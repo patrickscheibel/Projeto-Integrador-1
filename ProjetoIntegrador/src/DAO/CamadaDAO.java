@@ -150,4 +150,22 @@ public class CamadaDAO extends DAO{
          }
          return camada;
      }    
+
+    public boolean ConsultarCamadaPorMaterial(int id, String material) {
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from Camada camada where camada.face.id = " + id + 
+                                                       " and camada.material.descricao like '%" + material + "%'");
+            if (q.list() != null) {
+                return true;
+            }
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return false;
+    }
 }

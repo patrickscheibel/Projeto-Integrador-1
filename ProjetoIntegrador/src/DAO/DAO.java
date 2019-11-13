@@ -25,15 +25,12 @@ public class DAO {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Transaction t = sessao.beginTransaction();
-
-            if(object != null){                             
-                sessao.save(object);                     
-                t.commit();    
-                new AuditoriaDAO().SalvarAuditoria("Insert", object.toString(), usuario);
-                return true;
-            } else {
-                System.out.println("I am batman");
-            }        
+                        
+            sessao.save(object);                     
+            t.commit();    
+            new AuditoriaDAO().SalvarAuditoria("Insert", object.toString(), usuario);
+            return true;     
+            
         } catch (HibernateException e) {
             e.printStackTrace();
             new LogDAO().SalvarLog("Insert", e.getCause().toString(), object.toString(), usuario);

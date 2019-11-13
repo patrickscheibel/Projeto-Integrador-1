@@ -51,14 +51,23 @@ public class Face  implements Serializable {
     @Column(name = "temperatura_solar")
     private double temperaturaSolar;
     
-    @Column(name = "abertura")
-    private boolean abertura;
+    @Column(name = "metro_quadrado")
+    private double metroQuadrado;
     
     @Column(name = "densidade_fluxo_calor")
     private double densidadeFluxoCalor;
     
+    @Column(name = "fator_solar")
+    private double fatorSolar;
+    
+    @Column(name = "radiacao_solar_incidente")
+    private double radiacaoSolarIncidente;
+    
     @Column(name = "fluxo_calor")
     private double fluxoCalor;
+    
+    @Column(name = "fluxo_calor_vidro")
+    private double fluxoCalorVidro;
     
     @ManyToOne()
     @JoinColumn(name = "ambiente_id", nullable = false)
@@ -67,7 +76,7 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double resistenciaTotal, double transmitanciaTermica, double temperaturaSolar, boolean abertura, double densidadeFluxoCalor, double fluxoCalor, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double resistenciaTotal, double transmitanciaTermica, double temperaturaSolar, double metroQuadrado, double densidadeFluxoCalor, double fatorSolar, double radiacaoSolarIncidente, double fluxoCalor, double fluxoCalorVidro, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
@@ -75,18 +84,23 @@ public class Face  implements Serializable {
         this.resistenciaTotal = resistenciaTotal;
         this.transmitanciaTermica = transmitanciaTermica;
         this.temperaturaSolar = temperaturaSolar;
-        this.abertura = abertura;
+        this.metroQuadrado = metroQuadrado;
         this.densidadeFluxoCalor = densidadeFluxoCalor;
+        this.fatorSolar = fatorSolar;
+        this.radiacaoSolarIncidente = radiacaoSolarIncidente;
         this.fluxoCalor = fluxoCalor;
+        this.fluxoCalorVidro = fluxoCalorVidro;
         this.ambiente = ambiente;
     }
 
-    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, boolean abertura, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double metrosQuadrado, double fatorSolar, double radiacaoSolarIncidente, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
         this.resistenciaExterna = resistenciaExterna;
-        this.abertura = abertura;
+        this.metroQuadrado = metrosQuadrado;
+        this.fatorSolar = fatorSolar;
+        this.radiacaoSolarIncidente = radiacaoSolarIncidente;
         this.ambiente = ambiente;
     }
 
@@ -167,12 +181,12 @@ public class Face  implements Serializable {
         this.densidadeFluxoCalor = densidadeFluxoCalor;
     }
 
-    public boolean getAbertura() {
-        return abertura;
+    public double getMetrosQuadrado() {
+        return metroQuadrado;
     }
 
-    public void setAbertura(boolean abertura) {
-        this.abertura = abertura;
+    public void setMetrosQuadrado(double abertura) {
+        this.metroQuadrado = abertura;
     }
 
     public double getResistenciaTotal() {
@@ -182,5 +196,37 @@ public class Face  implements Serializable {
     public void setResistenciaTotal(double resistenciaTotal) {
         this.resistenciaTotal = resistenciaTotal;
     }
-   
+
+    public double getFatorSolar() {
+        return fatorSolar;
+    }
+
+    public void setFatorSolar(double fatorSolar) {
+        this.fatorSolar = fatorSolar;
+    }
+
+    public double getRadiacaoSolarIncidente() {
+        return radiacaoSolarIncidente;
+    }
+
+    public void setRadiacaoSolarIncidente(double radiacaoSolarIncidente) {
+        this.radiacaoSolarIncidente = radiacaoSolarIncidente;
+    }
+
+    public double getMetroQuadrado() {
+        return metroQuadrado;
+    }
+
+    public void setMetroQuadrado(double metroQuadrado) {
+        this.metroQuadrado = metroQuadrado;
+    }
+
+    public double getFluxoCalorVidro() {
+        return fluxoCalorVidro;
+    }
+
+    public void setFluxoCalorVidro(double fluxoCalorVidro) {
+        this.fluxoCalorVidro = fluxoCalorVidro;
+    }
+       
 }

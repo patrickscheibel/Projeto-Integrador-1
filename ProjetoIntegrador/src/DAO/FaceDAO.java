@@ -29,8 +29,10 @@ public class FaceDAO extends DAO{
     
     public void SalvarFace(Face face, JIFrameAmbiente jIFrameProjeto, Usuario usuario){
         JIFrameAmbiente jif = jIFrameProjeto;
-        if(!face.getDescricao().isEmpty() && face.getResistenciaInterna() > 0 && face.getResistenciaExterna() > 0){
+        if(!face.getDescricao().isEmpty() && face.getMetrosQuadrado() > 0 && face.getResistenciaInterna() > 0 && face.getResistenciaExterna() > 0 && face.getFatorSolar() > 0 && face.getRadiacaoSolarIncidente() > 0){
             if(face.getId() == null){
+                    System.out.println("face: " + face);
+                    System.out.println("usu: " + usuario);
                 if(Salvar(face, usuario) == true) {
                     jif.SalvarFace(face);
                 } else {
@@ -62,7 +64,6 @@ public class FaceDAO extends DAO{
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
-
             org.hibernate.Query q = sessao.createQuery("from Face face where face.ambiente.id = " + ambiente.getId());
             resultado = q.list();
 
@@ -79,15 +80,16 @@ public class FaceDAO extends DAO{
         List<Face> lista = ConsultarPorAmbiente(ambiente);
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[2];
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "Id";
         cabecalho[1] = "Descrição";
+        cabecalho[2] = "Fluxo de Calor";
         
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][2];
+            dadosTabela = new Object[lista.size()][3];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar os Faces: " + e);
@@ -102,6 +104,7 @@ public class FaceDAO extends DAO{
                 
                 dadosTabela[lin][0] = face.getId();
                 dadosTabela[lin][1] = face.getDescricao();
+                dadosTabela[lin][2] = face.getFluxoCalor();
                
 
                 lin++;

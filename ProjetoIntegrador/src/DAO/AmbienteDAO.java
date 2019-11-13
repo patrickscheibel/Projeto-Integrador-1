@@ -50,6 +50,19 @@ public class AmbienteDAO extends DAO{
             new DlgAviso("Descrição Incorreta ou invalida");
         }
     }
+    public void EditarAmbiente(Ambiente ambiente, JIFrameAmbiente jIframeProjeto, Usuario usuario){
+        JIFrameAmbiente jif = jIframeProjeto;
+        if(!ambiente.getDescricao().isEmpty() && ambiente.getProjeto()!= null){
+            
+            if(Atualizar(ambiente, usuario) == true){
+                jif.AvancarListaAmbiente(ambiente.getProjeto());
+            } else {
+                new DlgAviso("Descrição deve ter no maximo 100 caracteres");
+            }                      
+        } else {
+            new DlgAviso("Descrição Incorreta ou invalida");
+        }
+    }
     
     public void ExcluirAmbiente(Ambiente ambiente, Usuario usuario){
         if(ambiente != null && usuario != null){        

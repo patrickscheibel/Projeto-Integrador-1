@@ -115,6 +115,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel12 = new javax.swing.JLabel();
         jTabbedPaneProjeto = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabelProjeto = new javax.swing.JLabel();
@@ -170,7 +171,13 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         jFormattedTextFieldResistenciaInterna = new javax.swing.JFormattedTextField();
         jFormattedTextFieldResistenciaExterna = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
-        jRadioButtonJanela = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
+        jFormattedTextFieldFatorSolar = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jFormattedTextFieldRadiacaoSolarIncidente = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldMetrosQuadrado = new javax.swing.JFormattedTextField();
+
+        jLabel12.setText("jLabel12");
 
         setTitle("Ambiente");
 
@@ -245,7 +252,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addComponent(jButtonAvancarAmbiente))
                 .addGap(40, 40, 40)
                 .addComponent(jLabel11)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("Dados do Projeto", jPanel2);
@@ -335,7 +342,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(391, Short.MAX_VALUE)
+                .addContainerGap(411, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionarAmbiente)
                     .addComponent(jButtonEditarAmbiente)
@@ -347,7 +354,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(105, 105, 105)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(201, Short.MAX_VALUE)))
+                    .addContainerGap(221, Short.MAX_VALUE)))
         );
 
         jTabbedPaneProjeto.addTab("", jPanel6);
@@ -405,7 +412,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltarListaAmbiente)
                     .addComponent(jButtonAvancarFace))
@@ -494,7 +501,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                     .addComponent(jButtonEditarFace)
                     .addComponent(jButtonFinalizarFace)
                     .addComponent(jButtonRemoverFace))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("", jPanelListaFace);
@@ -560,19 +567,33 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 102));
         jLabel1.setText("Resistencia Interna:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 0, 102));
         jLabel8.setText("Resistencia Externa:");
 
         jFormattedTextFieldResistenciaInterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
 
         jFormattedTextFieldResistenciaExterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldResistenciaExterna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldResistenciaExternaActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("Janela:");
+        jLabel10.setText("Metros Quadrado:");
+
+        jLabel13.setText("Fator Solar:");
+
+        jFormattedTextFieldFatorSolar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+
+        jLabel14.setText("Radiacao Solar Incidente:");
+
+        jFormattedTextFieldRadiacaoSolarIncidente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+
+        jFormattedTextFieldMetrosQuadrado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldMetrosQuadrado.setText("0");
 
         javax.swing.GroupLayout jPanelFaceLayout = new javax.swing.GroupLayout(jPanelFace);
         jPanelFace.setLayout(jPanelFaceLayout);
@@ -588,46 +609,58 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonConfirmarDescricao)
                         .addGap(61, 61, 61))
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
                         .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButtonJanela)
-                            .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jFormattedTextFieldMetrosQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jFormattedTextFieldRadiacaoSolarIncidente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jFormattedTextFieldFatorSolar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(152, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFaceLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
             .addGroup(jPanelFaceLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButtonVoltarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalvarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelFaceLayout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelFaceLayout.createSequentialGroup()
                                 .addGap(59, 59, 59)
                                 .addComponent(jButtonAdicionarCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(201, 201, 201)
-                                .addComponent(jButtonRemoverCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jButtonRemoverCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelFaceLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jButtonVoltarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSalvarFace, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFaceLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelFaceLayout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelFaceLayout.setVerticalGroup(
@@ -639,36 +672,40 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jRadioButtonJanela, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jFormattedTextFieldMetrosQuadrado))
+                .addGap(11, 11, 11)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jFormattedTextFieldFatorSolar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConfirmarDescricao))
+                    .addComponent(jButtonConfirmarDescricao)
+                    .addComponent(jLabel14)
+                    .addComponent(jFormattedTextFieldRadiacaoSolarIncidente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabelCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionarCamada)
                     .addComponent(jButtonRemoverCamada))
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(5, 5, 5)
                 .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonVoltarFace)
-                    .addComponent(jButtonSalvarFace))
-                .addGap(10, 10, 10))
+                    .addComponent(jButtonSalvarFace)
+                    .addComponent(jButtonVoltarFace))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPaneProjeto.addTab("", jPanelFace);
@@ -683,7 +720,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneProjeto)
         );
 
         pack();
@@ -696,25 +733,34 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarFaceActionPerformed
 
     private void jButtonSalvarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFaceActionPerformed
-        double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText());
-        double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText());
+//        double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText());
+//        double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText());
+        double resistenciaExterna = faceAtual.getResistenciaExterna();
+        double resistenciaInterna = faceAtual.getResistenciaInterna();
+            
         List<Camada> camada = new CamadaDAO().ConsultarPorFace(faceAtual);
         double resistenciaTotal = new Calculo().ResistenciaTotal(resistenciaInterna, camada, resistenciaExterna); 
         double transmitanciaTermica = new Calculo().TransmitanciaTermica((float) resistenciaTotal);
         double temperaturaSolar = new Calculo().TemperaturaSolarAr(0.20, 511, 0.04);
-        boolean abertura = jRadioButtonJanela.isSelected();
+        double metrosQuadrado = faceAtual.getMetrosQuadrado();
+        
+        
+//        double fatorSolar = Double.valueOf(jFormattedTextFieldFatorSolar.getText());
+//        double radiacaoSolarIncidente = Double.valueOf(jFormattedTextFieldRadiacaoSolarIncidente.getText());
+        double fatorSolar = faceAtual.getFatorSolar();
+        double radiacaoSolarIncidente = faceAtual.getRadiacaoSolarIncidente();
+            
         double densidadeFluxoCalor = 0;
-        if(abertura){
-            densidadeFluxoCalor = new Calculo().DensidadeFluxoComSol(transmitanciaTermica, 5, 9);     
-        } else {
-            densidadeFluxoCalor = new Calculo().DensidadeFluxoSemSol(transmitanciaTermica, temperaturaSolar, 5, 9);
-        }
         double fluxoCalor = 0;
-//        if(vidro){
-//            fluxoCalor = new Calculo().FluxoCalorVidro(0, 0, 0, 0, 0);              
-//        } else {
-            fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, 5.15);
-//        }
+        double fluxoCalorVidro = 0;
+        if(new CamadaDAO().ConsultarCamadaPorMaterial(faceAtual.getId(), "Vidro")){
+            densidadeFluxoCalor = new Calculo().DensidadeFluxoComSol(transmitanciaTermica, resistenciaInterna, resistenciaExterna);     
+            fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, metrosQuadrado);
+            fluxoCalorVidro = new Calculo().FluxoCalorVidro(transmitanciaTermica, resistenciaInterna, resistenciaExterna, fatorSolar, radiacaoSolarIncidente);                
+        } else {
+            densidadeFluxoCalor = new Calculo().DensidadeFluxoSemSol(transmitanciaTermica, temperaturaSolar, resistenciaInterna, resistenciaExterna);
+            fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, metrosQuadrado);
+        }
                 
         Face face = new Face(faceAtual.getId(), 
                              jTextAreaDescricaoFace.getText(), 
@@ -723,9 +769,12 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                              resistenciaTotal, 
                              transmitanciaTermica, 
                              temperaturaSolar, 
-                             abertura,
+                             metrosQuadrado,
                              densidadeFluxoCalor, 
+                             fatorSolar,
+                             radiacaoSolarIncidente,
                              fluxoCalor, 
+                             fluxoCalorVidro,
                              ambienteAtual);
         
         new FaceDAO().SalvarFace(face, this, usuario);
@@ -742,17 +791,22 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAdicionarCamadaActionPerformed
 
     private void jButtonFinalizarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarFaceActionPerformed
-        AvancarListaAmbiente(projetoAtual);
-        
         List<Face> faces = new FaceDAO().ConsultarPorAmbiente(ambienteAtual);        
         double transmitanciaTermica = new Calculo().ArCondicionado(faces, 3412);
         
         ambienteAtual.setTransmitanciaTermica(transmitanciaTermica);
-        new AmbienteDAO().SalvarAmbiente(ambienteAtual, this, usuario);
+        new AmbienteDAO().EditarAmbiente(ambienteAtual, this, usuario);
     }//GEN-LAST:event_jButtonFinalizarFaceActionPerformed
 
     private void jButtonAdicionarFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFaceActionPerformed
         setTabelaCamada(false);
+        jTextAreaDescricaoFace.setText("");
+        jFormattedTextFieldResistenciaExterna.setText("");
+        jFormattedTextFieldResistenciaInterna.setText("");
+        jFormattedTextFieldMetrosQuadrado.setText("");
+        jFormattedTextFieldFatorSolar.setText("");
+        jFormattedTextFieldRadiacaoSolarIncidente.setText("");
+        
         new CamadaDAO().popularTabela(jTableCamada, null);
         jTabbedPaneProjeto.setSelectedIndex(4);
         jTabbedPaneProjeto.setTitleAt(4, "Cadastro da Face");
@@ -806,7 +860,9 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         jTextAreaDescricaoFace.setText(face.getDescricao());
         jFormattedTextFieldResistenciaExterna.setText(face.getResistenciaExterna() + "");
         jFormattedTextFieldResistenciaInterna.setText(face.getResistenciaInterna() + "");
-        jRadioButtonJanela.setSelected(face.getAbertura());
+        jFormattedTextFieldMetrosQuadrado.setText(face.getMetrosQuadrado() + "");
+        jFormattedTextFieldFatorSolar.setText(face.getFatorSolar() + "");
+        jFormattedTextFieldRadiacaoSolarIncidente.setText(face.getRadiacaoSolarIncidente() + "");
         faceAtual = face;
     }//GEN-LAST:event_jButtonEditarFaceActionPerformed
 
@@ -819,9 +875,15 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private void jButtonConfirmarDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDescricaoActionPerformed
         double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText());
         double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText());
+        double metroQuadrado = Double.valueOf(jFormattedTextFieldMetrosQuadrado.getText());
         
-        Face face = new Face(faceAtual.getId(), jTextAreaDescricaoFace.getText(), resistenciaExterna, 
-                             resistenciaInterna, jRadioButtonJanela.isSelected(),
+        double fatorSolar = Double.valueOf(jFormattedTextFieldFatorSolar.getText());
+        double radiacaoSolarIncidente = Double.valueOf(jFormattedTextFieldRadiacaoSolarIncidente.getText());
+
+        
+        Face face = new Face(faceAtual == null ? null : faceAtual.getId(),
+                             jTextAreaDescricaoFace.getText(), resistenciaExterna, 
+                             resistenciaInterna, metroQuadrado, fatorSolar, radiacaoSolarIncidente,
                              ambienteEditarId != null ? new AmbienteDAO().ConsultarAmbiente(ambienteEditarId) : new AmbienteDAO().ConsultarUltimo());
         
         new FaceDAO().SalvarFace(face, this, usuario);      
@@ -842,6 +904,10 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private void jButtonEncerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncerarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonEncerarActionPerformed
+
+    private void jFormattedTextFieldResistenciaExternaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldResistenciaExternaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldResistenciaExternaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -864,11 +930,17 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private javax.swing.JButton jButtonVoltarDadosProjeto;
     private javax.swing.JButton jButtonVoltarFace;
     private javax.swing.JButton jButtonVoltarListaAmbiente;
+    private javax.swing.JFormattedTextField jFormattedTextFieldFatorSolar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldMetrosQuadrado;
+    private javax.swing.JFormattedTextField jFormattedTextFieldRadiacaoSolarIncidente;
     private javax.swing.JFormattedTextField jFormattedTextFieldResistenciaExterna;
     private javax.swing.JFormattedTextField jFormattedTextFieldResistenciaInterna;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -885,7 +957,6 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelFace;
     private javax.swing.JPanel jPanelListaFace;
-    private javax.swing.JRadioButton jRadioButtonJanela;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
