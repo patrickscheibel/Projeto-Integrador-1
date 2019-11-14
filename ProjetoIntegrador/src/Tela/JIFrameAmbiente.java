@@ -572,9 +572,9 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Resistencia Externa:");
 
-        jFormattedTextFieldResistenciaInterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldResistenciaInterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        jFormattedTextFieldResistenciaExterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldResistenciaExterna.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextFieldResistenciaExterna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldResistenciaExternaActionPerformed(evt);
@@ -586,51 +586,18 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
         jLabel13.setText("Fator Solar:");
 
-        jFormattedTextFieldFatorSolar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldFatorSolar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         jLabel14.setText("Radiacao Solar Incidente:");
 
-        jFormattedTextFieldRadiacaoSolarIncidente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
+        jFormattedTextFieldRadiacaoSolarIncidente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        jFormattedTextFieldMetrosQuadrado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.##"))));
-        jFormattedTextFieldMetrosQuadrado.setText("0");
+        jFormattedTextFieldMetrosQuadrado.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         javax.swing.GroupLayout jPanelFaceLayout = new javax.swing.GroupLayout(jPanelFace);
         jPanelFace.setLayout(jPanelFaceLayout);
         jPanelFaceLayout.setHorizontalGroup(
             jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFaceLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonConfirmarDescricao)
-                        .addGap(61, 61, 61))
-                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                        .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldMetrosQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFaceLayout.createSequentialGroup()
-                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextFieldRadiacaoSolarIncidente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelFaceLayout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextFieldFatorSolar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(152, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFaceLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelDadosFace, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -642,7 +609,34 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
                         .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                    .addGap(32, 32, 32)
+                                    .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel10))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jFormattedTextFieldMetrosQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                            .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jFormattedTextFieldResistenciaExterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jFormattedTextFieldResistenciaInterna, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(jPanelFaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                                    .addComponent(jLabel14)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jFormattedTextFieldRadiacaoSolarIncidente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jButtonConfirmarDescricao))
+                                                .addGroup(jPanelFaceLayout.createSequentialGroup()
+                                                    .addComponent(jLabel13)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jFormattedTextFieldFatorSolar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addGroup(jPanelFaceLayout.createSequentialGroup()
                                 .addGap(59, 59, 59)
                                 .addComponent(jButtonAdicionarCamada, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -873,12 +867,12 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonRemoverFaceActionPerformed
 
     private void jButtonConfirmarDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDescricaoActionPerformed
-        double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText());
-        double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText());
-        double metroQuadrado = Double.valueOf(jFormattedTextFieldMetrosQuadrado.getText());
+        double resistenciaExterna = Double.valueOf(jFormattedTextFieldResistenciaExterna.getText().replaceAll(",", "."));
+        double resistenciaInterna = Double.valueOf(jFormattedTextFieldResistenciaInterna.getText().replaceAll(",", "."));
+        double metroQuadrado = Double.valueOf(jFormattedTextFieldMetrosQuadrado.getText().replaceAll(",", "."));
         
-        double fatorSolar = Double.valueOf(jFormattedTextFieldFatorSolar.getText());
-        double radiacaoSolarIncidente = Double.valueOf(jFormattedTextFieldRadiacaoSolarIncidente.getText());
+        double fatorSolar = Double.valueOf(jFormattedTextFieldFatorSolar.getText().replaceAll(",", "."));
+        double radiacaoSolarIncidente = Double.valueOf(jFormattedTextFieldRadiacaoSolarIncidente.getText().replaceAll(",", "."));
 
         
         Face face = new Face(faceAtual == null ? null : faceAtual.getId(),

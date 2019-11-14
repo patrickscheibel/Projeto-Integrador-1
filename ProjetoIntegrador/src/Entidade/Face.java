@@ -228,5 +228,5 @@ public class Face  implements Serializable {
     public void setFluxoCalorVidro(double fluxoCalorVidro) {
         this.fluxoCalorVidro = fluxoCalorVidro;
     }
-       
+    
 }

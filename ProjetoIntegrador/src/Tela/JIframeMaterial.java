@@ -207,7 +207,7 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
             }
         });
 
-        jFormattedTextFieldPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###.##"))));
+        jFormattedTextFieldPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         jLabel11.setText("Campos com (*) são obrigatórios");
 
@@ -219,9 +219,9 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
 
         jLabel10.setText("Espessura:");
 
-        jFormattedTextCondutividade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
+        jFormattedTextCondutividade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
-        jFormattedTextEspessura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##"))));
+        jFormattedTextEspessura.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         jButtonBuscarTipo.setText("Buscar");
         jButtonBuscarTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -385,9 +385,9 @@ public class JIframeMaterial extends javax.swing.JInternalFrame{
           
         material.setId(idEditar);       
         material.setDescricao(jTextFieldDescricao.getText());        
-        material.setCondutividade(!jFormattedTextCondutividade.getText().isEmpty() ? Double.valueOf(jFormattedTextCondutividade.getText()) : 0);
-        material.setEspessura(!jFormattedTextEspessura.getText().isEmpty() ? Double.valueOf(jFormattedTextEspessura.getText()) : 0);
-        material.setPreco(!jFormattedTextFieldPreco.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldPreco.getText()) : 0);
+        material.setCondutividade(!jFormattedTextCondutividade.getText().isEmpty() ? Double.valueOf(jFormattedTextCondutividade.getText().replaceAll(",", ".")) : 0);
+        material.setEspessura(!jFormattedTextEspessura.getText().isEmpty() ? Double.valueOf(jFormattedTextEspessura.getText().replaceAll(",", ".")) : 0);
+        material.setPreco(!jFormattedTextFieldPreco.getText().isEmpty() ? Double.valueOf(jFormattedTextFieldPreco.getText().replaceAll(",", ".")) : 0);
         
         new MaterialDAO().SalvarMaterial(material, this, usuario);
         

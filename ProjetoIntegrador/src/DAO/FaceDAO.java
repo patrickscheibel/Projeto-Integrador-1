@@ -31,8 +31,6 @@ public class FaceDAO extends DAO{
         JIFrameAmbiente jif = jIFrameProjeto;
         if(!face.getDescricao().isEmpty() && face.getMetrosQuadrado() > 0 && face.getResistenciaInterna() > 0 && face.getResistenciaExterna() > 0 && face.getFatorSolar() > 0 && face.getRadiacaoSolarIncidente() > 0){
             if(face.getId() == null){
-                    System.out.println("face: " + face);
-                    System.out.println("usu: " + usuario);
                 if(Salvar(face, usuario) == true) {
                     jif.SalvarFace(face);
                 } else {
@@ -60,7 +58,7 @@ public class FaceDAO extends DAO{
           
     public List<Face> ConsultarPorAmbiente(Ambiente ambiente) {
     List<Face> resultado = null;
-
+    
         try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
@@ -85,7 +83,6 @@ public class FaceDAO extends DAO{
         cabecalho[1] = "Descrição";
         cabecalho[2] = "Fluxo de Calor";
         
-
         // cria matriz de acordo com nº de registros da tabela
         try {
             

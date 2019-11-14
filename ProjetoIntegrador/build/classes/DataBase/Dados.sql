@@ -76,9 +76,12 @@ insert into permissao_grupo_permissao VALUES(default, 21, 1);
 --Cadastro de Materiais
 --Tipo:
 insert into tipo_material values(default, 'Madeira');
+insert into tipo_material values(default, 'Vidro');
 
 --Cor:
 insert into cor_material values(default, 'Escura',0,0);
+insert into cor_material values(default, 'Claro',0,0);
 
 --Material:
 insert into material values(default, 1, 1, 'Madeira Tatajuba',5,7,10);
+insert into material values(default, 2, 2, 'Vidro Temperado',4,6,20);
