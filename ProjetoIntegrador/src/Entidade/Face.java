@@ -48,6 +48,12 @@ public class Face  implements Serializable {
     @Column(name = "transmitancia_termica")
     private double transmitanciaTermica;
     
+     @Column(name = "temperatura_interna")
+    private double temperaturaInterna;
+     
+      @Column(name = "temperatura_externa")
+    private double temperaturaExterna;
+    
     @Column(name = "temperatura_solar")
     private double temperaturaSolar;
     
@@ -66,6 +72,9 @@ public class Face  implements Serializable {
     @Column(name = "fluxo_calor")
     private double fluxoCalor;
     
+    @Column(name = "parede_ensolarada")
+    private boolean paredeEnsolarada;
+    
     @Column(name = "fluxo_calor_vidro")
     private double fluxoCalorVidro;
     
@@ -76,37 +85,41 @@ public class Face  implements Serializable {
     public Face() {
     }
 
-    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double resistenciaTotal, double transmitanciaTermica, double temperaturaSolar, double metroQuadrado, double densidadeFluxoCalor, double fatorSolar, double radiacaoSolarIncidente, double fluxoCalor, double fluxoCalorVidro, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double resistenciaTotal, double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna, double temperaturaSolar, double metroQuadrado, double densidadeFluxoCalor, double fatorSolar, double radiacaoSolarIncidente, double fluxoCalor, boolean paredeEnsolarada, double fluxoCalorVidro, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
         this.resistenciaExterna = resistenciaExterna;
         this.resistenciaTotal = resistenciaTotal;
         this.transmitanciaTermica = transmitanciaTermica;
+        this.temperaturaInterna = temperaturaInterna;
+        this.temperaturaExterna = temperaturaExterna;
         this.temperaturaSolar = temperaturaSolar;
         this.metroQuadrado = metroQuadrado;
         this.densidadeFluxoCalor = densidadeFluxoCalor;
         this.fatorSolar = fatorSolar;
         this.radiacaoSolarIncidente = radiacaoSolarIncidente;
         this.fluxoCalor = fluxoCalor;
+        this.paredeEnsolarada = paredeEnsolarada;
         this.fluxoCalorVidro = fluxoCalorVidro;
         this.ambiente = ambiente;
     }
 
-    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double metrosQuadrado, double fatorSolar, double radiacaoSolarIncidente, Ambiente ambiente) {
+    public Face(Integer id, String descricao, double resistenciaInterna, double resistenciaExterna, double metrosQuadrado, boolean paredeEnsolarada, double temperaturaInterna, double temperaturaExterna, Ambiente ambiente) {
         this.id = id;
         this.descricao = descricao;
         this.resistenciaInterna = resistenciaInterna;
         this.resistenciaExterna = resistenciaExterna;
         this.metroQuadrado = metrosQuadrado;
-        this.fatorSolar = fatorSolar;
-        this.radiacaoSolarIncidente = radiacaoSolarIncidente;
+        this.paredeEnsolarada = paredeEnsolarada;
+        this.temperaturaInterna = temperaturaInterna;
+        this.temperaturaExterna = temperaturaExterna;
         this.ambiente = ambiente;
     }
 
     @Override
     public String toString() {
-        return "Face{" + "id=" + id + ", descricao=" + descricao + ", resistenciaInterna=" + resistenciaInterna + ", resistenciaExterna=" + resistenciaExterna + ", transmitanciaTermica=" + transmitanciaTermica + ", ambiente=" + ambiente + '}';
+        return "Face{" + "id=" + id + ", descricao=" + descricao + ", resistenciaInterna=" + resistenciaInterna + ", resistenciaExterna=" + resistenciaExterna + ", resistenciaTotal=" + resistenciaTotal + ", transmitanciaTermica=" + transmitanciaTermica + ", temperaturaInterna=" + temperaturaInterna + ", temperaturaExterna=" + temperaturaExterna + ", temperaturaSolar=" + temperaturaSolar + ", metroQuadrado=" + metroQuadrado + ", densidadeFluxoCalor=" + densidadeFluxoCalor + ", fatorSolar=" + fatorSolar + ", radiacaoSolarIncidente=" + radiacaoSolarIncidente + ", fluxoCalor=" + fluxoCalor + ", paredeEnsolarada=" + paredeEnsolarada + ", fluxoCalorVidro=" + fluxoCalorVidro + ", ambiente=" + ambiente + '}';
     }
 
     public Integer getId() {
@@ -227,6 +240,30 @@ public class Face  implements Serializable {
 
     public void setFluxoCalorVidro(double fluxoCalorVidro) {
         this.fluxoCalorVidro = fluxoCalorVidro;
+    }
+
+    public boolean getParedeEnsolarada() {
+        return paredeEnsolarada;
+    }
+
+    public void setParedeEnsolarada(boolean paredeEnsolarada) {
+        this.paredeEnsolarada = paredeEnsolarada;
+    }
+
+    public double getTemperaturaInterna() {
+        return temperaturaInterna;
+    }
+
+    public void setTemperaturaInterna(double temperaturaInterna) {
+        this.temperaturaInterna = temperaturaInterna;
+    }
+
+    public double getTemperaturaExterna() {
+        return temperaturaExterna;
+    }
+
+    public void setTemperaturaExterna(double temperaturaExterna) {
+        this.temperaturaExterna = temperaturaExterna;
     }
     
 }

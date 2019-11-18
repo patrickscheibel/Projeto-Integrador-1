@@ -93,7 +93,6 @@ public class AmbienteDAO extends DAO{
         // dados da tabela
         Object[][] dadosTabela = null;
         List<Ambiente> lista = ConsultarListaPorId(projeto.getId());
-        System.out.println(projeto.getId());
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[3];

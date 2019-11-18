@@ -72,7 +72,8 @@ create table log(
 create table projeto(
     id serial primary key,
     nome varchar not null,
-    descricao varchar(100)
+    descricao varchar(100),
+    carga_termica DECIMAL(10,2)
 );
 
 create table ambiente(
@@ -91,10 +92,13 @@ create table face(
     resistencia_total DECIMAL(10,2),
     transmitancia_termica DECIMAL(10,2),
     temperatura_solar DECIMAL(10,2),
+    temperatura_interna DECIMAL(10,2),
+    temperatura_externa DECIMAL(10,2),
     metro_quadrado DECIMAL(10,2),
     densidade_fluxo_calor DECIMAL(10,2),
     fator_solar DECIMAL(10,2),
     radiacao_solar_incidente DECIMAL(10,2),
+    parede_ensolarada BOOLEAN,
     fluxo_calor DECIMAL(10,2),    
     fluxo_calor_vidro DECIMAL(10,2),    
     ambiente_id int not null,

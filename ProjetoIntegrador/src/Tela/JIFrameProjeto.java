@@ -35,6 +35,10 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     public void DesativarAdicao(){
         jButtonAdicionar.setEnabled(false);
     }
+    
+    public void AtualizarTabelaProjeto(){
+        new ProjetoDAO().popularTabela(jTableProjeto);
+    }
 
 
     /**
@@ -165,7 +169,7 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
-        new JIFrameAmbiente(usuario);   
+        new JIFrameAmbiente(this, usuario);   
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed

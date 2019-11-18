@@ -27,6 +27,9 @@ public class Projeto  implements Serializable {
      
      @Column(name="descricao", length = 100)
      private String descricao;
+     
+     @Column(name="carga_termica")
+     private double cargaTermica;
 
     public Projeto() {
     }
@@ -39,9 +42,9 @@ public class Projeto  implements Serializable {
 
     @Override
     public String toString() {
-        return "Projeto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + '}';
+        return "Projeto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", cargaTermica=" + cargaTermica + '}';
     }
-    
+
    public Integer getId() {
         return this.id;
     }
@@ -64,9 +67,14 @@ public class Projeto  implements Serializable {
         this.descricao = descricao;
     }
 
+    public double getCargaTermica() {
+        return cargaTermica;
+    }
 
-
-
+    public void setCargaTermica(double cargaTermica) {
+        this.cargaTermica = cargaTermica;
+    }
+    
 }
 
 

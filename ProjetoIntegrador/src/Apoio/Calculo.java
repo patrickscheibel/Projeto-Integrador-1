@@ -7,6 +7,7 @@ package Apoio;
 
 import Entidade.Camada;
 import Entidade.Face;
+import Tela.Apoio.SolicitarDado;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class Calculo {
     * condutividade - condutividade do material
     */
     public float ResistenciaMaterial(double espessura, double condutividade){
-        return (float) (espessura / condutividade);
+        return (float) (condutividade / espessura);
     }
     
     /** 
@@ -28,7 +29,7 @@ public class Calculo {
     * rn - resistencias dos materiais
     * rsi - Resistencia superficial interna
     */
-    public float ResistenciaTotal(double rse, List<Camada> camadas, double rsi) {
+    public float ResistenciaTermica(double rse, List<Camada> camadas, double rsi) {
         float resistencia = 0;
         
         for (Camada camada : camadas) {
@@ -41,7 +42,7 @@ public class Calculo {
         return 1 / resistenciaTotal;
     }
     
-    public float DensidadeFluxoComSol (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
+    public float DensidadeFluxoSemSol (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
         return (float) (transmitanciaTermica * (temperaturaInterna - temperaturaExterna));       
     }
     
@@ -49,25 +50,25 @@ public class Calculo {
         return (float) (absorvidade * radiacaoSolar * resistenciaSuperficial);
     }
     
-    public float DensidadeFluxoSemSol (double transmitanciaTermica, 
+    public float DensidadeFluxoComSol (double transmitanciaTermica, 
                                        double temperaturaSolarAr,  
                                        double temperaturaInterna, 
                                        double temperaturaExterna) {       
-        return (float) (transmitanciaTermica * (temperaturaSolarAr + temperaturaExterna - temperaturaInterna));
+        return (float) (transmitanciaTermica * (temperaturaSolarAr + (temperaturaInterna - temperaturaExterna)));
     }
     
     /* A densidadeFluxoCalor, muda dependo do clima, DensidadeFluxoInverno ou DensidadeFluxoVerao */
-    public float FluxoCalor (double densidadeFluxoCalor, double areaFechamento) {       
+    public float FluxoCalor (double densidadeFluxoCalor, double areaFechamento) {  
         return (float) (densidadeFluxoCalor * areaFechamento);
     }
     
     // Caso seja usado vidro
-    public float FluxoCalorVidro (double transmitanciaTermica, 
-                                  double temperaturaInterna, 
-                                  double temperaturaExterna, 
-                                  double fatorSolar, 
-                                  double radiacaoSolarIncidente) {     
-        return (float) (transmitanciaTermica * (temperaturaExterna - temperaturaInterna) + fatorSolar * radiacaoSolarIncidente);
+    public float DensidadeFluxoCalorVidro (double transmitanciaTermica, 
+                                           double temperaturaInterna, 
+                                           double temperaturaExterna, 
+                                           double fatorSolar, 
+                                           double radiacaoSolarIncidente) {     
+        return (float) (transmitanciaTermica * (temperaturaInterna - temperaturaExterna) + (fatorSolar * radiacaoSolarIncidente));
     }
     
     /* O vetorValor pode estar vazio */
@@ -103,6 +104,19 @@ public class Calculo {
         for (Face face : somatoriaQ) {
             camadas += (face.getFluxoCalor() + face.getFluxoCalorVidro());
         }    
-        return (float) (camadas * valorEspecifico);
+        return (float) (camadas * valorEspecifico) / 1000;
     }    
+
+    public double metrosQuadrado = 0;
+    public double getMetrosQuadrado() {
+        return metrosQuadrado;
+    }
+    public void setMetrosQuadrado(double metrosQuadrado) {
+        this.metrosQuadrado = metrosQuadrado;
+    }
+    
+    public double MetroQuadradoVidro(String texto) {
+        new SolicitarDado(this, texto);
+        return getMetrosQuadrado();
+    }
 }

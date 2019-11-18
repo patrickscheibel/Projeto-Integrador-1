@@ -31,7 +31,6 @@ public class CorMaterialDAO extends DAO{
         JIframeCorMaterial jif = jIframeCorMaterial;
         if(!corMaterial.getDescricao().isEmpty()){
             if(corMaterial.getId() == null){
-                            System.out.println("S: " + corMaterial.getDescricao());
                 if(Salvar(corMaterial, usuario) == true) {
                     jif.popularTabelaSalvar();
                 } else {

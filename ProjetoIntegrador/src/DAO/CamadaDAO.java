@@ -159,7 +159,7 @@ public class CamadaDAO extends DAO{
 
             org.hibernate.Query q = sessao.createQuery("from Camada camada where camada.face.id = " + id + 
                                                        " and camada.material.descricao like '%" + material + "%'");
-            if (q.list() != null) {
+            if (!q.list().isEmpty()) {
                 return true;
             }
 

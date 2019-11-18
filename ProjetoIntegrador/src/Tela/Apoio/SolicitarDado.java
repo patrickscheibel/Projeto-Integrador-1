@@ -5,24 +5,28 @@
  */
 package Tela.Apoio;
 
+import Apoio.Calculo;
 import javax.swing.JInternalFrame;
 
 /**
  *
  * @author patrick.scheibel
  */
-public class ConfirmarSenha extends javax.swing.JDialog {
+public class SolicitarDado extends javax.swing.JDialog {
 
     private boolean confirmar = false;
-    private JInternalFrame frame;
+    Calculo calculo = new Calculo();
     /**
      * Creates new form ConfirmarSenha
      */
-    public ConfirmarSenha(javax.swing.JInternalFrame parent) {
+    public SolicitarDado(Calculo calculo, String texto) {
         initComponents();
         setModal(true);
-        parent.setEnabled(true);
-        frame = parent;
+//        parent.setEnabled(true);
+//        frame = parent;
+        this.calculo = calculo; 
+        jLabel1.setText(texto);
+        this.setVisible(true);
     }
     
     public boolean getBoolean(){
@@ -39,13 +43,12 @@ public class ConfirmarSenha extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jButtonConfirmar = new javax.swing.JButton();
+        jFormattedTextFieldValor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Inserir a senha");
 
         jButtonConfirmar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButtonConfirmar.setText("Confirmar");
@@ -55,6 +58,8 @@ public class ConfirmarSenha extends javax.swing.JDialog {
             }
         });
 
+        jFormattedTextFieldValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,23 +67,23 @@ public class ConfirmarSenha extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(jButtonConfirmar)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(jButtonConfirmar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jFormattedTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jFormattedTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonConfirmar)
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -88,13 +93,16 @@ public class ConfirmarSenha extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        this.dispose();
-        frame.setVisible(true);
+        double valor = Double.valueOf(jFormattedTextFieldValor.getText().replaceAll(",", "."));
+        if(valor > 0){
+            calculo.setMetrosQuadrado(valor);
+            this.dispose();
+        }    
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldValor;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }

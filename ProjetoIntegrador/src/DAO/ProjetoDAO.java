@@ -95,16 +95,17 @@ public class ProjetoDAO extends DAO{
         List<Projeto> lista = ConsultarTodos();
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[3];
+        Object[] cabecalho = new Object[4];
         cabecalho[0] = "Id";
         cabecalho[1] = "Nome";
         cabecalho[2] = "Descrição";
+        cabecalho[3] = "Carga Térmica";
         
 
         // cria matriz de acordo com nº de registros da tabela
         try {
             
-            dadosTabela = new Object[lista.size()][3];
+            dadosTabela = new Object[lista.size()][4];
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar os Projetos: " + e);
@@ -120,6 +121,7 @@ public class ProjetoDAO extends DAO{
                 dadosTabela[lin][0] = projeto.getId();
                 dadosTabela[lin][1] = projeto.getNome();
                 dadosTabela[lin][2] = projeto.getDescricao();
+                dadosTabela[lin][3] = projeto.getCargaTermica();
                
 
                 lin++;
