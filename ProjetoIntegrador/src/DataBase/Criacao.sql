@@ -73,13 +73,13 @@ create table projeto(
     id serial primary key,
     nome varchar not null,
     descricao varchar(100),
-    carga_termica DECIMAL(10,2)
+    carga_termica DECIMAL(10,3)
 );
 
 create table ambiente(
     id serial primary key,
     descricao varchar(100), 
-    transmitancia_termica DECIMAL(10,2),
+    transmitancia_termica DECIMAL(10,3),
     projeto_id int not null,
     FOREIGN KEY (projeto_id) REFERENCES projeto(id)
 );
@@ -87,27 +87,27 @@ create table ambiente(
 create table face(
     id serial primary key,
     descricao varchar(100),
-    resistencia_interna DECIMAL(10,2) not null,
-    resistencia_externa DECIMAL(10,2) not null,
-    resistencia_total DECIMAL(10,2),
-    transmitancia_termica DECIMAL(10,2),
-    temperatura_solar DECIMAL(10,2),
-    temperatura_interna DECIMAL(10,2),
-    temperatura_externa DECIMAL(10,2),
-    metro_quadrado DECIMAL(10,2),
-    densidade_fluxo_calor DECIMAL(10,2),
-    fator_solar DECIMAL(10,2),
-    radiacao_solar_incidente DECIMAL(10,2),
+    resistencia_interna DECIMAL(10,3) not null,
+    resistencia_externa DECIMAL(10,3) not null,
+    resistencia_total DECIMAL(10,3),
+    transmitancia_termica DECIMAL(10,3),
+    temperatura_solar DECIMAL(10,3),
+    temperatura_interna DECIMAL(10,3),
+    temperatura_externa DECIMAL(10,3),
+    metro_quadrado DECIMAL(10,3),
+    densidade_fluxo_calor DECIMAL(10,3),
+    fator_solar DECIMAL(10,3),
+    radiacao_solar_incidente DECIMAL(10,3),
     parede_ensolarada BOOLEAN,
-    fluxo_calor DECIMAL(10,2),    
-    fluxo_calor_vidro DECIMAL(10,2),    
+    fluxo_calor DECIMAL(10,3),    
+    fluxo_calor_vidro DECIMAL(10,3),    
     ambiente_id int not null,
     FOREIGN KEY (ambiente_id) REFERENCES ambiente(id)
 );
 
 create table camada(
     id serial primary key,
-    resistencia DECIMAL(10,2) not null,
+    resistencia DECIMAL(10,3) not null,
     face_id int not null,
     material_id int not null,
     FOREIGN KEY (face_id) REFERENCES face(id),

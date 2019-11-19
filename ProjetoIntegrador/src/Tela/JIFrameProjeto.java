@@ -22,9 +22,11 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
     public JIFrameProjeto(Usuario usuarios) {
         initComponents();
         jTabbedPaneProjeto.setEnabled(false);
-        new ProjetoDAO().popularTabela(jTableProjeto);
+        AtualizarTabelaProjeto();
         usuario = usuarios;
     }
+    
+    public JIFrameProjeto() {}
     
     public void DesativarEdicao(){
         jButtonAdicionar.setEnabled(false);
@@ -73,7 +75,12 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonVisualizar.setText("Visualizar");
+        jButtonVisualizar.setText("Atualizar");
+        jButtonVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVisualizarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +194,10 @@ public class JIFrameProjeto extends javax.swing.JInternalFrame {
         Projeto projeto = new ProjetoDAO().ConsultarProjeto((int)jTableProjeto.getValueAt(jTableProjeto.getSelectedRow(), 0));
         new ProjetoDAO().ExcluirProjeto(projeto, usuario);
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVisualizarActionPerformed
+        AtualizarTabelaProjeto();
+    }//GEN-LAST:event_jButtonVisualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

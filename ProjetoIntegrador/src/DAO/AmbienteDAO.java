@@ -70,7 +70,7 @@ public class AmbienteDAO extends DAO{
         }
     }
           
-    public List<Ambiente> ConsultarListaPorId(int id) {
+    public List<Ambiente> ConsultarListaPorProjeto(int id) {
     List resultado = null;
 
         try {
@@ -84,6 +84,22 @@ public class AmbienteDAO extends DAO{
             he.printStackTrace();
         }
         return resultado;
+    }      
+    
+    public Ambiente ConsultarPorProjeto(int id) {
+    Ambiente resultado = null;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from Ambiente ambiente where ambiente.projeto.id = " + id);
+            resultado = (Ambiente) q.uniqueResult();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
     }           
       
    
@@ -92,7 +108,7 @@ public class AmbienteDAO extends DAO{
     public void popularTabela(JTable tabela, Projeto projeto) {
         // dados da tabela
         Object[][] dadosTabela = null;
-        List<Ambiente> lista = ConsultarListaPorId(projeto.getId());
+        List<Ambiente> lista = ConsultarListaPorProjeto(projeto.getId());
 
         // cabecalho da tabela
         Object[] cabecalho = new Object[3];

@@ -72,17 +72,23 @@ public class Calculo {
     }
     
     /* O vetorValor pode estar vazio */
-    public float CargaTermica (float[] fluxoCalor, float[] vetorValor) {
-        float fluxosCalor = 0;
-        float vetorValores = 0;
+//    public float CargaTermica (float[] fluxoCalor, float[] densidadeFluxoCalor) {
+    public float CargaTermica (List<Face> faces) {
+        float fluxoCalor = 0;
+        float densidadeFluxoCalor = 0;
         
-        for (float valor : fluxoCalor) {
-            fluxosCalor += valor;
+        for (Face valor : faces) {
+            fluxoCalor += valor.getFluxoCalor();
+            fluxoCalor += valor.getFluxoCalorVidro();
+            densidadeFluxoCalor += valor.getDensidadeFluxoCalor();
         }
-        for (float valor : vetorValor) {
-            vetorValores += valor;
-        }
-        return fluxosCalor + vetorValores;
+//        for (float valor : fluxoCalor) {
+//            fluxosCalor += valor;
+//        }
+//        for (float valor : densidadeFluxoCalor) {
+//            densidadeFluxoDeCalor += valor;
+//        }
+        return fluxoCalor + densidadeFluxoCalor;
     }
 		
     public float ResistenciaTotalTelhado(double rae, float[] rn, double rai) {

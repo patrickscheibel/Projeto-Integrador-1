@@ -78,6 +78,7 @@ insert into permissao_grupo_permissao VALUES(default, 21, 1);
 insert into tipo_material values(default, 'Madeira');
 insert into tipo_material values(default, 'Vidro');
 insert into tipo_material values(default, 'Tijolo');
+insert into tipo_material values(default, 'Cimento');
 
 --Cor:
 insert into cor_material values(default, 'Escura',0,0);
@@ -85,5 +86,6 @@ insert into cor_material values(default, 'Claro',0,0);
 
 --Material:
 insert into material values(default, 1, 1, 'Madeira Tatajuba',0.14,4,10);
-insert into material values(default, 2, 2, 'Vidro Temperado',4,0.8,20);
+insert into material values(default, 2, 2, 'Vidro Temperado',4,0.80,20);
 insert into material values(default, 3, 1, 'Tijolo Laminado',0.65,25,20);
+insert into material values(default, 4, 1, 'Cimento',1.75,0.10,8);

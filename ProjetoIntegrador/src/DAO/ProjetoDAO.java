@@ -87,8 +87,6 @@ public class ProjetoDAO extends DAO{
         return resultado;
     }
    
-    
-       //Popular por um id
     public void popularTabela(JTable tabela) {
         // dados da tabela
         Object[][] dadosTabela = null;
@@ -122,7 +120,6 @@ public class ProjetoDAO extends DAO{
                 dadosTabela[lin][1] = projeto.getNome();
                 dadosTabela[lin][2] = projeto.getDescricao();
                 dadosTabela[lin][3] = projeto.getCargaTermica();
-               
 
                 lin++;
             }
