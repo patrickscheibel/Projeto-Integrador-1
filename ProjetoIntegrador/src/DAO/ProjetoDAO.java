@@ -13,6 +13,7 @@ import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.JIFrameAmbiente;
+import java.math.BigInteger;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -171,4 +172,20 @@ public class ProjetoDAO extends DAO{
          }
          return projeto;
      }    
+
+    public Integer QuantidadeDeProjeto() {
+        Integer qtd = 0;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createSQLQuery("select * from QtdProjeto");
+            qtd = Integer.valueOf(q.uniqueResult() + "");
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return qtd;
+    }
 }

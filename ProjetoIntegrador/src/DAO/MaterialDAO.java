@@ -181,4 +181,20 @@ public class MaterialDAO extends DAO{
          return material;
     }
 
+    public Integer QuantidadeDeMaterial() {
+        Integer qtd = 0;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createSQLQuery("select * from QtdMaterial");
+            qtd = Integer.valueOf(q.uniqueResult() + "");
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return qtd;
+    }
+
 }
