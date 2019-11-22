@@ -34,10 +34,11 @@ public class Projeto  implements Serializable {
     public Projeto() {
     }
 
-    public Projeto(Integer id, String nome, String descricao) {
+    public Projeto(Integer id, String nome, String descricao, double cargaTermica) {
        this.id = id;
        this.nome = nome;
        this.descricao = descricao;
+       this.cargaTermica = cargaTermica;
     }
 
     @Override

@@ -833,7 +833,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVoltarListaAmbienteActionPerformed
 
     private void jButtonAvancarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarAmbienteActionPerformed
-        Projeto projeto = new Projeto(projetoAtual.getId(), jTextFieldNomeProjeto.getText(), jTextAreaDescricaoProjeto.getText());
+        Projeto projeto = new Projeto(projetoAtual.getId(), jTextFieldNomeProjeto.getText(), jTextAreaDescricaoProjeto.getText(), projetoAtual.getCargaTermica());
         new ProjetoDAO().SalvarProjeto(projeto, this, usuario); 
     }//GEN-LAST:event_jButtonAvancarAmbienteActionPerformed
 

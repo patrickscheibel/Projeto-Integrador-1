@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -195,6 +196,24 @@ public class MaterialDAO extends DAO{
             he.printStackTrace();
         }
         return qtd;
+    }
+
+    public List<Material> ConsultarMaterialPorProjeto(Integer id) {
+        List<Material> resultado = null;
+
+        try {
+            
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createSQLQuery("select * from material_projeto(" + id + ")");
+            q.setResultTransformer(Transformers.aliasToBean(Material.class));
+            resultado = q.list(); 
+                    
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
     }
 
 }

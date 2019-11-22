@@ -5,7 +5,6 @@
  */
 package Tela;
 
-import DAO.UsuarioDAO;
 import Entidade.Usuario;
 import Apoio.Permissoes;
 import javax.swing.JInternalFrame;
@@ -202,9 +201,9 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuPermissao);
 
-        jMenu1.setText("Graficos");
+        jMenu1.setText("Gráfico");
 
-        jMenuItem1.setText("Material");
+        jMenuItem1.setText("Dashboard");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);

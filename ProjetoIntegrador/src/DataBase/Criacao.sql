@@ -12,14 +12,14 @@ create table tipo_material(
 					  
 create table material(
     id serial PRIMARY KEY,
-    tipo_id integer not null,
-    cor_id integer not null,
+    tipo_material_id integer not null,
+    cor_material_id integer not null,
     descricao varchar(100) not null,        
     condutividade decimal(10,2) not null,
     espessura decimal(10,2) not null,
     preco decimal(10,2),
-    FOREIGN KEY (cor_id) REFERENCES cor_material(id),
-    FOREIGN KEY (tipo_id) REFERENCES tipo_material(id)
+    FOREIGN KEY (cor_material_id) REFERENCES cor_material(id),
+    FOREIGN KEY (tipo_material_id) REFERENCES tipo_material(id)
 );
 
 create table permissao(
