@@ -13,7 +13,6 @@ import Entidade.Usuario;
 import Hibernate.HibernateUtil;
 import Tela.Apoio.DlgAviso;
 import Tela.JIFrameAmbiente;
-import java.math.BigInteger;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

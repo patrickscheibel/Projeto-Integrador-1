@@ -137,7 +137,7 @@ public class Janela extends javax.swing.JFrame {
 
         JFreeChart chart = null;
         if (jRadioButton1.isSelected()) {
-            chart = ChartFactory.createLineChart3D(
+            chart = ChartFactory.createLineChart(
                     "Alunos Univates - 2008 - 2014",
                     "Anos", "Alunos",
                     dataset,

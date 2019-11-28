@@ -206,8 +206,35 @@ public class MaterialDAO extends DAO{
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createSQLQuery("select * from material_projeto(" + id + ")");
-            q.setResultTransformer(Transformers.aliasToBean(Material.class));
+            org.hibernate.Query q = sessao.createQuery("select m \n" +
+                                                       "from Projeto p, Ambiente a,Face f, Camada c, Material m \n" +
+                                                       "where p.id = a.projeto.id \n" +
+                                                       "and a.id = f.ambiente.id\n" +
+                                                       "and f.id = c.face.id\n" +
+                                                       "and c.material.id = m.id\n" +
+                                                       "and p.id = " + id);
+            resultado = q.list(); 
+                    
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }
+    
+    public List<Material> ConsultarMaterialPorFace(Integer id) {
+        List<Material> resultado = null;
+
+        try {
+            
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("select m \n" +
+                                                       "from Projeto p, Ambiente a,Face f, Camada c, Material m \n" +
+                                                       "where p.id = a.projeto.id \n" +
+                                                       "and a.id = f.ambiente.id\n" +
+                                                       "and f.id = c.face.id\n" +
+                                                       "and f.id = " + id);
             resultado = q.list(); 
                     
         } catch (HibernateException he) {

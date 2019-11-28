@@ -68,7 +68,22 @@ public class FaceDAO extends DAO{
             he.printStackTrace();
         }
         return resultado;
-    }           
+    }    
+    
+    public List<Face> ConsultarPorAmbiente(int id) {
+    List<Face> resultado = null;
+    
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+            org.hibernate.Query q = sessao.createQuery("from Face face where face.ambiente.id = " + id);
+            resultado = q.list();
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }  
       
        //Popular por um id
     public void popularTabela(JTable tabela, Ambiente ambiente) {

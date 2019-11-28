@@ -5,9 +5,11 @@
  */
 package Apoio;
 
+import DAO.AmbienteDAO;
+import Entidade.Ambiente;
+import Entidade.Face;
 import Entidade.Projeto;
 import Hibernate.HibernateUtil;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JComboBox;
 import org.hibernate.Session;
@@ -43,6 +45,38 @@ import org.hibernate.Session;
                 item = new ComboItem();
                 item.setCodigo(projeto.getId());
                 item.setDescricao(projeto.getNome());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
+    
+    public void popularComboFace(int id, JComboBox combo) {
+        
+        List<Face> resultado = null;
+        
+        Ambiente a = new AmbienteDAO().ConsultarPorProjeto(id);
+        
+        combo.removeAllItems();
+
+        ComboItem item = new ComboItem();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("from Face f where f.ambiente.id = " + a.getId());
+            resultado = q.list();
+
+            for (Face face : resultado) {
+                item = new ComboItem();
+                item.setCodigo(face.getId());
+                item.setDescricao(face.getDescricao());
 
                 combo.addItem(item);
             }

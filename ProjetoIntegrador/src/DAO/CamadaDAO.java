@@ -136,20 +136,52 @@ public class CamadaDAO extends DAO{
     }
     
     public Camada ConsultarCamada(int id) {
-     Camada camada = new Camada();
+        Camada camada = new Camada();
 
-         try {
-             Session sessao = HibernateUtil.getSessionFactory().openSession();
-             sessao.beginTransaction();
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
 
-             org.hibernate.Query q = sessao.createQuery("from Camada where id = " + id);
-             camada = Camada.class.cast(q.uniqueResult());
+            org.hibernate.Query q = sessao.createQuery("from Camada where id = " + id);
+            camada = Camada.class.cast(q.uniqueResult());
 
-         } catch (HibernateException he) {
-             he.printStackTrace();
-         }
-         return camada;
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return camada;
      }    
+    
+    public int ContarCamadaPorMaterial(int id) {
+        Integer quantidade = 0;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("select count(*) from Camada c where c.material.id = " + id);
+            quantidade = Integer.valueOf(q.uniqueResult() + "");
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return quantidade;
+    }   
+    
+    public int ContarCamadaPorFace(int material, int face) {
+        Integer quantidade = 0;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            org.hibernate.Query q = sessao.createQuery("select count(*) from Camada c where c.material.id = " + material + "and c.face.id = " + face);
+            quantidade = Integer.valueOf(q.uniqueResult() + "");
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return quantidade;
+    } 
 
     public boolean ConsultarCamadaPorMaterial(int id, String material) {
 
