@@ -874,8 +874,7 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
 
     private void jButtonRemoverFaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverFaceActionPerformed
         Face face = new FaceDAO().ConsultarFace((int)jTableFace.getValueAt(jTableFace.getSelectedRow(), 0));
-        new FaceDAO().ExcluirFace(face, usuario);
-        AtualizarTabelaFace(face.getAmbiente());
+        new FaceDAO().ExcluirFace(face, usuario);        
     }//GEN-LAST:event_jButtonRemoverFaceActionPerformed
 
     private void jButtonConfirmarDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDescricaoActionPerformed

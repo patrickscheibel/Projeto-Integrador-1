@@ -9,6 +9,7 @@ import static DAO.DAO.Atualizar;
 import static DAO.DAO.Excluir;
 import static DAO.DAO.Salvar;
 import Entidade.Ambiente;
+import Entidade.Camada;
 import Entidade.Face;
 import Entidade.Usuario;
 import Hibernate.HibernateUtil;
@@ -50,7 +51,11 @@ public class FaceDAO extends DAO{
     }
     
     public void ExcluirFace(Face face, Usuario usuario){
-        if(face != null && usuario != null){         
+        if(face != null && usuario != null){
+            List<Camada> lista = new CamadaDAO().ConsultarPorFace(face);
+            for (Camada camada : lista) {
+                new CamadaDAO().ExcluirCamada(camada, usuario);
+            }
             Excluir(face, usuario);
         } 
     }
