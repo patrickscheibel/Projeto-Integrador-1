@@ -237,42 +237,42 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuMateriaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaisActionPerformed
         JIframeMaterial jifMaterial = new JIframeMaterial(usuario);     
-        new Permissoes().Material(this, jifMaterial, usuario);
+        new Permissoes().Material(this, jifMaterial, usuario, "material");
     }//GEN-LAST:event_jMenuMateriaisActionPerformed
 
     private void jMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuUsuarioActionPerformed
         JIframeUsuario jifUsuario = new JIframeUsuario(usuario);    
-        new Permissoes().Usuario(this, jifUsuario, usuario);
+        new Permissoes().Usuario(this, jifUsuario, usuario, "usuario");
     }//GEN-LAST:event_jMenuUsuarioActionPerformed
 
     private void jButtonConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracaoActionPerformed
         JIframeConfiguracao jifconfiguracao = new JIframeConfiguracao(usuario);    
-        new Permissoes().Configuracao(this, jifconfiguracao, usuario);
+        new Permissoes().Configuracao(this, jifconfiguracao, usuario, "configuracao");
     }//GEN-LAST:event_jButtonConfiguracaoActionPerformed
 
     private void jMenuTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuTipoMaterialActionPerformed
         JIframeTipoMaterial jifTipoMaterial = new JIframeTipoMaterial(usuario);    
-        new Permissoes().TipoMaterial(this, jifTipoMaterial, usuario);
+        new Permissoes().TipoMaterial(this, jifTipoMaterial, usuario, "tipoMaterial");
     }//GEN-LAST:event_jMenuTipoMaterialActionPerformed
 
     private void jMenuCorMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCorMaterialActionPerformed
         JIframeCorMaterial jifCorMaterial = new JIframeCorMaterial(usuario);    
-        new Permissoes().CorMaterial(this, jifCorMaterial, usuario);
+        new Permissoes().CorMaterial(this, jifCorMaterial, usuario, "corMaterial");
     }//GEN-LAST:event_jMenuCorMaterialActionPerformed
 
     private void jMenuItemGrupoPemissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGrupoPemissaoActionPerformed
         JIframeGrupoPermissao jifGrupoPermissao = new JIframeGrupoPermissao(usuario);    
-        new Permissoes().GrupoPermissao(this, jifGrupoPermissao, usuario);
+        new Permissoes().GrupoPermissao(this, jifGrupoPermissao, usuario, "grupoPermissao");
     }//GEN-LAST:event_jMenuItemGrupoPemissaoActionPerformed
 
     private void jMenuProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProjetosActionPerformed
         JIFrameProjeto jifProjeto = new JIFrameProjeto(usuario);
-        new Permissoes().Projeto(this, jifProjeto, usuario);
+        new Permissoes().Projeto(this, jifProjeto, usuario, "projeto");
     }//GEN-LAST:event_jMenuProjetosActionPerformed
 
     private void jMenuEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEnviarEmailActionPerformed
         JIFrameEmail jifEmail = new JIFrameEmail();
-        new Permissoes().Email(this, jifEmail, usuario);
+        new Permissoes().Email(this, jifEmail, usuario, "email");
     }//GEN-LAST:event_jMenuEnviarEmailActionPerformed
 
     private void jMenuEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmailActionPerformed
@@ -285,7 +285,7 @@ public class JIFrameTelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JIFrameDashboard jif = new JIFrameDashboard();
-        VerJInternalFrame(jif);
+        new Permissoes().Dashboard(this, jif, usuario, "dashboard");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

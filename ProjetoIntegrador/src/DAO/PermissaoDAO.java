@@ -74,32 +74,21 @@ public class PermissaoDAO extends DAO{
         return resultado;
     }           
     
-//    public List<Permissao> ConsultarPemissaoRestante(Usuario usuario) {
-////    - método para consultar
-//    List<Permissao> lista = null;
-//    List resultado = null;
-//
-//        try {
-//            Session sessao = HibernateUtil.getSessionFactory().openSession();
-//            sessao.beginTransaction();
-//
-//            
-//            org.hibernate.Query q = sessao.createQuery("from Permissao");
-//            lista = q.list();
-//            
-//            for (PermissaoGrupoPermissao permissoes : new PermissaoGrupoPermissaoDAO().ConsultarTodas(usuario.getGrupoPermissao())) {
-//                for (Permissao p : lista) {
-//                    if(permissoes.getPermissao().equals(p)){
-//                        resultado.add(p);
-//                    }
-//                }
-//            }
-//
-//        } catch (HibernateException he) {
-//            he.printStackTrace();
-//        }
-//        return resultado;
-//    }
+    public List<Permissao> ConsultarPorPermissao(String premissao) {
+    List resultado = null;
+
+        try {
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+            
+            org.hibernate.Query q = sessao.createQuery("from Permissao p where p.descricao = '" + premissao + "'");
+            resultado = q.list();            
+
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        return resultado;
+    }
       
     public void popularTabela(JTable tabela, Usuario usuario) {
         // dados da tabela

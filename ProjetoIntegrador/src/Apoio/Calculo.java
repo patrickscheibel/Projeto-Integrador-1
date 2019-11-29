@@ -43,7 +43,7 @@ public class Calculo {
     }
     
     public float DensidadeFluxoSemSol (double transmitanciaTermica, double temperaturaInterna, double temperaturaExterna) {
-        return (float) (transmitanciaTermica * (temperaturaInterna - temperaturaExterna));       
+        return (float) (transmitanciaTermica * (temperaturaExterna - temperaturaInterna));       
     }
     
     public float TemperaturaSolarAr (double absorvidade, double radiacaoSolar, double resistenciaSuperficial) {   
@@ -54,7 +54,7 @@ public class Calculo {
                                        double temperaturaSolarAr,  
                                        double temperaturaInterna, 
                                        double temperaturaExterna) {       
-        return (float) (transmitanciaTermica * (temperaturaSolarAr + (temperaturaInterna - temperaturaExterna)));
+        return (float) (transmitanciaTermica * (temperaturaSolarAr + (temperaturaExterna - temperaturaInterna)));
     }
     
     /* A densidadeFluxoCalor, muda dependo do clima, DensidadeFluxoInverno ou DensidadeFluxoVerao */

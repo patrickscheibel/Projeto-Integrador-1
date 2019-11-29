@@ -50,6 +50,9 @@ insert into permissao VALUES(default, 'editar_projeto');
 --Permissoes de Configuracao de auditoria e log
 insert into permissao VALUES(default, 'ver_email');
 
+--Permissoes do Dashboard
+insert into permissao VALUES(default, 'ver_dashboard');
+
 --Grupo de permissoes
 insert into permissao_grupo_permissao VALUES(default, 1, 1); 
 insert into permissao_grupo_permissao VALUES(default, 2, 1);
@@ -72,6 +75,7 @@ insert into permissao_grupo_permissao VALUES(default, 18, 1);
 insert into permissao_grupo_permissao VALUES(default, 19, 1);
 insert into permissao_grupo_permissao VALUES(default, 20, 1);
 insert into permissao_grupo_permissao VALUES(default, 21, 1);
+insert into permissao_grupo_permissao VALUES(default, 22, 1);
 
 --Cadastro de Materiais
 --Tipo:
@@ -88,4 +92,4 @@ insert into cor_material values(default, 'Claro',0,0);
 insert into material values(default, 1, 1, 'Madeira Tatajuba',0.14,4,10);
 insert into material values(default, 2, 2, 'Vidro Temperado',4,0.80,20);
 insert into material values(default, 3, 1, 'Tijolo Laminado',0.65,25,20);
-insert into material values(default, 4, 1, 'Cimento',1.75,0.10,8);
+insert into material values(default, 4, 1, 'Reboco',1.75,0.10,8);

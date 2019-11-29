@@ -752,8 +752,14 @@ public class JIFrameAmbiente extends javax.swing.JDialog {
             densidadeFluxoCalor = new Calculo().DensidadeFluxoComSol(transmitanciaTermica, temperaturaSolar, temperaturaInterna, temperaturaExterna);
             fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, metrosQuadrado);                 
         } else {
+            System.out.println("TR: " + transmitanciaTermica
+                              + "TemSol: " + temperaturaSolar
+                              + "TempInter: " + temperaturaInterna 
+                              + "TemprExt: " + temperaturaExterna);
             densidadeFluxoCalor = new Calculo().DensidadeFluxoSemSol(transmitanciaTermica, temperaturaInterna, temperaturaExterna);  
-            fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, metrosQuadrado);    
+                System.out.println("Desflu: " + densidadeFluxoCalor);
+            fluxoCalor = new Calculo().FluxoCalor(densidadeFluxoCalor, metrosQuadrado);  
+                System.out.println("Flux: " + fluxoCalor);
         }
               
         double fatorSolar = 0.87; //Valor de vidro tranparente simples, ajustar para receber valor de fator solar de tipos de vidro diferentes
